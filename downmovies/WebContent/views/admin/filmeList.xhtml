@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+	<p:messages />
+	
+	
+	<h:form>
+		<p:commandButton action="cadastrar" value="Adicionar Novo"/>
+	
+	</h:form>>
+
+	<p:dataTable value="#{filmeManagedBean.filmes}" var="filme">
+	
+		<f:facet name="header">Lista de Filmes</f:facet>
+		
+		
+		<p:column>
+			<f:facet name="header">Título</f:facet>
+			#{filme.titulo}
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">Diretor</f:facet>
+			#{filme.diretor}
+		</p:column>
+		
+		
+		<p:column>
+			<f:facet name="header">Ano de Lançamento</f:facet>
+			#{filme.anoLancamento}
+		</p:column>
+	
+		<p:column>
+			<f:facet name="header">Idioma</f:facet>
+			#{filme.idioma}
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">Legenda</f:facet>
+			#{filme.legenda}
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">Formato</f:facet>
+			#{filme.formato}
+		</p:column>
+		
+		
+		<p:column>
+			<f:facet name="header">Qualidade</f:facet>
+			#{filme.qualidade}
+		</p:column>
+		
+		
+		<p:column>
+			<f:facet name="header">Tamanho</f:facet>
+			#{filme.tamanho}
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">Tempo de Duração</f:facet>
+			#{filme.tempoDuracao}
+		</p:column>
+		
+		
+	</p:dataTable>
+</h:body>
+</html>

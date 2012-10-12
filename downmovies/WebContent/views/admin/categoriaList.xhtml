@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="template.xhtml">
+    <ui:define name="conteudo">
+      <div class="center_content">
+		
+			<h:form>
+		
+				<p:dataTable id="dataTable" var="categoria" value="#{categoriaManagedBean.categorias}" widgetVar="categoriasTable"
+					paginator="true" rows="10" editable="true" rowsPerPageTemplate="5,10,15" emptyMessage="Nenhuma categoria encontrada" filteredValue="#{categoriaManagedBean.filteredCategorias}" >
+					
+					<f:facet name="header">
+						Categorias
+					</f:facet>
+					
+					
+					<p:ajax event="rowEdit" listener="#{categoriaManagedBean.onEdit}" update=":form:messages" />  
+        			<p:ajax event="rowEditCancel" listener="#{categoriaManagedBean.onCancel}" update=":form:messages" /> 
+					
+					
+					<p:column headerText="#"  sortBy="#{categoria.id}" style="widht:5px" >
+						#{categoria.id}
+					</p:column>
+					
+					<p:column headerText="Descrição" sortBy="#{categoria.descricao}" filterBy="#{categoria.descricao}">
+						
+						<p:cellEditor>  
+			                <f:facet name="output">  
+			                    <h:outputText value="#{categoria.descricao}" />  
+			                </f:facet>  
+			                <f:facet name="input">  
+			                    <p:inputText value="#{categoria.descricao}" style="width:100%" label="Descrição"/>  
+			                </f:facet>  
+			            </p:cellEditor>  
+					</p:column>
+					
+					
+					<p:column headerText="Opções" style="width:50px">  
+            			<p:rowEditor />  
+        			</p:column>  
+					
+					
+					
+				</p:dataTable>
+			</h:form>
+      
+    </div><!-- end of center content -->
+    </ui:define>
+  	</ui:composition>
+
+</html>

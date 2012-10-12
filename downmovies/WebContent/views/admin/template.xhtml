@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+</h:head>
+<h:body>
+
+	<p:growl id="grow1" showDetail="true" sticky="true"/>
+
+	<div id="main_container">
+
+		<ui:insert name="topo">
+			<div class="top_bar">
+
+				<div class="languages">
+					<div class="lang_text">Languages:</div>
+
+					<p:commandLink styleClass="lang">
+						<p:graphicImage value="../images/en.png"></p:graphicImage>
+					</p:commandLink>
+					<p:commandLink styleClass="lang">
+						<p:graphicImage value="../images/br.png"></p:graphicImage>
+					</p:commandLink>
+				</div>
+
+			</div>
+			<div id="header">
+				
+				<p:commandLink action="index" >
+						<p:graphicImage value="../images/down_movies.png"></p:graphicImage>
+				</p:commandLink>
+				
+			</div>
+
+			<div id="main_content">
+			
+				<div id="menu_tab">
+				
+					<p:tabMenu styleClass="menu">
+						<p:menuitem url="index.jsf" value="Home" styleClass="home" icon="" />
+						<p:menuitem url="#" value="Filmes" styleClass="movies" icon=""  />
+						<p:menuitem url="#" value="Categorias" styleClass="categories" icon=""  />
+						<p:menuitem url="#" value="Usuários" styleClass="users" icon=""  />
+						<p:menuitem url="#" value="Contatos" styleClass="contacts" icon=""  />
+					</p:tabMenu>
+				
+				</div>
+				<!-- end of menu tab -->
+				
+				<!-- <div class="crumb_navigation">
+    				Navigation: <span class="current">Home</span>
+    			</div> -->
+    			<br/> 
+    			<br/> 
+    			<br/> 
+			</div>
+			<!-- end of main content -->
+		</ui:insert>
+
+		<ui:insert name="conteudo">
+		
+			<div class="left_content">
+					<div class="title_box">Categories</div>
+					
+					
+					<p:menu styleClass="left_menu">  
+				        <p:menuitem url="#" value="Usuários" icon="ui-icon-check"  />
+
+				         
+    				</p:menu>  
+					
+					<div class="banner_adds"></div>
+
+
+				</div>
+				<!-- end of left content -->
+
+
+				<div class="right_content">
+					<div class="session">
+						<div class="session_title">Sess&aacute;o</div>
+
+						<div class="session_details">
+							3 items <br /> <span class="border_session"></span> Total: <span
+								class="price">350$</span>
+						</div>
+
+					</div>
+
+					<div class="banner_adds"></div>
+
+				</div>
+				<!-- end of right content -->
+		</ui:insert>
+
+
+
+
+		<ui:insert name="rodape">
+
+
+			<div class="footer">
+
+				<div class="center_footer">
+					<br />Down Movies. All Rights Reserved 2012<br />
+				</div>
+				
+				<div class="right_footer">
+					<p:commandLink value="Home" action="#"/>
+					<p:commandLink value="Filmes" action="#"/>
+					<p:commandLink value="Categorias" action="#"/>
+					<p:commandLink value="Contatos" action="#"/>
+				</div>
+
+			</div>
+
+		</ui:insert>
+
+	</div>
+	<!-- end of main_container -->
+</h:body>
+
+
+
+
+</html>
