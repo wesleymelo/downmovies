@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>DOWN MOVIES</title>
+</h:head>
+<h:body>
+	<p:messages />
+
+	<h:form id="form">
+		<h:inputHidden value="#{filmeManagedBean.filme.id}" id="id" />
+
+
+
+		<p:panel id="panel" header="Novo Filme" style="margin-bottom:10px;">
+			<p:messages id="messages" />
+
+			<p:panelGrid columns="2">
+					
+				<p:outputLabel value="Título:" for="titulo" />
+				<h:panelGroup>
+					<p:inputText value="#{filmeManagedBean.filme.titulo}" id="titulo"
+						required="true" maxlength="50">
+						<f:validateLength maximum="50" minimum="1" />
+					</p:inputText>
+
+					<p:message for="titulo"></p:message>
+				</h:panelGroup>
+
+				<p:outputLabel value="Diretor:" for="diretor" />
+				<h:panelGroup>
+					<p:inputText value="#{filmeManagedBean.filme.diretor}" id="diretor"
+						required="true" maxlength="50">
+						<f:validateLength maximum="50" minimum="1" />
+					</p:inputText>
+					<p:message for="diretor"></p:message>
+				</h:panelGroup>
+
+				<p:outputLabel value="Ano Lançamento:" for="ano_lancamento" />
+				<h:panelGroup>
+					<p:inputText value="#{filmeManagedBean.filme.anoLancamento}"
+						id="ano_lancamento" required="true">
+						<f:validateLongRange minimum="10" />
+					</p:inputText>
+
+					<p:message for="ano_lancamento"></p:message>
+				</h:panelGroup>
+
+
+				<p:outputLabel value="Idioma:" for="idioma" />
+				<h:panelGroup>
+					<p:selectOneMenu value="#{filmeManagedBean.filme.idioma}"
+						id="idioma" required="true">
+						<f:selectItem itemLabel="Selecione uma opção..." noSelectionOption="true" />
+						<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
+						<f:selectItem itemLabel="Português" itemValue="Português" />
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês" />
+					</p:selectOneMenu>
+
+					<p:message for="idioma"></p:message>
+				</h:panelGroup>
+
+				<p:outputLabel value="legenda:" for="legenda" />
+
+				<h:panelGroup>
+					<p:selectOneMenu value="#{filmeManagedBean.filme.legenda}"
+						id="legenda" required="true">
+						<f:selectItem itemLabel="Selecione uma opção..." noSelectionOption="true" />
+						<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
+						<f:selectItem itemLabel="Português" itemValue="Português" />
+						<f:selectItem itemLabel="Inglês" itemValue="Inglês" />
+						<f:selectItem itemLabel="Não disponível"
+							itemValue="Não disponível" />
+					</p:selectOneMenu>
+
+					<p:message for="legenda"></p:message>
+				</h:panelGroup>
+
+				<p:outputLabel value="Formato:" for="formato" />
+
+				<h:panelGroup>
+					<p:inputText value="#{filmeManagedBean.filme.formato}" id="formato"
+						required="true">
+						<f:validateLength minimum="1" maximum="30" />
+					</p:inputText>
+
+					<p:message for="formato"></p:message>
+				</h:panelGroup>
+
+				<p:outputLabel value="Qualidade:" for="qualidade" />
+
+				<h:panelGroup>
+					<p:inputText value="#{filmeManagedBean.filme.qualidade}"
+						id="qualidade" required="true">
+						<f:validateLength minimum="1" maximum="30" />
+					</p:inputText>
+
+					<p:message for="qualidade"></p:message>
+				</h:panelGroup>
+
+				<p:outputLabel value="Tamanho:" for="tamanho" />
+
+				<h:panelGroup>
+					<p:inputText value="#{filmeManagedBean.filme.tamanho}" id="tamanho"
+						required="true">
+						<f:validateDoubleRange minimum="1" />
+					</p:inputText>
+
+					<p:message for="tamanho"></p:message>
+				</h:panelGroup>
+
+
+				<p:outputLabel value="Tempo de Duração(em minutos):"
+					for="tempo_duracao" />
+
+				<h:panelGroup>
+					<p:inputText value="#{filmeManagedBean.filme.tempoDuracao}"
+						id="tempo_duracao" required="true">
+						<f:validateLongRange minimum="1" />
+					</p:inputText>
+
+					<p:message for="tempo_duracao"></p:message>
+				</h:panelGroup>
+
+				<p:outputLabel value="Descrição:" for="descricao" />
+
+				<h:panelGroup>
+					<p:inputTextarea value="#{filmeManagedBean.filme.descricao}"
+						id="descricao" required="true">
+						<f:validateLength minimum="1" />
+					</p:inputTextarea>
+
+					<p:message for="descricao"></p:message>
+				</h:panelGroup>
+
+				
+
+			</p:panelGrid>
+		</p:panel>
+		<p:commandButton value="Cadastrar"
+					action="#{filmeManagedBean.insert}" />
+	</h:form>
+</h:body>
+</html>
