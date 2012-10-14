@@ -2,22 +2,57 @@ package br.ucb.filmes.beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table
 public class Filme implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue
 	private Integer id;
+	
+	@Column
 	private String formato;
+	
+	@ManyToOne
+	@JoinColumn(name="idCategoria")
 	private Categoria categoria;
+	
+	@Column
 	private String titulo;
+	
+	@Column
 	private String descricao;
+	
+	@Column
 	private String diretor;
+	
+	@Column
 	private Integer anoLancamento;
+	
+	@Column
 	private String idioma;
+	
+	@Column
 	private String legenda;
+	
+	@Column
 	private String qualidade;
+	
+	@Column
 	private Double tamanho;
+	
+	@Column
 	private Integer tempoDuracao;
 	
 	public Filme(Integer id, String formato, Categoria categoria,

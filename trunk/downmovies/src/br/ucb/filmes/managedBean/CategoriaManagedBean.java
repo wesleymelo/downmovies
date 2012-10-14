@@ -1,19 +1,14 @@
 package br.ucb.filmes.managedBean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import javax.faces.context.FacesContext;
-
 import org.primefaces.event.RowEditEvent;
-
-
 import br.ucb.filmes.beans.Categoria;
-import br.ucb.fimes.daos.CategoriaDAO;
+import br.ucb.fimes.dao.CategoriaDAO;
 
 
 @ManagedBean
@@ -21,9 +16,14 @@ import br.ucb.fimes.daos.CategoriaDAO;
 public class CategoriaManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Categoria categoria = new Categoria();
-	private List<Categoria> categorias = new ArrayList<Categoria>();
+	private Categoria categoria;
+	private List<Categoria> categorias;
 	private List<Categoria> filteredCategorias; 
+	
+	public CategoriaManagedBean() {
+		this.categoria = new Categoria();
+	}
+	
 	
 	public Categoria getCategoria() {
 		return categoria;
@@ -53,12 +53,12 @@ public class CategoriaManagedBean implements Serializable {
 		FacesMessage msg = new FacesMessage();
 		
 		CategoriaDAO dao = new CategoriaDAO();
-		if(dao.insert(getCategoria()) == 0)
-			msg.setSummary("Não foi possível inserir a categoria.");
-		else
-			msg.setSummary("Categoria adicionado com sucesso.");
+		
+		dao.insert(getCategoria());
+		
+		msg.setSummary("Categoria adicionado com sucesso.");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-		setCategorias(dao.recoverAll());
+		setCategorias(dao.recoveryAll());
 		return "categoriaList";
 	}
 	

@@ -6,27 +6,27 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 
 
-DROP SCHEMA IF EXISTS `filmes` ;
+DROP SCHEMA IF EXISTS `downmovies` ;
 
-CREATE SCHEMA IF NOT EXISTS `filmes` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
+CREATE SCHEMA IF NOT EXISTS `downmovies` ;
 
-USE `filmes` ;
+USE `downmovies` ;
 
 
 
 -- -----------------------------------------------------
 
--- Table `filmes`.`Categorias`
+-- Table `downmovies`.`Categoria`
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `filmes`.`Categorias` ;
+DROP TABLE IF EXISTS `downmovies`.`Categoria` ;
 
 
 
-CREATE  TABLE IF NOT EXISTS `filmes`.`Categorias` (
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Categoria` (
 
-  `id_categoria` INT(11) NOT NULL AUTO_INCREMENT ,
+  `id_categoria` INT(11) NOT NULL,
 
   `descricao` VARCHAR(50) NOT NULL ,
 
@@ -40,17 +40,17 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `filmes`.`Filmes`
+-- Table `downmovies`.`downmovies`
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `filmes`.`Filmes` ;
+DROP TABLE IF EXISTS `downmovies`.`filme` ;
 
 
 
-CREATE  TABLE IF NOT EXISTS `filmes`.`Filmes` (
+CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
-  `id_filme` INT(11) NOT NULL AUTO_INCREMENT ,
+  `id_filme` INT(11) NOT NULL,
 
   `titulo` VARCHAR(50) NOT NULL ,
 
@@ -76,7 +76,7 @@ CREATE  TABLE IF NOT EXISTS `filmes`.`Filmes` (
 
   PRIMARY KEY (`id_filme`) ,
 
-  INDEX `fk_Filmes_Categorias` (`id_categoria` ASC) )
+  INDEX `fk_filme_Categoria` (`id_categoria` ASC) )
 
 ENGINE = InnoDB;
 
@@ -86,17 +86,17 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `filmes`.`Perfis`
+-- Table `downmovies`.`Perfis`
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `filmes`.`Perfis` ;
+DROP TABLE IF EXISTS `downmovies`.`Perfil` ;
 
 
 
-CREATE  TABLE IF NOT EXISTS `filmes`.`Perfis` (
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Perfil` (
 
-  `id_perfil` INT(11) NOT NULL AUTO_INCREMENT ,
+  `id_perfil` INT(11) NOT NULL,
 
   `descricao` VARCHAR(50) NOT NULL ,
 
@@ -110,17 +110,17 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `filmes`.`Usuarios`
+-- Table `downmovies`.`Usuarios`
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `filmes`.`Usuarios` ;
+DROP TABLE IF EXISTS `downmovies`.`Usuario` ;
 
 
 
-CREATE  TABLE IF NOT EXISTS `filmes`.`Usuarios` (
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Usuario` (
 
-  `id_usuario` INT(11) NOT NULL AUTO_INCREMENT ,
+  `id_usuario` INT(11) NOT NULL ,
 
   `nome` VARCHAR(50) NOT NULL ,
 
@@ -144,17 +144,17 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `filmes`.`Aquisicoes`
+-- Table `downmovies`.`Aquisicoes`
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `filmes`.`Aquisicoes` ;
+DROP TABLE IF EXISTS `downmovies`.`Aquisicao` ;
 
 
 
-CREATE  TABLE IF NOT EXISTS `filmes`.`Aquisicoes` (
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Aquisicao` (
 
-  `id_aquisicao` INT(11) NOT NULL AUTO_INCREMENT ,
+  `id_aquisicao` INT(11) NOT NULL,
 
   `id_usuario` INT(11) NOT NULL ,
 
@@ -164,7 +164,7 @@ CREATE  TABLE IF NOT EXISTS `filmes`.`Aquisicoes` (
 
   PRIMARY KEY (`id_aquisicao`, `id_usuario`, `id_filme`) ,
 
-  INDEX `fk_Aquisicoes_Filmes1` (`id_filme` ASC) ,
+  INDEX `fk_Aquisicoes_downmovies1` (`id_filme` ASC) ,
 
   INDEX `fk_Aquisicoes_Usuarios1` (`id_usuario` ASC) )
 
