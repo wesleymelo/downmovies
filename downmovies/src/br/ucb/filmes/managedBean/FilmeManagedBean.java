@@ -2,13 +2,13 @@ package br.ucb.filmes.managedBean;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-
+import br.ucb.filmes.beans.Categoria;
 import br.ucb.filmes.beans.Filme;
-import br.ucb.fimes.daos.FilmeDAO;
-
+import br.ucb.fimes.dao.FilmeDAO;
 
 @ManagedBean
 public class FilmeManagedBean implements Serializable {
@@ -16,11 +16,20 @@ public class FilmeManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Filme filme;
 	private List<Filme> filmes;
+	private List<Categoria> categorias;
 
 	public FilmeManagedBean() {
 		this.filme = new Filme();
 	} 
 	
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
 	public List<Filme> getFilmes() {
 		return filmes;
 	}
@@ -41,12 +50,13 @@ public class FilmeManagedBean implements Serializable {
 		FacesMessage msg = new FacesMessage();
 		
 		FilmeDAO dao = new FilmeDAO();
-		if(dao.insert(getFilme()) == 0)
-			msg.setSummary("Não foi possível inserir o filme.");
-		else
-			msg.setSummary("Filme adicionado com sucesso.");
+		
+		dao.insert(filme);
+		
+		msg.setSummary("Não foi possível inserir o filme.");
+		
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-		setFilmes(dao.recoverAll());
+		setFilmes(dao.recoveryAll());
 		return "filmesLista";
 	}
 	

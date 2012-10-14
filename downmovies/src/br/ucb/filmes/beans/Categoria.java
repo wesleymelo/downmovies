@@ -8,8 +8,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="categorias")
-
+@Table
 public class Categoria {
 	
 	@Id
