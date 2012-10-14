@@ -83,7 +83,7 @@ public class FilmeDAO implements DAO<Filme> {
 			ps.setString(9, filme.getQualidade());
 			ps.setDouble(10, filme.getTamanho());
 			ps.setInt(11, filme.getTempoDuracao());
-			ps.setInt(12, filme.getId());
+			ps.setInt(12, filme.getId_filme());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
