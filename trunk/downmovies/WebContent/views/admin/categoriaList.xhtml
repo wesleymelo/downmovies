@@ -12,36 +12,22 @@
 			<h:form>
 		
 				<p:dataTable id="dataTable" var="categoria" value="#{categoriaManagedBean.categorias}" widgetVar="categoriasTable"
-					paginator="true" rows="10" editable="true" rowsPerPageTemplate="5,10,15" emptyMessage="Nenhuma categoria encontrada" filteredValue="#{categoriaManagedBean.filteredCategorias}" >
+					paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Nenhuma categoria encontrada" filteredValue="#{categoriaManagedBean.filteredCategorias}" >
 					
 					<f:facet name="header">
 						Categorias
 					</f:facet>
 					
-					
-					<p:ajax event="rowEdit" listener="#{categoriaManagedBean.onEdit}" update=":form:messages" />  
-        			<p:ajax event="rowEditCancel" listener="#{categoriaManagedBean.onCancel}" update=":form:messages" /> 
-					
-					
-					<p:column headerText="#"  sortBy="#{categoria.id}" style="widht:5px" >
-						#{categoria.id}
+					<p:column headerText="#"  sortBy="#{categoria.id_categoria}" style="widht:5px" >
+						#{categoria.id_categoria}
 					</p:column>
 					
-					<p:column headerText="Descrição" sortBy="#{categoria.descricao}" filterBy="#{categoria.descricao}">
-						
-						<p:cellEditor>  
-			                <f:facet name="output">  
-			                    <h:outputText value="#{categoria.descricao}" />  
-			                </f:facet>  
-			                <f:facet name="input">  
-			                    <p:inputText value="#{categoria.descricao}" style="width:100%" label="Descrição"/>  
-			                </f:facet>  
-			            </p:cellEditor>  
+					<p:column headerText="Descrição"  sortBy="#{categoria.descricao}" style="widht:50px" >
+						#{categoria.descricao}
 					</p:column>
 					
-					
-					<p:column headerText="Opções" style="width:50px">  
-            			<p:rowEditor />  
+					<p:column headerText="Opções" style="width:10px">  
+            			  
         			</p:column>  
 					
 					

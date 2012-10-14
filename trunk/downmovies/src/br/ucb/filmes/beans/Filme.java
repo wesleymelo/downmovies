@@ -19,7 +19,7 @@ public class Filme implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer id_filme;
 	
 	@Column
 	private String formato;
@@ -55,12 +55,12 @@ public class Filme implements Serializable {
 	@Column
 	private Integer tempoDuracao;
 	
-	public Filme(Integer id, String formato, Categoria categoria,
+	public Filme(Integer id_filme, String formato, Categoria categoria,
 			String titulo, String descricao, String diretor,
 			Integer anoLancamento, String idioma, String legenda,
 			String qualidade, Double tamanho, Integer tempoDuracao) {
 		super();
-		this.id = id;
+		this.id_filme = id_filme;
 		this.formato = formato;
 		this.categoria = categoria;
 		this.titulo = titulo;
@@ -77,13 +77,12 @@ public class Filme implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Integer getId() {
-		return id;
+	public Integer getId_filme() {
+		return id_filme;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId_filme(Integer id_filme) {
+		this.id_filme = id_filme;
 	}
-	
 	public String getFormato() {
 		return formato;
 	}
