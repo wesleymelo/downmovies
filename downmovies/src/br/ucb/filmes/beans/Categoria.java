@@ -13,7 +13,7 @@ public class Categoria {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer id_categoria;
 	
 	@Column
 	private String descricao;
@@ -22,16 +22,19 @@ public class Categoria {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Categoria(int id, String descricao) {
-		setId(id);
+	public Categoria(int id_categoria, String descricao) {
+		setId_categoria(id_categoria);
 		setDescricao(descricao);
 	}
-	public Integer getId() {
-		return id;
+	
+	public Integer getId_categoria() {
+		return id_categoria;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+
+	public void setId_categoria(Integer id_categoria) {
+		this.id_categoria = id_categoria;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}

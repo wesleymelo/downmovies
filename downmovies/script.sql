@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `downmovies`.`Categoria` ;
 
 CREATE  TABLE IF NOT EXISTS `downmovies`.`Categoria` (
 
-  `id_categoria` INT(11) NOT NULL,
+  `id_categoria` INT(11) NOT NULL AUTO_INCREMENT,
 
   `descricao` VARCHAR(50) NOT NULL ,
 
@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `downmovies`.`filme` ;
 
 CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
-  `id_filme` INT(11) NOT NULL,
+  `id_filme` INT(11) NOT NULL AUTO_INCREMENT ,
 
   `titulo` VARCHAR(50) NOT NULL ,
 
@@ -96,7 +96,7 @@ DROP TABLE IF EXISTS `downmovies`.`Perfil` ;
 
 CREATE  TABLE IF NOT EXISTS `downmovies`.`Perfil` (
 
-  `id_perfil` INT(11) NOT NULL,
+  `id_perfil` INT(11) NOT NULL AUTO_INCREMENT ,
 
   `descricao` VARCHAR(50) NOT NULL ,
 
@@ -120,7 +120,7 @@ DROP TABLE IF EXISTS `downmovies`.`Usuario` ;
 
 CREATE  TABLE IF NOT EXISTS `downmovies`.`Usuario` (
 
-  `id_usuario` INT(11) NOT NULL ,
+  `id_usuario` INT(11) NOT NULL AUTO_INCREMENT ,
 
   `nome` VARCHAR(50) NOT NULL ,
 
@@ -154,7 +154,7 @@ DROP TABLE IF EXISTS `downmovies`.`Aquisicao` ;
 
 CREATE  TABLE IF NOT EXISTS `downmovies`.`Aquisicao` (
 
-  `id_aquisicao` INT(11) NOT NULL,
+  `id_aquisicao` INT(11) NOT NULL AUTO_INCREMENT ,
 
   `id_usuario` INT(11) NOT NULL ,
 

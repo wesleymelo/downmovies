@@ -24,7 +24,7 @@ public class FilmeDAO implements DAO<Filme> {
 			conn = FactoryConnection.init();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, filme.getFormato());
-			ps.setInt(2, filme.getCategoria().getId());
+			ps.setInt(2, filme.getCategoria().getId_categoria());
 			ps.setString(3, filme.getTitulo());
 			ps.setString(4, filme.getDescricao());
 			ps.setString(5, filme.getDiretor());
@@ -73,7 +73,7 @@ public class FilmeDAO implements DAO<Filme> {
 			conn = FactoryConnection.init();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, filme.getFormato());
-			ps.setInt(2, filme.getCategoria().getId());
+			ps.setInt(2, filme.getCategoria().getId_categoria());
 			ps.setString(3, filme.getTitulo());
 			ps.setString(4, filme.getDescricao());
 			ps.setString(5, filme.getDiretor());
