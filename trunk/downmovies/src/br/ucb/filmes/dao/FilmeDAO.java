@@ -34,7 +34,7 @@ public class FilmeDAO {
 			session.close();
 		}
 	}
-	public Filme consultar(long id) {
+	public Filme consult(long id) {
 		Session session = HibernateUtil.getSession();
 		try {
 			Filme filme = (Filme) session.get(Filme.class, id);
