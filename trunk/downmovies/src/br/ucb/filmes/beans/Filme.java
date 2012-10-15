@@ -56,7 +56,7 @@ public class Filme implements Serializable {
 	private Integer tempo_duracao;
 	
 	public Filme() {
-		// TODO Auto-generated constructor stub
+		this.categoria = new Categoria();
 	}
 	
 	public Integer getId_filme() {
@@ -140,6 +140,19 @@ public class Filme implements Serializable {
 	public void setTempo_duracao(Integer tempo_duracao) {
 		this.tempo_duracao = tempo_duracao;
 	}
+
+	@Override
+	public String toString() {
+		return "Filme [id_filme=" + id_filme + ", formato=" + formato
+				+ ", categoria=" + categoria + ", titulo=" + titulo
+				+ ", descricao=" + descricao + ", diretor=" + diretor
+				+ ", ano_lancamento=" + ano_lancamento + ", idioma=" + idioma
+				+ ", legenda=" + legenda + ", qualidade=" + qualidade
+				+ ", tamanho=" + tamanho + ", tempo_duracao=" + tempo_duracao
+				+ "]";
+	}
+	
+	
 	
 	
 	
