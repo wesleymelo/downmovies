@@ -22,6 +22,7 @@ public class CategoriaManagedBean implements Serializable {
 	
 	public CategoriaManagedBean() {
 		this.categoria = new Categoria();
+		this.categorias = new CategoriaDAO().recoveryAll();
 	}
 	
 	
@@ -76,6 +77,5 @@ public class CategoriaManagedBean implements Serializable {
         FacesMessage msg = new FacesMessage("Categoria Cancelada", ((Categoria) event.getObject()).getDescricao());
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-	
+    }	
 }
