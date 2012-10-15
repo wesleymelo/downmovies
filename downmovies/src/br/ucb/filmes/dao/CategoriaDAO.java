@@ -34,7 +34,7 @@ public class CategoriaDAO {
 			session.close();
 		}
 	}
-	public Categoria consultar(long id) {
+	public Categoria consult(int id) {
 		Session session = HibernateUtil.getSession();
 		try {
 			Categoria Categoria = (Categoria) session.get(Categoria.class, id);
