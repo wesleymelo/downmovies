@@ -7,8 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import br.ucb.filmes.beans.Categoria;
 import br.ucb.filmes.beans.Filme;
-import br.ucb.fimes.dao.CategoriaDAO;
-import br.ucb.fimes.dao.FilmeDAO;
+import br.ucb.filmes.dao.CategoriaDAO;
+import br.ucb.filmes.dao.FilmeDAO;
 
 @ManagedBean
 public class FilmeManagedBean implements Serializable {

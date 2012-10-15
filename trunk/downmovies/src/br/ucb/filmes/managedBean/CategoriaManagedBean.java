@@ -8,7 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 import br.ucb.filmes.beans.Categoria;
-import br.ucb.fimes.dao.CategoriaDAO;
+import br.ucb.filmes.dao.CategoriaDAO;
 
 
 @ManagedBean

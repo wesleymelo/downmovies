@@ -1,4 +1,4 @@
-package br.ucb.fimes.dao;
+package br.ucb.filmes.dao;
 
 import java.util.List;
 
