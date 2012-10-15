@@ -18,15 +18,6 @@ public class Categoria {
 	@Column
 	private String descricao;
 	
-	public Categoria() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Categoria(int id_categoria, String descricao) {
-		setId_categoria(id_categoria);
-		setDescricao(descricao);
-	}
-	
 	public Integer getId_categoria() {
 		return id_categoria;
 	}
@@ -41,5 +32,40 @@ public class Categoria {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result
+				+ ((id_categoria == null) ? 0 : id_categoria.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Categoria other = (Categoria) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (id_categoria == null) {
+			if (other.id_categoria != null)
+				return false;
+		} else if (!id_categoria.equals(other.id_categoria))
+			return false;
+		return true;
+	}
+	
+	
 	
 }
