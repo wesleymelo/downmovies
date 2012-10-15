@@ -2,12 +2,12 @@ package br.ucb.filmes.managedBean;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import br.ucb.filmes.beans.Categoria;
 import br.ucb.filmes.beans.Filme;
+import br.ucb.fimes.dao.CategoriaDAO;
 import br.ucb.fimes.dao.FilmeDAO;
 
 @ManagedBean
@@ -20,6 +20,7 @@ public class FilmeManagedBean implements Serializable {
 
 	public FilmeManagedBean() {
 		this.filme = new Filme();
+		this.categorias = new CategoriaDAO().recoveryAll();
 	} 
 	
 	public List<Categoria> getCategorias() {
@@ -57,11 +58,10 @@ public class FilmeManagedBean implements Serializable {
 		
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		setFilmes(dao.recoveryAll());
-		return "filmesLista";
+		return "filmeList";
 	}
 	
 	public String cadastrar(){
 		return "filmeForm";
 	}
-	
 }
