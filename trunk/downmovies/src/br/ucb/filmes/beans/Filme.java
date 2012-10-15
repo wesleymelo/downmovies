@@ -25,7 +25,7 @@ public class Filme implements Serializable {
 	private String formato;
 	
 	@ManyToOne
-	@JoinColumn(name="idCategoria")
+	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
 	
 	@Column
@@ -38,7 +38,7 @@ public class Filme implements Serializable {
 	private String diretor;
 	
 	@Column
-	private Integer anoLancamento;
+	private Integer ano_lancamento;
 	
 	@Column
 	private String idioma;
@@ -53,26 +53,8 @@ public class Filme implements Serializable {
 	private Double tamanho;
 	
 	@Column
-	private Integer tempoDuracao;
+	private Integer tempo_duracao;
 	
-	public Filme(Integer id_filme, String formato, Categoria categoria,
-			String titulo, String descricao, String diretor,
-			Integer anoLancamento, String idioma, String legenda,
-			String qualidade, Double tamanho, Integer tempoDuracao) {
-		super();
-		this.id_filme = id_filme;
-		this.formato = formato;
-		this.categoria = categoria;
-		this.titulo = titulo;
-		this.descricao = descricao;
-		this.diretor = diretor;
-		this.anoLancamento = anoLancamento;
-		this.idioma = idioma;
-		this.legenda = legenda;
-		this.qualidade = qualidade;
-		this.tamanho = tamanho;
-		this.tempoDuracao = tempoDuracao;
-	}
 	public Filme() {
 		// TODO Auto-generated constructor stub
 	}
@@ -117,16 +99,6 @@ public class Filme implements Serializable {
 	public void setDiretor(String diretor) {
 		this.diretor = diretor;
 	}
-	
-	public Integer getAnoLancamento() {
-		return anoLancamento;
-	}
-
-
-	public void setAnoLancamento(Integer anoLancamento) {
-		this.anoLancamento = anoLancamento;
-	}
-
 
 	public String getIdioma() {
 		return idioma;
@@ -152,11 +124,21 @@ public class Filme implements Serializable {
 	public void setTamanho(Double tamanho) {
 		this.tamanho = tamanho;
 	}
-	public Integer getTempoDuracao() {
-		return tempoDuracao;
+
+	public Integer getAno_lancamento() {
+		return ano_lancamento;
 	}
-	public void setTempoDuracao(Integer tempoDuracao) {
-		this.tempoDuracao = tempoDuracao;
+
+	public void setAno_lancamento(Integer ano_lancamento) {
+		this.ano_lancamento = ano_lancamento;
+	}
+
+	public Integer getTempo_duracao() {
+		return tempo_duracao;
+	}
+
+	public void setTempo_duracao(Integer tempo_duracao) {
+		this.tempo_duracao = tempo_duracao;
 	}
 	
 	
