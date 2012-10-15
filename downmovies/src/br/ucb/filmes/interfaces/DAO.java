@@ -1,4 +1,4 @@
-package br.ucb.fimes.interfaces;
+package br.ucb.filmes.interfaces;
 
 import java.util.List;
 
