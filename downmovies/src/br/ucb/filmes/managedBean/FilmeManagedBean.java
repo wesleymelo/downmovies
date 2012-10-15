@@ -2,9 +2,11 @@ package br.ucb.filmes.managedBean;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+
 import br.ucb.filmes.beans.Categoria;
 import br.ucb.filmes.beans.Filme;
 import br.ucb.filmes.dao.CategoriaDAO;
@@ -52,9 +54,11 @@ public class FilmeManagedBean implements Serializable {
 		
 		FilmeDAO dao = new FilmeDAO();
 		
-		dao.insert(filme);
+		dao.insert(getFilme());
 		
-		msg.setSummary("Não foi possível inserir o filme.");
+		System.out.println(filme);
+		
+		msg.setSummary("Filme inserido com sucesso");
 		
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		setFilmes(dao.recoveryAll());
@@ -64,4 +68,5 @@ public class FilmeManagedBean implements Serializable {
 	public String cadastrar(){
 		return "filmeForm";
 	}
+	
 }
