@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="template.xhtml">
+    <ui:define name="conteudo">
+      <div class="center_content">
+      <h:form id="form">
+			
+            <p:panel header="Filme">  
+              
+                <p:growl id="messages" showDetail="true" sticky="true" />  
+                  
+                <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
+                   
+                     <h:outputLabel value="Filme:" for="filme" />
+                     <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  
+				            mode="advanced"   
+				            update="messages" 
+				            id="filme" 
+				            sizeLimit="100000"   
+				            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+				            
+				     
+				     <h:outputLabel value="Capa:" for="capa" />       
+				     <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  
+				            mode="advanced"   
+				            update="messages"  
+				            sizeLimit="100000" 
+				            id="capa"  
+				            allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
+				  
+  
+
+                    
+                </h:panelGrid>  
+                
+            </p:panel>  
+            
+            
+   
+          
+  
+	
+
+	</h:form>
+      
+    </div><!-- end of center content -->
+    </ui:define>
+  	</ui:composition>
+
+</html>

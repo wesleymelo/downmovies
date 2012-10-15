@@ -39,9 +39,10 @@
 					
 					
 					<h:outputLabel value="Categoria:" for="categoria" />
+					
 					<h:panelGroup>
 						<h:selectOneMenu id="categoria" value="#{filmeManagedBean.filme.categoria}" label="Categoria: " converter="CategoriaConverter" required="true">
-							
+							<f:selectItem itemLabel="Selecione uma opção..." noSelectionOption="true" />
 							<f:selectItems value="#{categoriaManagedBean.categorias}" var="categoria" itemLabel="#{categoria.descricao}" />
 						</h:selectOneMenu>
 						
@@ -68,7 +69,6 @@
 					
 						<p:selectOneMenu value="#{filmeManagedBean.filme.idioma}"
 							id="idioma" required="true" editable="true" effect="fade">
-							<f:selectItem itemLabel="Selecione uma opção..." itemValue="" />
 							<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
 							<f:selectItem itemLabel="Português" itemValue="Português" />
 							<f:selectItem itemLabel="Inglês" itemValue="Inglês" />
@@ -82,7 +82,6 @@
 					<h:panelGroup>
 						<p:selectOneMenu value="#{filmeManagedBean.filme.legenda}"
 							id="legenda" required="true" editable="true" effect="fade">
-							<f:selectItem itemLabel="Selecione uma opção..." itemValue="" />
 							<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
 							<f:selectItem itemLabel="Português" itemValue="Português" />
 							<f:selectItem itemLabel="Inglês" itemValue="Inglês" />
@@ -147,8 +146,8 @@
 						<p:message for="descricao"></p:message>
 					</h:panelGroup> 
 					
-					<p:outputLabel value="Filme:" for="upload" />
-					<p:fileUpload id="upload" update="growl" fileUploadListener="#{filmeManagedBean.fileUploadAction}" auto="true"/>
+					
+
                     
                 </h:panelGrid>  
                 
