@@ -9,6 +9,7 @@
     <ui:define name="conteudo">
       <div class="center_content">
       <h:form id="form">
+      
 			
             <p:panel header="Filme">  
               
@@ -145,16 +146,13 @@
 	
 						<p:message for="descricao"></p:message>
 					</h:panelGroup> 
-					
-					
-
                     
                 </h:panelGrid>  
                 
             </p:panel>  
             
             <p:commandButton value="Salvar"    
-                            action="#{filmeManagedBean.insert}" update="growl" ajax="false"/>
+                            actionListener="#{filmeManagedBean.insert}" update="growl" ajax="false"/>
    
           
   
