@@ -95,7 +95,7 @@ public class FilmeManagedBean implements Serializable {
            
             
             String caminho = FacesContext.getCurrentInstance().getExternalContext()
-					.getRequestContextPath();
+					.getRealPath("\\filmes\\");
             
             
             
@@ -109,15 +109,17 @@ public class FilmeManagedBean implements Serializable {
     		System.out.println(event.getFile().getFileName());
     		
     		
-    		System.out.println("Caminho"+caminho);
+    		System.out.println("Caminho: "+caminho);
             
             
             byte[] arquivo = event.getFile().getContents();
             
             
             System.out.println("arq"+arquivo);
-            caminho = caminho +"/"+event.getFile().getFileName();    
+            caminho = caminho +"\\"+event.getFile().getFileName();    
       
+            
+            System.out.println("Caminho: "+caminho);
  // esse trecho grava o arquivo no diretório
             FileOutputStream fos = new FileOutputStream(caminho);
             fos.write(arquivo);
