@@ -1,11 +1,12 @@
 body
 {
-background:url(../images/bg.jpg) no-repeat #fff center top;
+background: url(../images/bg.jpg)  no-repeat #fff center top;
+
 padding:0;
 font-family:Arial, Helvetica, sans-serif;
 font-size:11px;
 margin:0px auto auto auto;
-color:#000;
+color:#554;
 }
 p{
 padding:2px;
@@ -75,7 +76,7 @@ padding:0 5px 0 5px;
 #header{
 width:1000px;
 height:173px;
-background:url(../images/header_bg.jpg) no-repeat center;
+background:url(../images/down_movies.png) no-repeat center;
 background-position:0px 0px;
 margin:auto;
 }
