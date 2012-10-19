@@ -7,7 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 
 
-@ManagedBean
+@ManagedBean (name = "CadastroUsuarioManagedBean")
 @ViewScoped
 public class CadastroUsuarioManagedBean  implements Serializable {
 
@@ -17,6 +17,7 @@ public class CadastroUsuarioManagedBean  implements Serializable {
 	private String email;
 	private String senha;
 	
+	private String confirmaSenha;
 	
 	
 	
@@ -25,8 +26,12 @@ public class CadastroUsuarioManagedBean  implements Serializable {
 	
 	
 	
-	
-	
+	public String getConfirmaSenha() {
+		return confirmaSenha;
+	}
+	public void setConfirmaSenha(String confirmaSenha) {
+		this.confirmaSenha = confirmaSenha;
+	}
 	public String getNomeUsuario() {
 		return nomeUsuario;
 	}

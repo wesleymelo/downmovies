@@ -14,14 +14,13 @@
 
 	<p:growl id="grow1" showDetail="true" sticky="true"/>
 
-	<div id="main_container">
-
+	
+	
 		<ui:insert name="topo">
+			
 			<div class="top_bar">
-
 				<div class="languages">
 					<div class="lang_text">Languages:</div>
-
 					<p:commandLink styleClass="lang">
 						<p:graphicImage value="../images/en.png"></p:graphicImage>
 					</p:commandLink>
@@ -29,14 +28,8 @@
 						<p:graphicImage value="../images/br.png"></p:graphicImage>
 					</p:commandLink>
 				</div>
-
-			</div>
-			<div id="header"/>
-
-			<div id="main_content">
-			
+				<div id="header"/>
 				<div id="menu_tab">
-				
 					<p:tabMenu styleClass="menu">
 						<p:menuitem url="index.jsf" value="Home" styleClass="home" icon="" />
 						<p:menuitem url="#" value="Filmes" styleClass="movies" icon=""  />
@@ -44,39 +37,24 @@
 						<p:menuitem url="#" value="Usuários" styleClass="users" icon=""  />
 						<p:menuitem url="#" value="Contatos" styleClass="contacts" icon=""  />
 					</p:tabMenu>
-				
 				</div>
-				<!-- end of menu tab -->
-				
-				<!-- <div class="crumb_navigation">
-    				Navigation: <span class="current">Home</span>
-    			</div> -->
-    			<br/> 
-    			<br/> 
-    			<br/> 
 			</div>
-			<!-- end of main content -->
-		</ui:insert>
+	</ui:insert>
 
 		<ui:insert name="conteudo">
-		
-			<div class="left_content">
+			<div>
+				<div class="left_content">
 					<div class="title_box">Categories</div>
-					
-					
 					<p:menu styleClass="left_menu">  
-				        <p:menuitem url="#" value="Usuários" icon="ui-icon-check"  />
-
-				         
+				        <p:menuitem url="#" value="Usuários" icon="ui-icon-check"/>    
     				</p:menu>  
 					
 					<div class="banner_adds"></div>
 
-
 				</div>
 				<!-- end of left content -->
 
-
+				<div>
 				<div class="right_content">
 					<div class="session">
 						<div class="session_title">Sess&aacute;o</div>
@@ -87,7 +65,7 @@
 						</div>
 
 					</div>
-
+				</div>
 					<div class="banner_adds"></div>
 
 				</div>

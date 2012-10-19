@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="conteudo">
+		<div class="center_content">
+			<h:form id="form">
+
+				<p:panel styleClass="  " header="Usuario">
+
+					<p:growl id="growl" showDetail="true" sticky="true" />
+
+					<h:panelGrid columns="2" columnClasses="label, value"
+						styleClass="formulario">
+						<h:outputText value="Nome: *" />
+						<p:inputText styleClass="alignLeft margin-20r input-size-270"  required="true" label="nome" />
+						<h:outputText value="Sobrenome: *" />
+						<p:inputText styleClass="alignLeft margin-20r input-size-270"  required="true" label="sobrenome" />
+						<h:outputText value="E-mail: *" />
+						<p:inputText styleClass="alignLeft margin-20r input-size-270"  required="true" label="e-mail" />
+						<h:outputText value="Senha: *" />
+						<p:password styleClass="alignLeft margin-20r input-size-270"  required="true" label="senha" />
+						<h:outputText value="Confirma Senha: *" />
+						<p:password styleClass="alignLeft margin-20r input-size-270"  required="true" label="confirma senha" />
+					</h:panelGrid>
+					<p:commandButton  value="Cadastrar" />
+				</p:panel>
+
+			</h:form>
+
+		</div>
+		<!-- end of center content -->
+	</ui:define>
+</ui:composition>
+
+</html>
