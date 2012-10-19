@@ -7,7 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 
 
-@ManagedBean (name = "CadastroUsuarioManagedBean")
+@ManagedBean 
 @ViewScoped
 public class CadastroUsuarioManagedBean  implements Serializable {
 

@@ -17,15 +17,15 @@
 					<h:panelGrid columns="2" columnClasses="label, value"
 						styleClass="formulario">
 						<h:outputText value="Nome: *" />
-						<p:inputText styleClass="alignLeft margin-20r input-size-270"  required="true" label="nome" />
+						<p:inputText styleClass="alignLeft margin-20r input-size-270"  value="#{cadastroUsuarioManagedBean.nomeUsuario}" required="true" label="nome" />
 						<h:outputText value="Sobrenome: *" />
-						<p:inputText styleClass="alignLeft margin-20r input-size-270"  required="true" label="sobrenome" />
+						<p:inputText styleClass="alignLeft margin-20r input-size-270"  value="#{cadastroUsuarioManagedBean.sobrenome}" required="true" label="sobrenome" />
 						<h:outputText value="E-mail: *" />
-						<p:inputText styleClass="alignLeft margin-20r input-size-270"  required="true" label="e-mail" />
+						<p:inputText styleClass="alignLeft margin-20r input-size-270"  value="#{cadastroUsuarioManagedBean.email}" required="true" label="e-mail" />
 						<h:outputText value="Senha: *" />
-						<p:password styleClass="alignLeft margin-20r input-size-270"  required="true" label="senha" />
+						<p:password styleClass="alignLeft margin-20r input-size-270"   value="#{cadastroUsuarioManagedBean.senha}" required="true" label="senha" />
 						<h:outputText value="Confirma Senha: *" />
-						<p:password styleClass="alignLeft margin-20r input-size-270"  required="true" label="confirma senha" />
+						<p:password styleClass="alignLeft margin-20r input-size-270"   value="#{cadastroUsuarioManagedBean.confirmaSenha}" required="true" label="confirma senha" />
 					</h:panelGrid>
 					<p:commandButton  value="Cadastrar" />
 				</p:panel>
