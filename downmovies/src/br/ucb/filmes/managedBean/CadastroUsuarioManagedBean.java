@@ -32,6 +32,7 @@ public class CadastroUsuarioManagedBean  implements Serializable {
 			if(!erros.isEmpty())
 				FacesUtil.mensErro(erros);
 			insert.insert(atribuicaoUsuario());
+			FacesUtil.mensInfo("Usuario cadastrado com Sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -77,13 +78,4 @@ public class CadastroUsuarioManagedBean  implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
