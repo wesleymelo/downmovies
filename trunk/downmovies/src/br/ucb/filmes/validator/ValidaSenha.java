@@ -5,11 +5,6 @@ public class ValidaSenha {
 	public static String verificarValidadeSenha(String senhaNova, String senhaConfirmacao) throws Exception {
 
 		StringBuilder erros = new StringBuilder();
-		// Cadastro de usuÃ¡rio.
-		if (senhaNova.equals(senhaConfirmacao)) {
-				verificarCriarErro("Senha atual não confere.", 0, erros);
-		}
-		
 		if (senhaNova != ""|| senhaConfirmacao != "") {
 			if (!senhaConfirmacao.equals(senhaNova)) {
 				verificarCriarErro("Confirmação divergente da Senha.", 0, erros);

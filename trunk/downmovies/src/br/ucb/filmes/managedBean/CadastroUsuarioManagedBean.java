@@ -31,10 +31,13 @@ public class CadastroUsuarioManagedBean  implements Serializable {
 			String erros = ValidaSenha.verificarValidadeSenha(getSenha(), getConfirmaSenha());
 			if(!erros.isEmpty())
 				FacesUtil.mensErro(erros);
-			insert.insert(atribuicaoUsuario());
-			FacesUtil.mensInfo("Usuario cadastrado com Sucesso");
+			else{
+				insert.insert(atribuicaoUsuario());
+				FacesUtil.mensInfo("Usuario cadastrado com Sucesso");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			FacesUtil.mensErro("Erro ao cadastrar usuario");
 		}
 	}
 	
@@ -45,6 +48,7 @@ public class CadastroUsuarioManagedBean  implements Serializable {
 		usuario.setSobrenome(sobrenome);
 		usuario.setEmail(email);
 		usuario.setSenha(senha);
+		usuario.setId_perfil(2);
 		return usuario;
 	}
 
