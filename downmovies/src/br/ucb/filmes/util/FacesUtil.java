@@ -3,7 +3,6 @@ package br.ucb.filmes.util;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.EditableValueHolder;
