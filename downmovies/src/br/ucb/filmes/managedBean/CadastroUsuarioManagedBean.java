@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.ucb.filmes.beans.Usuario;
+import br.ucb.filmes.dao.UsuarioDAO;
 import br.ucb.filmes.util.FacesUtil;
 import br.ucb.filmes.validator.ValidaSenha;
 
@@ -19,31 +21,32 @@ public class CadastroUsuarioManagedBean  implements Serializable {
 	private String sobrenome;
 	private String email;
 	private String senha;
-	
+	private Usuario usuario;
 	private String confirmaSenha;
 	
-	
-	
-	
-	
-	
+
 	public void cadastrarUsuario(){
-		
-		System.out.println("Nome"+getNomeUsuario());
-		System.out.println("Sobrenome"+getSobrenome());
-		System.out.println("eamil"+getEmail());
-		System.out.println("senha"+getSenha());
-		System.out.println("confirmaSenha"+getConfirmaSenha());
 		try {
+			UsuarioDAO insert = new UsuarioDAO();
 			String erros = ValidaSenha.verificarValidadeSenha(getSenha(), getConfirmaSenha());
-			if(!erros.isEmpty());
-			FacesUtil.mensErro(erros);
+			if(!erros.isEmpty())
+				FacesUtil.mensErro(erros);
+			insert.insert(atribuicaoUsuario());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	
+	private Usuario atribuicaoUsuario() {
+		usuario = new Usuario();
+		usuario.setNome(nomeUsuario);
+		usuario.setSobrenome(sobrenome);
+		usuario.setEmail(email);
+		usuario.setSenha(senha);
+		return usuario;
+	}
+
 	public String getConfirmaSenha() {
 		return confirmaSenha;
 	}

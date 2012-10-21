@@ -20,7 +20,7 @@ public class Usuario implements Serializable{
 	private String nome;
 	
 	@Column	
-	private Categoria sobrenome;
+	private String sobrenome;
 	
 	@Column
 	private String email;
@@ -47,11 +47,11 @@ public class Usuario implements Serializable{
 		this.nome = nome;
 	}
 
-	public Categoria getSobrenome() {
+	public String getSobrenome() {
 		return sobrenome;
 	}
 
-	public void setSobrenome(Categoria sobrenome) {
+	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
 
