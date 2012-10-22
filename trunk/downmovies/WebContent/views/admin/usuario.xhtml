@@ -31,10 +31,8 @@
 						</p:column>
 						<p:column styleClass="grid-427">
 							<p:inputText id="email" styleClass="alignLeft margin-20r input-size-270"  requiredMessage="E-mail é obrigatório." maxlength="180"
-								 value="#{cadastroUsuarioManagedBean.email}" required="true" label="email">
-								 
-								
-							</p:inputText>
+								 value="#{cadastroUsuarioManagedBean.email}" required="true" label="email" validator="validaEmail"/>
+
 						</p:column>		 
 						<p:column styleClass="alignRight">
 							<h:outputLabel for="senha" value="Senha: *" />
