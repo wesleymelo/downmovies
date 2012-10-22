@@ -33,6 +33,25 @@ public class FilmeManagedBean implements Serializable {
 		this.categorias = new CategoriaDAO().recoveryAll();
 	} 
 	
+	
+	public void upload(FileUploadEvent event){
+		file = event.getFile();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
