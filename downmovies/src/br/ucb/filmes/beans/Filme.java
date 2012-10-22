@@ -21,9 +21,6 @@ public class Filme implements Serializable {
 	@GeneratedValue
 	private Integer id_filme;
 	
-	@Column
-	private String formato;
-	
 	@ManyToOne
 	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
@@ -31,8 +28,13 @@ public class Filme implements Serializable {
 	@Column
 	private String titulo;
 	
-	@Column
-	private String descricao;
+	@ManyToOne
+	@JoinColumn(name="id_qualidade")
+	private Qualidade qualidade;
+	
+	@ManyToOne
+	@JoinColumn(name="Formato")
+	private Formato formato;
 	
 	@Column
 	private String diretor;
@@ -47,9 +49,6 @@ public class Filme implements Serializable {
 	private String legenda;
 	
 	@Column
-	private String qualidade;
-	
-	@Column
 	private Double tamanho;
 	
 	@Column
@@ -57,23 +56,32 @@ public class Filme implements Serializable {
 	
 	public Filme() {
 		this.categoria = new Categoria();
+		formato = new Formato();
+		qualidade = new Qualidade();
 	}
 	
+	public Qualidade getQualidade() {
+		return qualidade;
+	}
+
+	public void setQualidade(Qualidade qualidade) {
+		this.qualidade = qualidade;
+	}
+
+	public Formato getFormato() {
+		return formato;
+	}
+
+	public void setFormato(Formato formato) {
+		this.formato = formato;
+	}
+
 	public Integer getId_filme() {
 		return id_filme;
 	}
 	public void setId_filme(Integer id_filme) {
 		this.id_filme = id_filme;
 	}
-	public String getFormato() {
-		return formato;
-	}
-
-
-	public void setFormato(String formato) {
-		this.formato = formato;
-	}
-
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -87,12 +95,7 @@ public class Filme implements Serializable {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+
 	public String getDiretor() {
 		return diretor;
 	}
@@ -111,12 +114,6 @@ public class Filme implements Serializable {
 	}
 	public void setLegenda(String legenda) {
 		this.legenda = legenda;
-	}
-	public String getQualidade() {
-		return qualidade;
-	}
-	public void setQualidade(String qualidade) {
-		this.qualidade = qualidade;
 	}
 	public Double getTamanho() {
 		return tamanho;
@@ -141,19 +138,5 @@ public class Filme implements Serializable {
 		this.tempo_duracao = tempo_duracao;
 	}
 
-	@Override
-	public String toString() {
-		return "Filme [id_filme=" + id_filme + ", formato=" + formato
-				+ ", categoria=" + categoria + ", titulo=" + titulo
-				+ ", descricao=" + descricao + ", diretor=" + diretor
-				+ ", ano_lancamento=" + ano_lancamento + ", idioma=" + idioma
-				+ ", legenda=" + legenda + ", qualidade=" + qualidade
-				+ ", tamanho=" + tamanho + ", tempo_duracao=" + tempo_duracao
-				+ "]";
-	}
-	
-	
-	
-	
 	
 }

@@ -35,6 +35,51 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`Categoria` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+
+-- Table `downmovies`.`Qualidade`
+
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `downmovies`.`Qualidade` ;
+
+
+
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Qualidade` (
+
+  `id_qualidade` INT(11) NOT NULL AUTO_INCREMENT,
+
+  `descricao` VARCHAR(50) NOT NULL ,
+
+  PRIMARY KEY (`id_qualidade`) )
+
+ENGINE = InnoDB;
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table `downmovies`.`Formato`
+
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `downmovies`.`Formato` ;
+
+
+
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Formato` (
+
+  `id_formato` INT(11) NOT NULL AUTO_INCREMENT,
+
+  `descricao` VARCHAR(50) NOT NULL ,
+
+  PRIMARY KEY (`id_formato`) )
+
+ENGINE = InnoDB;
+
+
+
 
 
 
@@ -64,9 +109,9 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
   `legenda` VARCHAR(30) NOT NULL ,
 
-  `formato` VARCHAR(30) NOT NULL ,
+  `id_formato` INT(11)  NOT NULL ,
 
-  `qualidade` VARCHAR(30) NOT NULL ,
+  `id_qualidade` INT(11)  NOT NULL ,
 
   `tamanho` DOUBLE NOT NULL ,
 
@@ -76,7 +121,10 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
   PRIMARY KEY (`id_filme`) ,
 
-  INDEX `fk_filme_Categoria` (`id_categoria` ASC) )
+  INDEX `fk_filme_Categoria` (`id_categoria` ASC)
+  INDEX `fk_filme_Formato` (`id_formato` ASC)
+  INDEX `fk_filme_Qualidade` (`id_qualidade` ASC)
+  )
 
 ENGINE = InnoDB;
 
