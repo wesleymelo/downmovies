@@ -12,9 +12,12 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Usuario implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
-	private Integer id_usuario;
+	private Integer idUsuario;
 	
 	@Column
 	private String nome;
@@ -27,16 +30,13 @@ public class Usuario implements Serializable{
 	
 	@Column
 	private String senha;
-	
-	@Column
-	private Integer id_perfil;
 
-	public Integer getId_usuario() {
-		return id_usuario;
+	public Integer getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setId_usuario(Integer id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getNome() {
@@ -70,15 +70,4 @@ public class Usuario implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public Integer getId_perfil() {
-		return id_perfil;
-	}
-
-	public void setId_perfil(Integer id_perfil) {
-		this.id_perfil = id_perfil;
-	}
-
-	
-	
 }
