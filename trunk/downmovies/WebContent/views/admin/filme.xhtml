@@ -33,16 +33,7 @@
 								<f:validateLength maximum="50" minimum="1" />
 							</p:inputText>
 						</p:column>
-						<p:column>				
-							<h:outputLabel value="Categoria:" />
-						</p:column>
-						<p:column>
-							<h:selectOneMenu id="categoria" value="#{filmeManagedBean.filme.categoria}" label="Categoria: " converter="CategoriaConverter" required="true">
-								<f:selectItem itemLabel="Selecione uma opção..." noSelectionOption="true" />
-								<f:selectItems value="#{categoriaManagedBean.categorias}" var="categoria" itemLabel="#{categoria.descricao}" />
-							</h:selectOneMenu>
-						</p:column>
-					
+
 						<p:column>	
 	
 							<h:outputLabel value="Ano Lançamento:" for="ano_lancamento" />
@@ -84,40 +75,25 @@
 							<h:outputLabel value="Formato:"  />
 						</p:column>
 						<p:column>
-						<!-- 
-							<p:selectOneMenu value="#{filmeManagedBean.filme.formato}"
-								id="qualidade" required="true" editable="true" effect="fade">
-								<f:selectItem itemLabel="AVI" itemValue="Português/Ingles" />
-								<f:selectItem itemLabel="RMVB" itemValue="Português" />
-								<f:selectItem itemLabel="TC" itemValue="Inglês" />
-								<f:selectItem itemLabel="SCR" itemValue="Inglês" />
-								<f:selectItem itemLabel="DVDscr" itemValue="Inglês" />
-								<f:selectItem itemLabel="DVDRip" itemValue="Inglês" />
-								<f:selectItem itemLabel="R5" itemValue="Inglês" />
-								<f:selectItem itemLabel="Não disponível"
-									itemValue="Não disponível" />
+						
+							<p:selectOneMenu value="#{filmeManagedBean.formatoSelecionado}"
+								id="formato" required="true" editable="true" effect="fade">
+									<f:selectItem itemValue="" itemLabel="" />
+									<f:selectItems value="#{filmeManagedBean.formato}" var="formato"  itemValue="#{formato.value}" itemLabel="#{formato.key}"  />
+									
 							</p:selectOneMenu>
-							 -->
 						</p:column>
 					
 						<p:column>
 							<h:outputLabel value="Qualidade:" for="qualidade" />
 						</p:column>
-						<p:column>	
-						<!--  				
-							<p:selectOneMenu value="#{filmeManagedBean.filme.qualidade}"
+						<p:column>				
+							<p:selectOneMenu value="#{filmeManagedBean.qualidadeSelecionada}"
 								id="qualidade" required="true" editable="true" effect="fade">
-								<f:selectItem itemLabel="CAM" itemValue="Português/Ingles" />
-								<f:selectItem itemLabel="TS" itemValue="Português" />
-								<f:selectItem itemLabel="TC" itemValue="Inglês" />
-								<f:selectItem itemLabel="SCR" itemValue="Inglês" />
-								<f:selectItem itemLabel="DVDscr" itemValue="Inglês" />
-								<f:selectItem itemLabel="DVDRip" itemValue="Inglês" />
-								<f:selectItem itemLabel="R5" itemValue="Inglês" />
-								<f:selectItem itemLabel="Não disponível"
-									itemValue="Não disponível" />
+									<f:selectItem itemValue="" itemLabel="" />
+									<f:selectItems value="#{filmeManagedBean.qualidade}" var="qualidade"  itemValue="#{qualidade.value}" itemLabel="#{qualidade.key}"  />
 							</p:selectOneMenu>
-							-->	
+						
 						</p:column>
 						<p:column>
 							<h:outputLabel value="Tamanho:" for="tamanho" />

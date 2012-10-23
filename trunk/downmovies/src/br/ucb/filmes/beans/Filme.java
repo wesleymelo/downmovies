@@ -21,21 +21,9 @@ public class Filme implements Serializable {
 	@GeneratedValue
 	private Integer id_filme;
 	
-	@ManyToOne
-	@JoinColumn(name="id_categoria")
-	private Categoria categoria;
-	
 	@Column
 	private String titulo;
-	
-	@ManyToOne
-	@JoinColumn(name="id_qualidade")
-	private Qualidade qualidade;
-	
-	@ManyToOne
-	@JoinColumn(name="Formato")
-	private Formato formato;
-	
+
 	@Column
 	private String diretor;
 	
@@ -53,28 +41,7 @@ public class Filme implements Serializable {
 	
 	@Column
 	private Integer tempo_duracao;
-	
-	public Filme() {
-		this.categoria = new Categoria();
-		formato = new Formato();
-		qualidade = new Qualidade();
-	}
-	
-	public Qualidade getQualidade() {
-		return qualidade;
-	}
 
-	public void setQualidade(Qualidade qualidade) {
-		this.qualidade = qualidade;
-	}
-
-	public Formato getFormato() {
-		return formato;
-	}
-
-	public void setFormato(Formato formato) {
-		this.formato = formato;
-	}
 
 	public Integer getId_filme() {
 		return id_filme;
@@ -83,12 +50,7 @@ public class Filme implements Serializable {
 		this.id_filme = id_filme;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
