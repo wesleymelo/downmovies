@@ -34,6 +34,18 @@
 							</p:inputText>
 						</p:column>
 
+						<p:column>
+							<h:outputLabel value="Categoria:" for="categoria" />
+						</p:column>
+						<p:column>				
+							<p:selectOneMenu value="#{filmeManagedBean.categoriaSelecionada}"
+								id="categoria" required="true" editable="true" effect="fade">
+									<f:selectItem itemValue="" itemLabel="" />
+									<f:selectItems value="#{filmeManagedBean.categoria}" var="categoria"  itemValue="#{categoria.value}" itemLabel="#{categoria.key}"  />
+							</p:selectOneMenu>
+						
+						</p:column>
+
 						<p:column>	
 	
 							<h:outputLabel value="Ano Lançamento:" for="ano_lancamento" />
@@ -140,7 +152,7 @@
             </p:panel>  
             
             <p:commandButton value="Salvar"    
-                            actionListener="#{filmeManagedBean.insert}" update="growl" ajax="false"/>
+                            actionListener="#{filmeManagedBean.cadastraFilme}" />
    
           
   

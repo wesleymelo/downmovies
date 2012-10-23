@@ -17,6 +17,7 @@ import org.primefaces.model.UploadedFile;
 
 import br.ucb.filmes.beans.Filme;
 import br.ucb.filmes.dao.FilmeDAO;
+import br.ucb.filmes.enums.EnumCategoria;
 import br.ucb.filmes.enums.EnumFormato;
 import br.ucb.filmes.enums.EnumQualidade;
 
@@ -28,9 +29,11 @@ public class FilmeManagedBean implements Serializable {
 	private List<Filme> filmes;
 	private UploadedFile file;
 	private EnumFormato formato ;
+	private EnumCategoria categoria;
 	private EnumQualidade qualidade;
 	private Integer formatoSelecionado;
 	private Integer qualidadeSelecionada;
+	private Integer categoriaSelecionada;
 	public FilmeManagedBean() {
 		this.filme = new Filme();
 	} 
@@ -57,6 +60,11 @@ public class FilmeManagedBean implements Serializable {
 
 
 
+	public  Map<String, Integer> getCategoria() {
+		return EnumCategoria.getMapaCategoria();
+	}
+
+
 	public  Map<String, Integer> getQualidade() {
 		return EnumQualidade.getMapaQualidade();
 	}
@@ -72,6 +80,29 @@ public class FilmeManagedBean implements Serializable {
 		this.qualidadeSelecionada = qualidadeSelecionada;
 	}
 
+	public Integer getCategoriaSelecionada() {
+		return categoriaSelecionada;
+	}
+
+
+	public void setCategoriaSelecionada(Integer categoriaSelecionada) {
+		this.categoriaSelecionada = categoriaSelecionada;
+	}
+
+	
+	
+	public void cadastraFilme()	{
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public List<Filme> getFilmes() {
 		return filmes;
@@ -96,6 +127,7 @@ public class FilmeManagedBean implements Serializable {
 	public void setFile(UploadedFile file) {
 		this.file = file;
 	}
+	
 
 	public String insert(){
 		FacesMessage msg = new FacesMessage();
