@@ -148,9 +148,11 @@ public class FilmeManagedBean implements Serializable {
 	public String cadastrar(){
 		return "filmeForm";
 	}
+	public void fileUploadActionImagem(FileUploadEvent event) {
+		
+	}
 	
-	
-	public String fileUploadAction(FileUploadEvent event) {
+	public void fileUploadActionTorrent(FileUploadEvent event) {
 		
 		System.out.println("hhhhhhhcassete!");
 		
@@ -196,7 +198,7 @@ public class FilmeManagedBean implements Serializable {
             System.out.println("Erro no upload de imagem" + ex);
         }
         
-        return "filmeList";
+
     }
 	
 	
