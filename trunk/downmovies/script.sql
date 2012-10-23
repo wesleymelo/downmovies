@@ -34,7 +34,7 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
   `diretor` VARCHAR(50) NOT NULL ,
 
-  `categoria` VARCHAR(50) NOT NULL ,
+  `categoria` INT(11) NOT NULL ,
   
   `anoLancamento` INT(11) NOT NULL ,
 
@@ -42,9 +42,9 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
   `legenda` VARCHAR(30) NOT NULL ,
 
-  `formato` VARCHAR(30)  NOT NULL ,
+  `formato` INT(11)  NOT NULL ,
 
-  `qualidade` VARCHAR(30)  NOT NULL ,
+  `qualidade` INT(11)  NOT NULL ,
 
   `tamanho` DOUBLE NOT NULL ,
 
