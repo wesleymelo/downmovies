@@ -20,7 +20,7 @@
                    		</p:column>	
                    		<p:column styleClass="grid-427">	
 							<p:inputText value="#{filmeManagedBean.filme.titulo}" id="titulo" size="50"
-								required="true" maxlength="50">
+								required="true"  requiredMessage="Título é obrigatorio" maxlength="50">
 								<f:validateLength maximum="50" minimum="1" />
 							</p:inputText>
 						</p:column>
@@ -29,7 +29,7 @@
 						</p:column>
 						<p:column>
 							<p:inputText value="#{filmeManagedBean.filme.diretor}" id="diretor" size="50"
-								required="true" maxlength="50">
+								required="true" requiredMessage="Diretor é obrigatorio" maxlength="50">
 								<f:validateLength maximum="50" minimum="1" />
 							</p:inputText>
 						</p:column>
@@ -38,9 +38,9 @@
 							<h:outputLabel value="Categoria:" for="categoria" />
 						</p:column>
 						<p:column>				
-							<p:selectOneMenu value="#{filmeManagedBean.categoriaSelecionada}"
+							<p:selectOneMenu  requiredMessage="Categoria é obrigatorio" value="#{filmeManagedBean.categoriaSelecionada}"
 								id="categoria" required="true" editable="true" effect="fade">
-									<f:selectItem itemValue="" itemLabel="" />
+	
 									<f:selectItems value="#{filmeManagedBean.categoria}" var="categoria"  itemValue="#{categoria.value}" itemLabel="#{categoria.key}"  />
 							</p:selectOneMenu>
 						
@@ -51,7 +51,7 @@
 							<h:outputLabel value="Ano Lançamento:" for="ano_lancamento" />
 						</p:column>
 						<p:column>
-							<p:inputText value="#{filmeManagedBean.filme.ano_lancamento}" size="4"
+							<p:inputText  requiredMessage="Ano Lançamento é obrigatorio" value="#{filmeManagedBean.filme.ano_lancamento}" size="4"
 								id="ano_lancamento" required="true">
 								<f:validateLongRange minimum="10" />
 							</p:inputText>
@@ -61,7 +61,7 @@
 							<h:outputLabel value="Idioma:"  />
 						</p:column>
 						<p:column>	
-							<p:selectOneMenu value="#{filmeManagedBean.filme.idioma}"
+							<p:selectOneMenu  requiredMessage="Idioma é obrigatorio" value="#{filmeManagedBean.filme.idioma}"
 								id="idioma" required="true" editable="true" effect="fade">
 								<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
 								<f:selectItem itemLabel="Português" itemValue="Português" />
@@ -73,7 +73,7 @@
 							<h:outputLabel value="legenda:" />
 						</p:column>
 						<p:column>	
-							<p:selectOneMenu value="#{filmeManagedBean.filme.legenda}"
+							<p:selectOneMenu  requiredMessage="Legenda é obrigatorio" value="#{filmeManagedBean.filme.legenda}"
 								id="legenda" required="true" editable="true" effect="fade">
 								<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
 								<f:selectItem itemLabel="Português" itemValue="Português" />
@@ -88,9 +88,8 @@
 						</p:column>
 						<p:column>
 						
-							<p:selectOneMenu value="#{filmeManagedBean.formatoSelecionado}"
+							<p:selectOneMenu  requiredMessage="Formato é obrigatorio" value="#{filmeManagedBean.formatoSelecionado}"
 								id="formato" required="true" editable="true" effect="fade">
-									<f:selectItem itemValue="" itemLabel="" />
 									<f:selectItems value="#{filmeManagedBean.formato}" var="formato"  itemValue="#{formato.value}" itemLabel="#{formato.key}"  />
 									
 							</p:selectOneMenu>
@@ -100,10 +99,9 @@
 							<h:outputLabel value="Qualidade:" for="qualidade" />
 						</p:column>
 						<p:column>				
-							<p:selectOneMenu value="#{filmeManagedBean.qualidadeSelecionada}"
+							<p:selectOneMenu  requiredMessage="Qualidade é obrigatorio" value="#{filmeManagedBean.qualidadeSelecionada}"
 								id="qualidade" required="true" editable="true" effect="fade">
-									<f:selectItem itemValue="" itemLabel="" />
-									<f:selectItems value="#{filmeManagedBean.qualidade}" var="qualidade"  itemValue="#{qualidade.value}" itemLabel="#{qualidade.key}"  />
+									<f:selectItems value="#{filmeManagedBean.qualidade}" var="qualidade"  itemValue="#{qualidade}" itemLabel="#{qualidade.key}"  />
 							</p:selectOneMenu>
 						
 						</p:column>
@@ -111,7 +109,7 @@
 							<h:outputLabel value="Tamanho:" for="tamanho" />
 						</p:column>	
 						<p:column>
-							<p:inputText value="#{filmeManagedBean.filme.tamanho}" id="tamanho"
+							<p:inputText  requiredMessage="Tamanho é obrigatorio" value="#{filmeManagedBean.filme.tamanho}" id="tamanho"
 								required="true">
 								<f:validateDoubleRange minimum="1" />
 							</p:inputText>
@@ -122,7 +120,7 @@
 								for="tempo_duracao" />
 						</p:column>	
 						<p:column>
-							<p:inputText value="#{filmeManagedBean.filme.tempo_duracao}"
+							<p:inputText  requiredMessage="Tempo de Duração é obrigatorio" value="#{filmeManagedBean.filme.tempo_duracao}"
 								id="tempo_duracao" required="true">
 								<f:validateLongRange minimum="1" />
 							</p:inputText>
@@ -132,19 +130,29 @@
 							<h:outputLabel value="Descrição:" for="descricao" />
 						</p:column>
 						<p:column>
-							<p:inputTextarea  autoResize="" cols="80" rows="7"
+							<p:inputTextarea  requiredMessage="Descrição é obrigatorio" autoResize="" cols="80" rows="7"
 								id="descricao" required="true"  >
 								<f:validateLength minimum="1" />
 							</p:inputTextarea>
 						</p:column>
 						<p:column>
-							<h:outputLabel value="Selecionar Arquivo:" />
+							<h:outputLabel value="Selecionar Torrent:" />
 						</p:column>	
 						<h:column>
-							<p:fileUpload fileUploadListener="#{filmeManagedBean.fileUploadAction}"  
+							<p:fileUpload fileUploadListener="#{filmeManagedBean.fileUploadActionTorrent}"  
 										    mode="simple"  showButtons="false" auto="true"
 										    requiredMessage="Arquivo é obrigatório"  dragDropSupport="true" required="true"  
-										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUpload" immediate="true">
+										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadTorrent" immediate="true">
+							</p:fileUpload>
+						</h:column>
+						<p:column>
+							<h:outputLabel value="Selecionar Imagem:" />
+						</p:column>	
+						<h:column>
+							<p:fileUpload fileUploadListener="#{filmeManagedBean.fileUploadActionImagem}"  
+										    mode="simple"  showButtons="false" auto="true"
+										    requiredMessage="Arquivo é obrigatório"  dragDropSupport="true" required="true"  
+										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadImagem" immediate="true">
 							</p:fileUpload>
 						</h:column>
                 </h:panelGrid>  
