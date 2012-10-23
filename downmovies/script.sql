@@ -202,3 +202,6 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+
+insert into perfil(descricao) values ('administrador');
+insert into perfil(descricao) values ('usuario');
