@@ -1,11 +1,9 @@
 package br.ucb.filmes.dao;
 
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
-
 import br.ucb.filmes.beans.Usuario;
 
 public class UsuarioDAO {
