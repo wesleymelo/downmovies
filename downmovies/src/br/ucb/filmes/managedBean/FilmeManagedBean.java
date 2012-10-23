@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,10 +15,10 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-import br.ucb.filmes.beans.Categoria;
 import br.ucb.filmes.beans.Filme;
-import br.ucb.filmes.dao.CategoriaDAO;
 import br.ucb.filmes.dao.FilmeDAO;
+import br.ucb.filmes.enums.EnumFormato;
+import br.ucb.filmes.enums.EnumQualidade;
 
 @ManagedBean
 public class FilmeManagedBean implements Serializable {
@@ -25,12 +26,13 @@ public class FilmeManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Filme filme;
 	private List<Filme> filmes;
-	private List<Categoria> categorias;
 	private UploadedFile file;
-
+	private EnumFormato formato ;
+	private EnumQualidade qualidade;
+	private Integer formatoSelecionado;
+	private Integer qualidadeSelecionada;
 	public FilmeManagedBean() {
 		this.filme = new Filme();
-		this.categorias = new CategoriaDAO().recoveryAll();
 	} 
 	
 	
@@ -39,26 +41,37 @@ public class FilmeManagedBean implements Serializable {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public List<Categoria> getCategorias() {
-		return categorias;
+	public Integer getFormatoSelecionado() {
+		return formatoSelecionado;
 	}
 
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
+
+	public void setFormatoSelecionado(Integer formatoSelecionado) {
+		this.formatoSelecionado = formatoSelecionado;
 	}
+
+
+	public Map<String, Integer> getFormato() {
+		return EnumFormato.getMapaFomato();
+	}
+
+
+
+	public  Map<String, Integer> getQualidade() {
+		return EnumQualidade.getMapaQualidade();
+	}
+
+
+	
+	public Integer getQualidadeSelecionada() {
+		return qualidadeSelecionada;
+	}
+
+
+	public void setQualidadeSelecionada(Integer qualidadeSelecionada) {
+		this.qualidadeSelecionada = qualidadeSelecionada;
+	}
+
 
 	public List<Filme> getFilmes() {
 		return filmes;

@@ -6,8 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 
-import br.ucb.filmes.beans.Categoria;
-import br.ucb.filmes.beans.Filme;
 import br.ucb.filmes.beans.Usuario;
 
 public class UsuarioDAO {
@@ -28,7 +26,7 @@ public class UsuarioDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Categoria> recoveryAll() {
+	public List<Usuario> recoveryAll() {
 		Session session = HibernateUtil.getSession();
 		try {
 			return session.createCriteria(Usuario.class).list();
