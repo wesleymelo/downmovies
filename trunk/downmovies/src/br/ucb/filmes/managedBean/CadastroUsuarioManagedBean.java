@@ -10,8 +10,6 @@ import br.ucb.filmes.dao.UsuarioDAO;
 import br.ucb.filmes.util.FacesUtil;
 import br.ucb.filmes.validator.ValidaSenha;
 
-
-
 @ManagedBean 
 @ViewScoped
 public class CadastroUsuarioManagedBean  implements Serializable {
@@ -48,7 +46,6 @@ public class CadastroUsuarioManagedBean  implements Serializable {
 		usuario.setSobrenome(sobrenome);
 		usuario.setEmail(email);
 		usuario.setSenha(senha);
-		usuario.setId_perfil(2);
 		return usuario;
 	}
 
