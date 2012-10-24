@@ -13,6 +13,27 @@ CREATE SCHEMA IF NOT EXISTS `downmovies` ;
 USE `downmovies` ;
 
 
+-- -----------------------------------------------------
+
+-- Table `downmovies`.`Categoria`
+
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `downmovies`.`Categoria` ;
+
+
+
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Categoria` (
+
+  `idCategoria` INT(11) NOT NULL AUTO_INCREMENT,
+
+  `descricao` VARCHAR(45) NOT NULL ,
+
+  PRIMARY KEY (`idCategoria`) )
+
+ENGINE = InnoDB;
+
+
 
 -- -----------------------------------------------------
 
@@ -33,8 +54,6 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
   `descricao` TEXT NOT NULL ,
 
   `diretor` VARCHAR(50) NOT NULL ,
-
-  `categoria` INT(11) NOT NULL ,
   
   `anoLancamento` INT(11) NOT NULL ,
 
@@ -42,22 +61,35 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
   `legenda` VARCHAR(30) NOT NULL ,
 
-  `formato` INT(11)  NOT NULL ,
+  `formato` VARCHAR(30)  NOT NULL ,
 
-  `qualidade` INT(11)  NOT NULL ,
+  `qualidade` VARCHAR(30)  NOT NULL ,
 
   `tamanho` DOUBLE NOT NULL ,
 
   `tempoDuracao` INT(11) NOT NULL ,
   
+  `idCategoria` INT(11) NOT NULL ,
+  
   `nomeArquivoFilme` VARCHAR(100) NULL ,
   
   `nomeArquivoImagem` VARCHAR(100) NULL ,
 
-  PRIMARY KEY (`idFilme`) )
+   PRIMARY KEY (`idFilme`) ,
+
+  INDEX `fk_Filme_Categoria1` (`idCategoria` ASC) ,
+
+  CONSTRAINT `fk_Filme_Categoria1`
+
+    FOREIGN KEY (`idCategoria` )
+
+    REFERENCES `downmovies`.`Categoria` (`idCategoria` )
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
 
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 
@@ -205,3 +237,19 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 insert into perfil(descricao) values ('administrador');
 insert into perfil(descricao) values ('usuario');
+
+insert into categoria(descricao) values('Ação');
+insert into categoria(descricao) values('Aventura');
+insert into categoria(descricao) values('Clássico');
+insert into categoria(descricao) values('Comédia');
+insert into categoria(descricao) values('Documentário');
+insert into categoria(descricao) values('Drama');
+insert into categoria(descricao) values('Faroeste');
+insert into categoria(descricao) values('Ficção');
+insert into categoria(descricao) values('Infantil');
+insert into categoria(descricao) values('Musical');
+insert into categoria(descricao) values('Romance');
+insert into categoria(descricao) values('Suspense');
+insert into categoria(descricao) values('Terror');
+insert into categoria(descricao) values('Policial');
+insert into categoria(descricao) values('Não Disponível');
