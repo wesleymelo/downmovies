@@ -19,7 +19,7 @@ public class Filme implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	private Integer id_filme;
+	private Integer idFilme;
 	
 	@Column
 	private String titulo;
@@ -28,7 +28,7 @@ public class Filme implements Serializable {
 	private String diretor;
 	
 	@Column
-	private Integer ano_lancamento;
+	private Integer anoLancamento;
 	
 	@Column
 	private String idioma;
@@ -40,17 +40,64 @@ public class Filme implements Serializable {
 	private Double tamanho;
 	
 	@Column
-	private Integer tempo_duracao;
-
-
-	public Integer getId_filme() {
-		return id_filme;
-	}
-	public void setId_filme(Integer id_filme) {
-		this.id_filme = id_filme;
-	}
-
+	private Integer tempoDuracao;
 	
+	@ManyToOne
+	@JoinColumn(name="idCategoria")
+	private Categoria categoria;
+	
+	@Column
+	private String formato;
+	
+	@Column
+	private String qualidade;
+	
+	@Column
+	private String descricao;
+	
+	
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public String getFormato() {
+		return formato;
+	}
+	public void setFormato(String formato) {
+		this.formato = formato;
+	}
+	public String getQualidade() {
+		return qualidade;
+	}
+	public void setQualidade(String qualidade) {
+		this.qualidade = qualidade;
+	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	public Integer getIdFilme() {
+		return idFilme;
+	}
+	public void setIdFilme(Integer idFilme) {
+		this.idFilme = idFilme;
+	}
+	public Integer getAnoLancamento() {
+		return anoLancamento;
+	}
+	public void setAnoLancamento(Integer anoLancamento) {
+		this.anoLancamento = anoLancamento;
+	}
+	public Integer getTempoDuracao() {
+		return tempoDuracao;
+	}
+	public void setTempoDuracao(Integer tempoDuracao) {
+		this.tempoDuracao = tempoDuracao;
+	}
 	public String getTitulo() {
 		return titulo;
 	}
@@ -83,22 +130,4 @@ public class Filme implements Serializable {
 	public void setTamanho(Double tamanho) {
 		this.tamanho = tamanho;
 	}
-
-	public Integer getAno_lancamento() {
-		return ano_lancamento;
-	}
-
-	public void setAno_lancamento(Integer ano_lancamento) {
-		this.ano_lancamento = ano_lancamento;
-	}
-
-	public Integer getTempo_duracao() {
-		return tempo_duracao;
-	}
-
-	public void setTempo_duracao(Integer tempo_duracao) {
-		this.tempo_duracao = tempo_duracao;
-	}
-
-	
 }
