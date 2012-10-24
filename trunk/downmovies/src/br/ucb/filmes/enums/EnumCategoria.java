@@ -4,9 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public enum EnumCategoria {
-	ACAO("ACAO",1),
-	AVENTURA("AVENTURA",2),
-	CLASSICO("CLASSICO",3),
+	ACAO("Ação",1),
+	AVENTURA("Aventura",2),
+	CLASSICO("Clássico",3),
 	COMEDIA("COMEDIA",4),
 	DOCUMENTARIO("DOCUMENTARIO",5),
 	DRAMA("	DRAMA",6),
