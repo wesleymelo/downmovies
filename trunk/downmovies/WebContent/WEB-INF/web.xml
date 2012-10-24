@@ -4,14 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>downmovies</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
+	
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -24,13 +17,19 @@
 
 
 	<!-- JAAS - Papeis (atuacao) -->
+	
+	<!-- 
 	<security-role>
 		<role-name>administrador</role-name>
 	</security-role>
 	<security-role>
 		<role-name>usuario</role-name>
 	</security-role>
+	
+	 -->
 	<!-- JAAS - Restricoes de acesso -->
+	
+	<!--
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Adm</web-resource-name>
@@ -49,9 +48,9 @@
 			<role-name>usuario</role-name>
 		</auth-constraint>
 	</security-constraint>
-
-
+	-->
 	<!-- JAAS - Login -->
+	<!--
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
@@ -59,7 +58,7 @@
 			<form-error-page>/views/erro.jsf</form-error-page>
 		</form-login-config>
 	</login-config>
-
+	-->
 
 
 
