@@ -12,8 +12,8 @@ public enum EnumFormato {
 	VCD("VCD",6),
 	NAO_DISPONIVEL("Não disponível",7);
 	
-	String nome;
-	Integer valor;
+	private String nome;
+	private Integer valor;
 	private EnumFormato(String nome, Integer valor) {
 		setNome(nome);
 		setValor(valor);
