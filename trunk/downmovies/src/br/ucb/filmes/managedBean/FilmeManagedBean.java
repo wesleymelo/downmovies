@@ -7,19 +7,16 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
-
 import br.ucb.filmes.beans.Filme;
 import br.ucb.filmes.dao.FilmeDAO;
-import br.ucb.filmes.enums.EnumCategoria;
 import br.ucb.filmes.enums.EnumFormato;
 import br.ucb.filmes.enums.EnumQualidade;
+import br.ucb.filmes.util.FacesUtil;
 
 @ManagedBean
 public class FilmeManagedBean implements Serializable {
@@ -28,71 +25,41 @@ public class FilmeManagedBean implements Serializable {
 	private Filme filme;
 	private List<Filme> filmes;
 	private UploadedFile file;
-	private EnumFormato formato ;
-	private EnumCategoria categoria;
-	private EnumQualidade qualidade;
-	private Integer formatoSelecionado;
-	private Integer qualidadeSelecionada;
-	private Integer categoriaSelecionada;
+	
 	public FilmeManagedBean() {
-		this.filme = new Filme();
-	} 
+		filme = new Filme();
+	}
 	
-	
+
 	public void upload(FileUploadEvent event){
 		file = event.getFile();
 		
 	}
 	
-	public Integer getFormatoSelecionado() {
-		return formatoSelecionado;
-	}
-
-
-	public void setFormatoSelecionado(Integer formatoSelecionado) {
-		this.formatoSelecionado = formatoSelecionado;
-	}
-
-
-	public Map<String, Integer> getFormato() {
+	public Map<String, Integer> getMapFormato() {
 		return EnumFormato.getMapaFomato();
 	}
 
 
-
-	public  Map<String, Integer> getCategoria() {
-		return EnumCategoria.getMapaCategoria();
-	}
-
-
-	public  Map<String, Integer> getQualidade() {
+	public  Map<String, Integer> getMapQualidade() {
 		return EnumQualidade.getMapaQualidade();
 	}
-
-
-	
-	public Integer getQualidadeSelecionada() {
-		return qualidadeSelecionada;
-	}
-
-
-	public void setQualidadeSelecionada(Integer qualidadeSelecionada) {
-		this.qualidadeSelecionada = qualidadeSelecionada;
-	}
-
-	public Integer getCategoriaSelecionada() {
-		return categoriaSelecionada;
-	}
-
-
-	public void setCategoriaSelecionada(Integer categoriaSelecionada) {
-		this.categoriaSelecionada = categoriaSelecionada;
-	}
-
 	
 	
-	public void cadastraFilme()	{
-
+	public String cadastraFilme()	{
+		try {
+			FilmeDAO insert = new FilmeDAO();
+			
+			insert.insert(filme);
+			FacesUtil.mensInfo("Filme cadastrado com Sucesso");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesUtil.mensErro("Erro ao cadastrar filme");
+			return null;
+		}
+		
+		return "filmeList";
 	}
 	
 	
@@ -127,24 +94,7 @@ public class FilmeManagedBean implements Serializable {
 	public void setFile(UploadedFile file) {
 		this.file = file;
 	}
-	
-
-	public String insert(){
-		FacesMessage msg = new FacesMessage();
 		
-		FilmeDAO dao = new FilmeDAO();
-		
-		dao.insert(getFilme());
-		
-		msg.setSummary("Filme inserido com sucesso");
-		
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-		setFilmes(dao.recoveryAll());
-		
-		return "filmeUploadForm";
-		
-	}
-	
 	public String cadastrar(){
 		return "filmeForm";
 	}
@@ -154,11 +104,7 @@ public class FilmeManagedBean implements Serializable {
 	
 	public void fileUploadActionTorrent(FileUploadEvent event) {
 		
-		System.out.println("hhhhhhhcassete!");
-		
         try {
-           
-           
             
             String caminho = FacesContext.getCurrentInstance().getExternalContext()
 					.getRealPath("\\filmes\\");
@@ -170,7 +116,7 @@ public class FilmeManagedBean implements Serializable {
             File file = new File(caminho);
             file.mkdirs();
             
-            System.out.println("hhhhhhhcassete!");
+           
     		
     		System.out.println(event.getFile().getFileName());
     		
@@ -191,8 +137,7 @@ public class FilmeManagedBean implements Serializable {
             fos.write(arquivo);
             fos.close();
             
-            FacesMessage msg = new FacesMessage("Sucesso", event.getFile().getFileName() + " foi carregado.");
-			FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesUtil.mensInfo("O arquivo "+event.getFile().getFileName() + " foi carregado com Sucesso");
             
         } catch (Exception ex) {
             System.out.println("Erro no upload de imagem" + ex);
@@ -219,6 +164,8 @@ public class FilmeManagedBean implements Serializable {
 			
 			String caminho = FacesContext.getCurrentInstance().getExternalContext()
 					.getRealPath("" + "\\filmes\\" + getFile().getFileName());
+			
+			
 			
 			System.out.println(getFile().getFileName());
 			
