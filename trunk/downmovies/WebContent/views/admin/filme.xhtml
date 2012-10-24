@@ -10,69 +10,50 @@
       <div class="center_content">
       <h:form id="form" enctype="multipart/form-data">
       
-			<p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+			<p:growl showDetail="false" showSummary="true" autoUpdate="true"/>
+			
             <p:panel header="Filme"> 
 					<h:panelGrid columns="2" columnClasses="label, value"
 						styleClass="formulario">
             		
-                 		<p:column styleClass="alignRight">
+                 		
                    			<h:outputLabel value="Título:" />
-                   		</p:column>	
-                   		<p:column styleClass="grid-427">	
 							<p:inputText value="#{filmeManagedBean.filme.titulo}" id="titulo" size="50"
 								required="true"  requiredMessage="Título é obrigatorio" maxlength="50">
 								<f:validateLength maximum="50" minimum="1" />
 							</p:inputText>
-						</p:column>
-						<p:column>
+						
+						
 	                    	<h:outputLabel value="Diretor:"  />
-						</p:column>
-						<p:column>
 							<p:inputText value="#{filmeManagedBean.filme.diretor}" id="diretor" size="50"
 								required="true" requiredMessage="Diretor é obrigatorio" maxlength="50">
 								<f:validateLength maximum="50" minimum="1" />
 							</p:inputText>
-						</p:column>
-
-						<p:column>
+	
 							<h:outputLabel value="Categoria:" for="categoria" />
-						</p:column>
-						<p:column>				
-							<p:selectOneMenu  requiredMessage="Categoria é obrigatorio" value="#{filmeManagedBean.categoriaSelecionada}"
-								id="categoria" required="true" editable="true" effect="fade">
-	
-									<f:selectItems value="#{filmeManagedBean.categoria}" var="categoria"  itemValue="#{categoria.value}" itemLabel="#{categoria.key}"  />
-							</p:selectOneMenu>
-						
-						</p:column>
+							<p:selectOneMenu  requiredMessage="Categoria é obrigatorio" value="#{filmeManagedBean.filme.categoria}" converter="CategoriaConverter"
+								id="categoria" required="true" effect="fade">
 
-						<p:column>	
-	
+									<f:selectItems value="#{categoriaManagedBean.categorias}" var="categoria"  itemValue="#{categoria}" itemLabel="#{categoria.descricao}"  />
+							</p:selectOneMenu>						
+
 							<h:outputLabel value="Ano Lançamento:" for="ano_lancamento" />
-						</p:column>
-						<p:column>
-							<p:inputText  requiredMessage="Ano Lançamento é obrigatorio" value="#{filmeManagedBean.filme.ano_lancamento}" size="4"
+							<p:inputText  requiredMessage="Ano Lançamento é obrigatorio" value="#{filmeManagedBean.filme.anoLancamento}" size="4"
 								id="ano_lancamento" required="true">
 								<f:validateLongRange minimum="10" />
 							</p:inputText>
-						</p:column>
-					
-						<p:column>	
+
 							<h:outputLabel value="Idioma:"  />
-						</p:column>
-						<p:column>	
 							<p:selectOneMenu  requiredMessage="Idioma é obrigatorio" value="#{filmeManagedBean.filme.idioma}"
 								id="idioma" required="true" editable="true" effect="fade">
 								<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
 								<f:selectItem itemLabel="Português" itemValue="Português" />
 								<f:selectItem itemLabel="Inglês" itemValue="Inglês" />
+								<f:selectItem itemLabel="Não disponível"
+									itemValue="Não disponível" />
 							</p:selectOneMenu>
-						</p:column>
-					
-						<p:column>	
+
 							<h:outputLabel value="legenda:" />
-						</p:column>
-						<p:column>	
 							<p:selectOneMenu  requiredMessage="Legenda é obrigatorio" value="#{filmeManagedBean.filme.legenda}"
 								id="legenda" required="true" editable="true" effect="fade">
 								<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
@@ -81,91 +62,59 @@
 								<f:selectItem itemLabel="Não disponível"
 									itemValue="Não disponível" />
 							</p:selectOneMenu>
-						</p:column>
-					
-						<p:column>
-							<h:outputLabel value="Formato:"  />
-						</p:column>
-						<p:column>
-						
-							<p:selectOneMenu  requiredMessage="Formato é obrigatorio" value="#{filmeManagedBean.formatoSelecionado}"
-								id="formato" required="true" editable="true" effect="fade">
-									<f:selectItems value="#{filmeManagedBean.formato}" var="formato"  itemValue="#{formato.value}" itemLabel="#{formato.key}"  />
-									
+
+							<h:outputLabel value="Formato:"  />						
+							<p:selectOneMenu  requiredMessage="Formato é obrigatorio" value="#{filmeManagedBean.filme.formato}"
+								id="formato" required="true" effect="fade">
+									<f:selectItems value="#{filmeManagedBean.mapFormato}" var="formato"  itemValue="#{formato.key}" itemLabel="#{formato.key}"  />									
 							</p:selectOneMenu>
-						</p:column>
-					
-						<p:column>
+
 							<h:outputLabel value="Qualidade:" for="qualidade" />
-						</p:column>
-						<p:column>				
-							<p:selectOneMenu  requiredMessage="Qualidade é obrigatorio" value="#{filmeManagedBean.qualidadeSelecionada}"
-								id="qualidade" required="true" editable="true" effect="fade">
-									<f:selectItems value="#{filmeManagedBean.qualidade}" var="qualidade"  itemValue="#{qualidade}" itemLabel="#{qualidade.key}"  />
+							<p:selectOneMenu  requiredMessage="Qualidade é obrigatorio" value="#{filmeManagedBean.filme.qualidade}"
+								id="qualidade" required="true" effect="fade">
+									<f:selectItems value="#{filmeManagedBean.mapQualidade}" var="qualidade"  itemValue="#{qualidade.key}" itemLabel="#{qualidade.key}"  />
 							</p:selectOneMenu>
-						
-						</p:column>
-						<p:column>
-							<h:outputLabel value="Tamanho:" for="tamanho" />
-						</p:column>	
-						<p:column>
+				
+							<h:outputLabel value="Tamanho(em MegaByte - MB):" for="tamanho" />
 							<p:inputText  requiredMessage="Tamanho é obrigatorio" value="#{filmeManagedBean.filme.tamanho}" id="tamanho"
 								required="true">
 								<f:validateDoubleRange minimum="1" />
 							</p:inputText>
-						</p:column>
 
-						<p:column>
-							<h:outputLabel value="Tempo de Duração(em minutos):"
+							<p:outputLabel value="Tempo de Duração(em minutos):"
 								for="tempo_duracao" />
-						</p:column>	
-						<p:column>
-							<p:inputText  requiredMessage="Tempo de Duração é obrigatorio" value="#{filmeManagedBean.filme.tempo_duracao}"
+							<p:inputText  requiredMessage="Tempo de Duração é obrigatorio" value="#{filmeManagedBean.filme.tempoDuracao}"
 								id="tempo_duracao" required="true">
 								<f:validateLongRange minimum="1" />
 							</p:inputText>
 		
-						</p:column>
-						<p:column>
+
 							<h:outputLabel value="Descrição:" for="descricao" />
-						</p:column>
-						<p:column>
-							<p:inputTextarea  requiredMessage="Descrição é obrigatorio" autoResize="" cols="80" rows="7"
+							<p:inputTextarea value="#{filmeManagedBean.filme.descricao}"  requiredMessage="Descrição é obrigatorio" autoResize="" cols="80" rows="7"
 								id="descricao" required="true"  >
 								<f:validateLength minimum="1" />
 							</p:inputTextarea>
-						</p:column>
-						<p:column>
+
 							<h:outputLabel value="Selecionar Torrent:" />
-						</p:column>	
-						<h:column>
 							<p:fileUpload fileUploadListener="#{filmeManagedBean.fileUploadActionTorrent}"  
 										    mode="simple"  showButtons="false" auto="true"
 										    requiredMessage="Arquivo é obrigatório"  dragDropSupport="true" required="true"  
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadTorrent" >
 							</p:fileUpload>
-						</h:column>
-						<p:column>
+
 							<h:outputLabel value="Selecionar Imagem:" />
-						</p:column>	
-						<h:column>
 							<p:fileUpload fileUploadListener="#{filmeManagedBean.fileUploadActionImagem}"  
 										    mode="simple"  showButtons="false" auto="true"
 										    requiredMessage="Arquivo é obrigatório"  dragDropSupport="true" required="true"  
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadImagem">
 							</p:fileUpload>
-						</h:column>
-                </h:panelGrid>  
-                
+
+                </h:panelGrid>                  
             </p:panel>  
             
             <p:commandButton value="Salvar"    
                             actionListener="#{filmeManagedBean.cadastraFilme}" />
    
-          
-  
-	
-
 	</h:form>
       
     </div><!-- end of center content -->
