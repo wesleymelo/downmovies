@@ -46,8 +46,12 @@ public class FilmeManagedBean implements Serializable {
 	}
 	
 	
-	public String cadastraFilme()	{
+	public void cadastraFilme()	{
 		try {
+			System.out.println("Qualidade:"+filme.getQualidade());
+			System.out.println("Formato:"+filme.getFormato());
+			
+			
 			FilmeDAO insert = new FilmeDAO();
 			
 			insert.insert(filme);
@@ -56,10 +60,8 @@ public class FilmeManagedBean implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.mensErro("Erro ao cadastrar filme");
-			return null;
 		}
 		
-		return "filmeList";
 	}
 	
 	

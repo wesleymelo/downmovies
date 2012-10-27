@@ -67,14 +67,14 @@
 							<p:selectOneMenu  requiredMessage="Formato é obrigatorio" value="#{filmeManagedBean.filme.formato}"
 								id="formato" required="true" effect="fade">
 									<f:selectItem itemLabel=""/>
-									<f:selectItems value="#{filmeManagedBean.mapFormato}" var="formato"  itemValue="#{formato.key}" itemLabel="#{formato.key}"  />									
+									<f:selectItems value="#{filmeManagedBean.mapFormato}" var="formato"  itemValue="#{formato}" itemLabel="#{formato}"  />									
 							</p:selectOneMenu>
 
 							<h:outputLabel value="Qualidade:" for="qualidade" />
 							<p:selectOneMenu  requiredMessage="Qualidade é obrigatorio" value="#{filmeManagedBean.filme.qualidade}"
 								id="qualidade" required="true" effect="fade">
 									<f:selectItem itemLabel=""/>
-									<f:selectItems value="#{filmeManagedBean.mapQualidade}" var="qualidade"  itemValue="#{qualidade.key}" itemLabel="#{qualidade.key}"  />
+									<f:selectItems value="#{filmeManagedBean.mapQualidade}" var="qualidade"  itemValue="#{qualidade}" itemLabel="#{qualidade}"  />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Tempo de Duração(em minutos):"
@@ -108,8 +108,10 @@
                 </h:panelGrid>                  
             </p:panel>  
             
-            <p:commandButton value="Salvar"    
+            <p:commandButton value="Cadastrar"    
                             actionListener="#{filmeManagedBean.cadastraFilme}" />
+                                        
+            <p:commandButton value="Voltar"    action="index.xhtml" immediate="true"/>
    
 	</h:form>
       
