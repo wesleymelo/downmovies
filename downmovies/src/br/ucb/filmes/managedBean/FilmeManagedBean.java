@@ -3,6 +3,7 @@ package br.ucb.filmes.managedBean;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -22,7 +23,7 @@ public class FilmeManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
+	private static final Logger log = Logger.getLogger(FilmeManagedBean.class);
 	private Filme filme;
 	private List<Filme> filmes;
 	private UploadArquivo uploadArquivo;
@@ -61,9 +62,10 @@ public class FilmeManagedBean implements Serializable {
 			uploadArquivo.gravarImagem();
 			
 			FacesUtil.mensInfo("Filme cadastrado com Sucesso");
-			
+			log.info("Filme cadastrado com Sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error(e.getMessage(), e);
 			FacesUtil.mensErro("Erro ao cadastrar filme");
 		}
 		
