@@ -92,23 +92,22 @@
 							</p:inputTextarea>
 
 							<h:outputLabel value="Selecionar Torrent:" />
-							<p:fileUpload fileUploadListener="#{filmeManagedBean.fileUploadActionTorrent}"  
-										    mode="simple"  showButtons="false" auto="true"
-										    requiredMessage="Arquivo é obrigatório"  dragDropSupport="true" required="true"  
+							<p:fileUpload value="#{filmeManagedBean.arqFilme}"  mode="simple"
+										    requiredMessage="Arquivo é obrigatório"  required="true"  
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadTorrent" >
+										   
 							</p:fileUpload>
 
 							<h:outputLabel value="Selecionar Imagem:" />
-							<p:fileUpload fileUploadListener="#{filmeManagedBean.fileUploadActionImagem}"  
-										    mode="simple"  showButtons="false" auto="true"
-										    requiredMessage="Arquivo é obrigatório"  dragDropSupport="true" required="true"  
+							<p:fileUpload value="#{filmeManagedBean.arqImagem}" mode="simple"
+										     requiredMessage="Arquivo é obrigatório"  required="true"  
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadImagem">
 							</p:fileUpload>
 
                 </h:panelGrid>                  
             </p:panel>  
             
-            <p:commandButton value="Cadastrar"    
+            <p:commandButton value="Cadastrar"    ajax="false"
                             actionListener="#{filmeManagedBean.cadastraFilme}" />
                                         
             <p:commandButton value="Voltar"    action="index.xhtml" immediate="true"/>
