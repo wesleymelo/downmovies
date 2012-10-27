@@ -35,10 +35,7 @@ public class Filme implements Serializable {
 	
 	@Column
 	private String legenda;
-	
-	@Column
-	private Double tamanho;
-	
+
 	@Column
 	private Integer tempoDuracao;
 	
@@ -124,10 +121,5 @@ public class Filme implements Serializable {
 	public void setLegenda(String legenda) {
 		this.legenda = legenda;
 	}
-	public Double getTamanho() {
-		return tamanho;
-	}
-	public void setTamanho(Double tamanho) {
-		this.tamanho = tamanho;
-	}
+
 }

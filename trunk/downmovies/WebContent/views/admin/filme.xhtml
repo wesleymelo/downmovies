@@ -39,7 +39,7 @@
 
 							<h:outputLabel value="Ano Lançamento:" for="ano_lancamento" />
 							<p:inputText  requiredMessage="Ano Lançamento é obrigatorio" value="#{filmeManagedBean.filme.anoLancamento}" size="4"
-								id="ano_lancamento" required="true">
+								id="ano_lancamento" required="true" maxlength="4">
 								<f:validateLongRange minimum="10" />
 							</p:inputText>
 
@@ -76,12 +76,6 @@
 									<f:selectItem itemLabel=""/>
 									<f:selectItems value="#{filmeManagedBean.mapQualidade}" var="qualidade"  itemValue="#{qualidade.key}" itemLabel="#{qualidade.key}"  />
 							</p:selectOneMenu>
-				
-							<h:outputLabel value="Tamanho(em MegaByte - MB):" for="tamanho" />
-							<p:inputText  requiredMessage="Tamanho é obrigatorio" value="#{filmeManagedBean.filme.tamanho}" id="tamanho"
-								required="true">
-								<f:validateDoubleRange minimum="1" />
-							</p:inputText>
 
 							<p:outputLabel value="Tempo de Duração(em minutos):"
 								for="tempo_duracao" />
