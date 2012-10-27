@@ -65,8 +65,6 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
   `qualidade` VARCHAR(30)  NOT NULL ,
 
-  `tamanho` DOUBLE NOT NULL ,
-
   `tempoDuracao` INT(11) NOT NULL ,
   
   `idCategoria` INT(11) NOT NULL ,
