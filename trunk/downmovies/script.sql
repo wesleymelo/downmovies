@@ -108,6 +108,25 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`Perfil` (
 
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+
+-- Table `downmovies`.`LOGS`
+
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `downmovies`.`Logs` ;
+
+
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Logs` (
+
+  `idLog` INT(11) NOT NULL AUTO_INCREMENT ,
+
+  `mensagem` VARCHAR(100),
+  `data` VARCHAR(100),
+  
+  PRIMARY KEY (`idLog`) )
+
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
