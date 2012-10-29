@@ -3,11 +3,11 @@ package br.ucb.filmes.managedBean;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.log4j.Logger;
 import org.primefaces.model.UploadedFile;
 
 import br.ucb.filmes.beans.Filme;
@@ -30,7 +30,7 @@ public class FilmeManagedBean implements Serializable {
 	private UploadedFile arqFilme; 
 	private UploadedFile arqImagem; 
  	public FilmeManagedBean() {
- 	
+ 	    filmes = new FilmeDAO().recoveryAll();
 		filme = new Filme();
 		uploadArquivo = new UploadArquivo();
 	}
@@ -47,19 +47,22 @@ public class FilmeManagedBean implements Serializable {
 	}
 	
 	
-	public void cadastraFilme()	{
+	public String cadastraFilme()	{
 
 		try {
-
 			
+			FilmeDAO dao = new FilmeDAO();
 			
-			FilmeDAO insert = new FilmeDAO();
-			
-			insert.insert(filme);
 			uploadArquivo.fileUploadActionTorrent(arqFilme);
 			uploadArquivo.fileUploadActionImagem(arqImagem);
+			filme.setExtensaoImg(uploadArquivo.getExtensaoImg());
+			System.out.println("Extensão: "+filme.getExtensaoImg());
+			
+			dao.insert(filme);
+			uploadArquivo.setNomeArquivo(filme.getIdFilme().toString());
 			uploadArquivo.gravarFilme();
 			uploadArquivo.gravarImagem();
+			filmes = dao.recoveryAll();
 			
 			FacesUtil.mensInfo("Filme cadastrado com Sucesso");
 			log.info("Filme cadastrado com Sucesso");
@@ -68,7 +71,8 @@ public class FilmeManagedBean implements Serializable {
 			log.error(e.getMessage(), e);
 			FacesUtil.mensErro("Erro ao cadastrar filme");
 		}
-		
+		System.out.println("\\o/ AAQUI OH");
+		return "filmes";
 	}
 
 	
