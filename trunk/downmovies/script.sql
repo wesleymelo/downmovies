@@ -67,11 +67,11 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
   `tempoDuracao` INT(11) NOT NULL ,
   
+  `tamanho` INT(11) NOT NULL ,
+  
   `idCategoria` INT(11) NOT NULL ,
   
-  `nomeArquivoFilme` VARCHAR(100) NULL ,
-  
-  `nomeArquivoImagem` VARCHAR(100) NULL ,
+  `extensaoImg` VARCHAR(4) NOT NULL ,
 
    PRIMARY KEY (`idFilme`) ,
 
