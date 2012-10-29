@@ -5,11 +5,11 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<ui:composition template="template.xhtml">
+	<ui:composition template="../modelo/template.xhtml">
     <ui:define name="conteudo">
       <div class="center_content">
       <h:form id="form" enctype="multipart/form-data">
-      
+      	
 			<p:messages showDetail="false" showSummary="true" autoUpdate="true"/>
 			
             <p:panel header="Filme"> 
@@ -22,7 +22,6 @@
 								required="true"  requiredMessage="Título é obrigatorio" maxlength="50">
 								<f:validateLength maximum="50" minimum="1" />
 							</p:inputText>
-						
 						
 	                    	<h:outputLabel value="Diretor:"  />
 							<p:inputText value="#{filmeManagedBean.filme.diretor}" id="diretor" size="50"
@@ -76,8 +75,15 @@
 									<f:selectItem itemLabel=""/>
 									<f:selectItems value="#{filmeManagedBean.mapQualidade}" var="qualidade"  itemValue="#{qualidade}" itemLabel="#{qualidade}"  />
 							</p:selectOneMenu>
-
-							<p:outputLabel value="Tempo de Duração(em minutos):"
+							
+							<h:outputLabel value="Tamanho (em MB - MegaByte):"
+								for="tamanho" />
+							<p:inputText  requiredMessage="Tamanho é obrigatorio" value="#{filmeManagedBean.filme.tamanho}"
+								id="tamanho" required="true">
+								<f:validateLongRange minimum="1" />
+							</p:inputText>
+							
+							<h:outputLabel value="Tempo de Duração(em minutos):"
 								for="tempo_duracao" />
 							<p:inputText  requiredMessage="Tempo de Duração é obrigatorio" value="#{filmeManagedBean.filme.tempoDuracao}"
 								id="tempo_duracao" required="true">
@@ -92,15 +98,16 @@
 							</p:inputTextarea>
 
 							<h:outputLabel value="Selecionar Torrent:" />
-							<p:fileUpload value="#{filmeManagedBean.arqFilme}"  mode="simple"
-										    requiredMessage="Arquivo é obrigatório"  required="true"  
+							<p:fileUpload value="#{filmeManagedBean.arqFilme}"   mode="simple"  
+										    requiredMessage="Arquivo é obrigatório" allowTypes="/(\.|\/)(torrent)$/" sizeLimit="1000" required="true"  
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadTorrent" >
 										   
 							</p:fileUpload>
 
 							<h:outputLabel value="Selecionar Imagem:" />
 							<p:fileUpload value="#{filmeManagedBean.arqImagem}" mode="simple"
-										     requiredMessage="Arquivo é obrigatório"  required="true"  
+										     requiredMessage="Arquivo é obrigatório" sizeLimit="1000000"
+										      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  required="true"  
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadImagem">
 							</p:fileUpload>
 
