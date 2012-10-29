@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="../modelo/template.xhtml">
+	<ui:define name="conteudo">
+		<div class="center_content">
+			
+			<h:form id="form">
+				
+				<p:dataGrid var="filme" value="#{filmeManagedBean.filmes}"
+					columns="3" rows="12" paginator="true"
+					
+					rowsPerPageTemplate="9,12,15">
+
+					<p:panel header="#{filme.titulo}" style="text-align:center">
+						<h:panelGrid columns="1" style="width:100%">
+						
+							<p:graphicImage value="C:/downmovies/filmes/#{filme.idFilme}.#{filme.extensaoImg}"
+								alt="#{filme.titulo}" width="90" height="100" />
+
+							<h:outputLabel value="#{filme.diretor}" />
+							<h:outputText value="#{filme.anoLancamento}" />
+							<h:outputText value="#{filme.categoria.descricao}" />
+
+							<p:commandLink update=":form:filmeDetail"
+								oncomplete="filmeDialog.show()" title="Visão Detalhada">
+								<h:outputText styleClass="ui-icon ui-icon-search"
+									style="margin:0 auto;" />
+								<f:setPropertyActionListener value="#{filme}"
+									target="#{filmeManagedBean.filme}" />
+							</p:commandLink>
+						</h:panelGrid>
+					</p:panel>
+
+				</p:dataGrid>
+
+				<p:dialog header="Filme Detalhada" widgetVar="filmeDialog" modal="true">
+					<p:outputPanel id="filmeDetail" style="text-align:center;"
+						layout="block">
+
+						<p:graphicImage
+							value="file:///C:/downmovies/filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
+							alt="#{filmeManagedBean.filme.titulo}" width="130" height="140"  />
+
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="id" value="Id: " />
+							<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
+
+							<h:outputLabel for="titulo" value="Título: " />
+							<h:outputText id="titulo"
+								value="#{filmeManagedBean.filme.titulo}" />
+
+							<h:outputLabel for="diretor" value="Diretor: " />
+							<h:outputText id="diretor"
+								value="#{filmeManagedBean.filme.diretor}" />
+
+							<h:outputLabel for="categoria" value="Categoria: " />
+							<h:outputText id="categoria"
+								value="#{filmeManagedBean.filme.categoria.descricao}" />
+
+							<h:outputLabel for="anoLancamento" value="Ano Lançamento: " />
+							<h:outputText id="anoLancamento"
+								value="#{filmeManagedBean.filme.anoLancamento}" />
+
+							<h:outputLabel for="idioma" value="Idioma: " />
+							<h:outputText id="idioma"
+								value="#{filmeManagedBean.filme.idioma}" />
+
+							<h:outputLabel for="legenda" value="Legenda: " />
+							<h:outputText id="legenda"
+								value="#{filmeManagedBean.filme.legenda}" />
+
+							<h:outputLabel for="formato" value="Formato: " />
+							<h:outputText id="formato"
+								value="#{filmeManagedBean.filme.formato}" />
+
+							<h:outputLabel for="qualidade" value="Qualidade: " />
+							<h:outputText id="qualidade"
+								value="#{filmeManagedBean.filme.qualidade}" />
+
+							<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
+							<h:outputText id="tempoDuracao"
+								value="#{filmeManagedBean.filme.tempoDuracao}" />
+								
+							<h:outputLabel for="descricao" value="Descricão: " />
+							<h:outputText id="descricao"
+								value="#{filmeManagedBean.filme.descricao}" />	
+
+						</h:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+
+			</h:form>
+
+		</div>
+		<!-- end of center content -->
+	</ui:define>
+</ui:composition>
+
+</html>
