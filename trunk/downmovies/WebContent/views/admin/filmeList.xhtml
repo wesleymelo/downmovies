@@ -10,56 +10,67 @@
       <div class="center_content">
 		
 			<h:form>
-		
-				<p:dataTable value="#{filmeManagedBean.filmes}" var="filme">
+				<!-- Button -->
+				<div class="float-float">
+					
+					<p:commandLink action="filme.jsf?faces-redirect=true">	<p:graphicImage value="../images/plus.png" alt="Novo Filme" style="border:0px;" /></p:commandLink>
+					
+				</div>
+				<br/><br/>
+				
+				<p:dataTable   value="#{filmeManagedBean.filmes}" var="filme" widgetVar="filmesTable"
+					emptyMessage="Nenhum filme encontrado" filteredValue="#{filmeManagedBean.filteredFilmes}" >
+	
+					<f:facet name="header">  
+			            <p:outputPanel>  
+			                <h:outputText value="Procurar:" />  
+			                <p:inputText id="globalFilter" onkeyup="filmesTable.filter()" style="width:150px" />  
+			            </p:outputPanel>  
+		        	</f:facet>  
+	
 	
 					<f:facet name="header">Lista de Filmes</f:facet>
 					
-					<p:column headerText="#">
+					<p:column headerText="#" sortBy="#{filme.idFilme}">
 						#{filme.idFilme}
 					</p:column>
 					
-					<p:column headerText="Título">
+					<p:column headerText="Título" sortBy="#{filme.titulo}">
 						#{filme.titulo}
 					</p:column>
 					
-					<p:column headerText="Diretor">
+					<p:column headerText="Diretor" sortBy="#{filme.diretor}">
 						#{filme.diretor}
 					</p:column>
 					
 					
-					<p:column headerText="Ano de Lançamento">
+					<p:column headerText="Ano de Lançamento" sortBy="#{filme.anoLancamento}">
 						#{filme.anoLancamento}
 					</p:column>
 				
-					<p:column headerText="Idioma">
+					<p:column headerText="Idioma" sortBy="#{filme.idioma}">
 						#{filme.idioma}
 					</p:column>
 					
-					<p:column headerText="Legenda">
-						#{filme.legenda}
-					</p:column>
-					
-					<p:column headerText="Formato">
+					<p:column headerText="Formato" sortBy="#{filme.formato}">
 						#{filme.formato}
 					</p:column>
 					
-					
-					<p:column headerText="Qualidade">
-						#{filme.qualidade}
+					<p:column headerText="Tempo de Duração" sortBy="#{filme.tempoDuracao}">
+						#{filme.tempoDuracao} minutos
 					</p:column>
 					
-					<p:column headerText="Tempo de Duração">
-						#{filme.tempoDuracao}
-					</p:column>
+					<p:column headerText="Ações">
 					
-					<p:column headerText="Tempo de Duração">
-						#{filme.tempoDuracao}
-					</p:column>
+						<h:commandLink actionListener="#{filmeManagedBean.excluir}">
+							<f:attribute name="filme" value="#{filme}" />
+							<h:graphicImage value="../images/delete.png" title="Excluir" style="border: none" />
+						</h:commandLink>
 					
-					<p:column headerText="Imagem">
-						<p:graphicImage rendered="" value="/downmovies/filmes/#{filme.idFilme}.#{filme.extensaoImg}" alt="#{filme.titulo}">
-						</p:graphicImage>
+						<h:commandLink action="filme">
+							<f:setPropertyActionListener target="#{filmeManagedBean.filme}" value="#{filme}" />
+							<h:graphicImage value="../images/edit.png" title="Editar" style="border: none" />
+						</h:commandLink>
 						
 					</p:column>
 					

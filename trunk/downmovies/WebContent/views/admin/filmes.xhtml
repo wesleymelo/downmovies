@@ -11,9 +11,17 @@
 			
 			<h:form id="form">
 				
+				
+				
+				<!-- Button -->
+				<div class="float-float">
+					
+					<p:commandLink action="filme.jsf?faces-redirect=true">	<p:graphicImage value="../images/plus.png" alt="Novo Filme" style="border:0px;" /></p:commandLink>
+					
+				</div>
+				<br/><br/>
 				<p:dataGrid var="filme" value="#{filmeManagedBean.filmes}"
 					columns="3" rows="12" paginator="true"
-					
 					rowsPerPageTemplate="9,12,15">
 
 					<p:panel header="#{filme.titulo}" style="text-align:center">
