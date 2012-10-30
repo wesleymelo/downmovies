@@ -157,7 +157,7 @@ public class Valida {
 	 */
 	public static boolean isLong(String n){
 		try{
-			long num = Long.parseLong(n);
+			Long.parseLong(n);
 			return true;
 		}catch (NumberFormatException e) {
 			return false;
@@ -173,7 +173,7 @@ public class Valida {
 	 */
 	public static boolean isInt(String n){
 		try{
-			int num = Integer.parseInt(n);
+			Integer.parseInt(n);
 			return true;
 		}catch (NumberFormatException e) {
 			return false;
@@ -189,7 +189,7 @@ public class Valida {
 	 */
 	public static boolean isDouble(String n){
 		try{
-			double num = Double.parseDouble(n);
+			Double.parseDouble(n);
 			return true;
 		}catch (NumberFormatException e) {
 			return false;
@@ -205,7 +205,7 @@ public class Valida {
 	 */
 	public static boolean isFloat(String n){
 		try{
-			float num = Float.parseFloat(n);
+			Float.parseFloat(n);
 			return true;
 		}catch (NumberFormatException e) {
 			return false;
