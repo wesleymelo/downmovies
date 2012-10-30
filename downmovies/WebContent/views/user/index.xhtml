@@ -5,23 +5,28 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="../modelo/template.xhtml">
-	<ui:define name="conteudo">
-		<div class="center_content">
-			
-			<h:form id="form">
+<h:head>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+</h:head>
+
+	<ui:composition template="../modelo/template.xhtml">
+    <ui:define name="conteudo">
+      	<div class="center_content">
+      		<h:form id="form">
 				
-				<p:dataGrid var="filme" value="#{filmeManagedBean.filmes}"
-					columns="3" rows="12" paginator="true"
-					
+				<p:dataGrid var="filme" value="#{filmeManagedBean.filmes}" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+					columns="3" rows="12" 
 					rowsPerPageTemplate="9,12,15">
 
 					<p:panel header="#{filme.titulo}" style="text-align:center">
 						<h:panelGrid columns="1" style="width:100%">
 						
 							<p:graphicImage value="C:/downmovies/filmes/#{filme.idFilme}.#{filme.extensaoImg}"
-								alt="#{filme.titulo}" width="90" height="100" />	
-
+								width="90" height="100" />
+	
 							<h:outputLabel value="#{filme.diretor}" />
 							<h:outputText value="#{filme.anoLancamento}" />
 							<h:outputText value="#{filme.categoria.descricao}" />
@@ -39,13 +44,14 @@
 				</p:dataGrid>
 
 				<p:dialog header="Filme Detalhada" widgetVar="filmeDialog" modal="true">
-					<p:outputPanel id="filmeDetail" style="text-align:center;"
+					<p:outputPanel id="filmeDetail"  style="text-align:center;" layout="block">
 						layout="block">
 
 						<p:graphicImage
 							value="C:/downmovies/filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
-							alt="#{filmeManagedBean.filme.titulo}" width="130" height="140"  />
+							 width="130" height="140"  />
 														
+
 						<h:panelGrid columns="2" cellpadding="5">
 							<h:outputLabel for="id" value="Id: " />
 							<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
@@ -95,10 +101,8 @@
 				</p:dialog>
 
 			</h:form>
-
-		</div>
-		<!-- end of center content -->
-	</ui:define>
-</ui:composition>
+    	</div><!-- end of center content -->
+    </ui:define>
+  	</ui:composition>
 
 </html>
