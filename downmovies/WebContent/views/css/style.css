@@ -630,6 +630,10 @@ color: #666666;
 text-decoration:underline;
 }
 
+.float-left    { float: left; }
+        
+.float-right   { float: right; }
+
 .center_footer{
 float:left;
 width:200px;

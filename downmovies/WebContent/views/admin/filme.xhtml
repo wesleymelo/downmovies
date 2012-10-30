@@ -99,7 +99,7 @@
 
 							<h:outputLabel value="Selecionar Torrent:" />
 							<p:fileUpload value="#{filmeManagedBean.arqFilme}"   mode="simple"  
-										    requiredMessage="Arquivo é obrigatório" allowTypes="/(\.|\/)(torrent)$/" sizeLimit="1000" required="true"  
+										    requiredMessage="Arquivo é obrigatório" allowTypes="/(\.|\/)(torrent)$/" sizeLimit="1000" required="#{filmeManagedBean.filme.idFilme == null}"  
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadTorrent" >
 										   
 							</p:fileUpload>
@@ -107,7 +107,7 @@
 							<h:outputLabel value="Selecionar Imagem:" />
 							<p:fileUpload value="#{filmeManagedBean.arqImagem}" mode="simple"
 										     requiredMessage="Arquivo é obrigatório" sizeLimit="1000000"
-										      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  required="true"  
+										      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  required="#{filmeManagedBean.filme.idFilme == null}"  
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadImagem">
 							</p:fileUpload>
 
