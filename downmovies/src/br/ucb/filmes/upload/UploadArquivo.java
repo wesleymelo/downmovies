@@ -2,10 +2,15 @@ package br.ucb.filmes.upload;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.Serializable;
 
 import org.primefaces.model.UploadedFile;
 
-public class UploadArquivo {
+public class UploadArquivo implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private byte [] filmeArq;
 	private byte [] imagemArq;
 
