@@ -44,10 +44,10 @@ public class Filme implements Serializable {
 	private Categoria categoria;
 	
 	@Column
-	private String formato;
+	private Integer formato;
 	
 	@Column
-	private String qualidade;
+	private Integer qualidade;
 	
 	@Column
 	private Integer tamanho;
@@ -58,6 +58,7 @@ public class Filme implements Serializable {
 	@Column
 	private String extensaoImg;
 	
+	
 	public Integer getTamanho() {
 		return tamanho;
 	}
@@ -67,6 +68,9 @@ public class Filme implements Serializable {
 	public String getExtensaoImg() {
 		return extensaoImg;
 	}
+	
+	
+	
 	public void setExtensaoImg(String extensaoImg) {
 		this.extensaoImg = extensaoImg;
 	}
@@ -77,16 +81,17 @@ public class Filme implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getFormato() {
+	
+	public Integer getFormato() {
 		return formato;
 	}
-	public void setFormato(String formato) {
+	public void setFormato(Integer formato) {
 		this.formato = formato;
 	}
-	public String getQualidade() {
+	public Integer getQualidade() {
 		return qualidade;
 	}
-	public void setQualidade(String qualidade) {
+	public void setQualidade(Integer qualidade) {
 		this.qualidade = qualidade;
 	}
 	public Categoria getCategoria() {

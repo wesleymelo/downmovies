@@ -1,11 +1,15 @@
 package br.ucb.filmes.beans;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +28,22 @@ public class Categoria implements Serializable {
 	@Column
 	private String descricao;
 	
+	
+	//@OneToMany(fetch=FetchType.EAGER)
+	//@JoinColumn(name="idCurso")
+	
+	@OneToMany(mappedBy="filme", fetch=FetchType.EAGER)
+	@MapKey(name="idCategoria")
+	private Map<Integer, Filme> filmes;
+	
+	public Map<Integer, Filme> getFilmes() {
+		return filmes;
+	}
+
+	public void setFilmes(Map<Integer, Filme> filmes) {
+		this.filmes = filmes;
+	}
+
 	public Integer getIdCategoria() {
 		return idCategoria;
 	}
