@@ -11,7 +11,7 @@ public class UploadArquivo {
 
 	private UploadedFile arquivoFilme;
 	private UploadedFile arquivoImagem;
-	private static final  String CAMINHO = "C:/Users/Wesley/Dropbox/TF 1.2/downmovies/WebContent/filmes/";
+	private static final  String CAMINHO = "C:/Users/Wesley/Dropbox/TF 1.2/downmovies/WebContent/views/filmes/";
 	private String nomeArquivo = null;
 	private String extensaoImg;
 	
