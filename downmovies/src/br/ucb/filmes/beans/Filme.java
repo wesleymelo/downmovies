@@ -240,6 +240,15 @@ public class Filme implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Filme [idFilme=" + idFilme + ", titulo=" + titulo
+				+ ", diretor=" + diretor + ", anoLancamento=" + anoLancamento
+				+ ", idioma=" + idioma + ", legenda=" + legenda
+				+ ", tempoDuracao=" + tempoDuracao + ", categoria=" + categoria
+				+ ", formato=" + formato + ", qualidade=" + qualidade
+				+ ", tamanho=" + tamanho + ", descricao=" + descricao
+				+ ", extensaoImg=" + extensaoImg + "]";
+	}
+
 }
