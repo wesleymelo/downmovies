@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -13,17 +14,20 @@
 			<p:messages showDetail="false" showSummary="true" autoUpdate="true"/>
 			
             <p:panel header="Filme"> 
+            		
 					<h:panelGrid columns="2" columnClasses="label, value"
 						styleClass="formulario">
-            		
+            				
+            				<h:outputLabel value="Código:" rendered="#{filmeManagedBean.filme.idFilme != null}" />
+            				<p:inputText readonly="true" value="#{filmeManagedBean.filme.idFilme}" rendered="#{filmeManagedBean.filme.idFilme != null}" />
                  		
-                   			<h:outputLabel value="Título:" />
+							<h:outputLabel value="Título:" for="titulo" />                 		
 							<p:inputText value="#{filmeManagedBean.filme.titulo}" id="titulo" size="50"
 								required="true"  requiredMessage="Título é obrigatorio" maxlength="50">
 								<f:validateLength maximum="50" minimum="1" />
 							</p:inputText>
 						
-	                    	<h:outputLabel value="Diretor:"  />
+	                    	<h:outputLabel value="Diretor:" for="diretor" />
 							<p:inputText value="#{filmeManagedBean.filme.diretor}" id="diretor" size="50"
 								required="true" requiredMessage="Diretor é obrigatorio" maxlength="50">
 								<f:validateLength maximum="50" minimum="1" />
@@ -45,21 +49,21 @@
 							<h:outputLabel value="Idioma:"  />
 							<p:selectOneMenu  requiredMessage="Idioma é obrigatorio" value="#{filmeManagedBean.filme.idioma}"
 								id="idioma" required="true" editable="true" effect="fade">
-								<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
-								<f:selectItem itemLabel="Português" itemValue="Português" />
-								<f:selectItem itemLabel="Inglês" itemValue="Inglês" />
+								<f:selectItem itemLabel="Português/Inglês" itemValue="Portugues/Ingles" />
+								<f:selectItem itemLabel="Português" itemValue="Portugues" />
+								<f:selectItem itemLabel="Inglês" itemValue="Ingles" />
 								<f:selectItem itemLabel="Não disponível"
-									itemValue="Não disponível" />
+									itemValue="Nao disponivel" />
 							</p:selectOneMenu>
 
 							<h:outputLabel value="legenda:" />
 							<p:selectOneMenu  requiredMessage="Legenda é obrigatorio" value="#{filmeManagedBean.filme.legenda}"
 								id="legenda" required="true" editable="true" effect="fade">
-								<f:selectItem itemLabel="Português/Ingles" itemValue="Português/Ingles" />
-								<f:selectItem itemLabel="Português" itemValue="Português" />
-								<f:selectItem itemLabel="Inglês" itemValue="Inglês" />
+								<f:selectItem itemLabel="Português/Ingles" itemValue="Portugues/Ingles" />
+								<f:selectItem itemLabel="Português" itemValue="Portugues" />
+								<f:selectItem itemLabel="Inglês" itemValue="Ingles" />
 								<f:selectItem itemLabel="Não disponível"
-									itemValue="Não disponível" />
+									itemValue="Nao disponivel" />
 							</p:selectOneMenu>
 
 							<h:outputLabel value="Formato:"  />						
@@ -90,7 +94,6 @@
 								<f:validateLongRange minimum="1" />
 							</p:inputText>
 		
-
 							<h:outputLabel value="Descrição:" for="descricao" />
 							<p:inputTextarea value="#{filmeManagedBean.filme.descricao}"  requiredMessage="Descrição é obrigatorio" autoResize="" cols="80" rows="7"
 								id="descricao" required="true"  >
@@ -98,8 +101,8 @@
 							</p:inputTextarea>
 
 							<h:outputLabel value="Selecionar Torrent:" />
-							<p:fileUpload value="#{filmeManagedBean.arqFilme}"   mode="simple"  
-										    requiredMessage="Arquivo é obrigatório" allowTypes="/(\.|\/)(torrent)$/" sizeLimit="1000" required="#{filmeManagedBean.filme.idFilme == null}"  
+							<p:fileUpload value="#{filmeManagedBean.arqFilme}"   mode="simple"
+										    requiredMessage="Arquivo é obrigatório" allowTypes="/(\.|\/)(torrent)$/" sizeLimit="1000" required="#{filmeManagedBean.filme.idFilme == null}"   
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadTorrent" >
 										   
 							</p:fileUpload>
@@ -107,15 +110,15 @@
 							<h:outputLabel value="Selecionar Imagem:" />
 							<p:fileUpload value="#{filmeManagedBean.arqImagem}" mode="simple"
 										     requiredMessage="Arquivo é obrigatório" sizeLimit="1000000"
-										      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  required="#{filmeManagedBean.filme.idFilme == null}"  
+										      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  required="#{filmeManagedBean.filme.idFilme == null}"
 										    styleClass="alignLeft margin-5l" label=" Procurar " id="fileUploadImagem">
 							</p:fileUpload>
 
                 </h:panelGrid>                  
             </p:panel>  
             
-            <p:commandButton value="Cadastrar"    ajax="false"
-                            actionListener="#{filmeManagedBean.cadastraFilme}" />
+            <p:commandButton value="Salvar"  ajax="false"  
+                            action="#{filmeManagedBean.salvar}" />
                                         
             <p:commandButton value="Voltar"    action="index.xhtml" immediate="true"/>
    

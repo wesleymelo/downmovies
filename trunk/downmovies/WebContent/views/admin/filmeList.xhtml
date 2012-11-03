@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -8,74 +9,154 @@
 	<ui:composition template="../modelo/template.xhtml">
     <ui:define name="conteudo">
       <div class="center_content">
-		
-			<h:form>
+			
+			<h:form id="form" prependId="false">
+				
+				<p:messages id="messages" />
+			
 				<!-- Button -->
 				<div class="float-float">
 					
-					<p:commandLink action="filme.jsf?faces-redirect=true">	<p:graphicImage value="../images/plus.png" alt="Novo Filme" style="border:0px;" /></p:commandLink>
+					<p:commandLink action="filme.jsf?faces-redirect=true">	<p:graphicImage value="../images/plus2.png" alt="Novo Filme" style="border:0px;" /></p:commandLink>
 					
 				</div>
 				<br/><br/>
 				
-				<p:dataTable   value="#{filmeManagedBean.filmes}" var="filme" widgetVar="filmesTable"
+				<p:dataTable id="dataTable"  value="#{filmeManagedBean.filmes}" var="filme" widgetVar="filmesTable" paginator="true" rowsPerPageTemplate="5,10,20,30" rows="10"
 					emptyMessage="Nenhum filme encontrado" filteredValue="#{filmeManagedBean.filteredFilmes}" >
 	
 					<f:facet name="header">  
-			            <p:outputPanel>  
-			                <h:outputText value="Procurar:" />  
-			                <p:inputText id="globalFilter" onkeyup="filmesTable.filter()" style="width:150px" />  
-			            </p:outputPanel>  
+			            Lista de Filmes
 		        	</f:facet>  
-	
-	
-					<f:facet name="header">Lista de Filmes</f:facet>
-					
-					<p:column headerText="#" sortBy="#{filme.idFilme}">
+
+					<p:column headerText="#" sortBy="#{filme.idFilme}" >
 						#{filme.idFilme}
 					</p:column>
 					
-					<p:column headerText="Título" sortBy="#{filme.titulo}">
+					<p:column headerText="Título" sortBy="#{filme.titulo}" filterBy="#{filme.titulo}" >
 						#{filme.titulo}
 					</p:column>
 					
-					<p:column headerText="Diretor" sortBy="#{filme.diretor}">
+					<p:column headerText="Diretor" sortBy="#{filme.diretor}" filterBy="#{filme.diretor}">
 						#{filme.diretor}
 					</p:column>
 					
 					
-					<p:column headerText="Ano de Lançamento" sortBy="#{filme.anoLancamento}">
+					<p:column headerText="Ano de Lançamento" sortBy="#{filme.anoLancamento}" filterBy="#{filme.anoLancamento}">
 						#{filme.anoLancamento}
 					</p:column>
 				
-					<p:column headerText="Idioma" sortBy="#{filme.idioma}">
+					<p:column headerText="Idioma" sortBy="#{filme.idioma}" filterBy="#{filme.idioma}">
 						#{filme.idioma}
 					</p:column>
 					
-					<p:column headerText="Formato" sortBy="#{filme.formato}">
-						#{filme.formato}
-					</p:column>
-					
-					<p:column headerText="Tempo de Duração" sortBy="#{filme.tempoDuracao}">
-						#{filme.tempoDuracao} minutos
-					</p:column>
-					
-					<p:column headerText="Ações">
-					
-						<h:commandLink actionListener="#{filmeManagedBean.excluir}">
-							<f:attribute name="filme" value="#{filme}" />
-							<h:graphicImage value="../images/delete.png" title="Excluir" style="border: none" />
-						</h:commandLink>
+					<p:column headerText="Ações" width="70">
 					
 						<h:commandLink action="filme">
 							<f:setPropertyActionListener target="#{filmeManagedBean.filme}" value="#{filme}" />
-							<h:graphicImage value="../images/edit.png" title="Editar" style="border: none" />
+							<h:graphicImage value="../images/edit2.png" title="Editar" style="border: none" />
 						</h:commandLink>
-						
+
+						&nbsp;						
+					
+						<h:commandLink onclick="confirmation.show(); return false;">
+							<h:graphicImage value="../images/delete2.png" title="Excluir" style="border: none" />
+						</h:commandLink>
+
+						&nbsp;											
+	
+						<p:commandLink update=":form:filmeDetail"
+							oncomplete="filmeDialog.show()" title="Visão Detalhada">
+							<h:graphicImage value="../images/search.png" title="Detalhar" style="border: none" />
+							<f:setPropertyActionListener value="#{filme}"
+								target="#{filmeManagedBean.filme}" />
+						</p:commandLink>
+
 					</p:column>
 					
 				</p:dataTable>
+				
+				<p:dialog header="Filme detalhado" widgetVar="filmeDialog" modal="true">
+					<p:outputPanel id="filmeDetail"
+						layout="block">
+
+						<h:panelGrid columnClasses="" >
+							
+							<p:graphicImage
+							value="../filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
+							alt="#{filmeManagedBean.filme.titulo}" width="230" height="240"  />
+													
+						
+						</h:panelGrid>
+
+														
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="id" value="Código: " />
+							<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
+
+							<h:outputLabel for="titulo" value="Título: " />
+							<h:outputText id="titulo"
+								value="#{filmeManagedBean.filme.titulo}" />
+
+							<h:outputLabel for="diretor" value="Diretor: " />
+							<h:outputText id="diretor"
+								value="#{filmeManagedBean.filme.diretor}" />
+
+							<h:outputLabel for="categoria" value="Categoria: " />
+							<h:outputText id="categoria"
+								value="#{filmeManagedBean.filme.categoria.descricao}" />
+
+							<h:outputLabel for="anoLancamento" value="Ano Lançamento: " />
+							<h:outputText id="anoLancamento"
+								value="#{filmeManagedBean.filme.anoLancamento}" />
+
+							<h:outputLabel for="idioma" value="Idioma: " />
+							<h:outputText id="idioma"
+								value="#{filmeManagedBean.filme.idioma}" />
+
+							<h:outputLabel for="legenda" value="Legenda: " />
+							<h:outputText id="legenda"
+								value="#{filmeManagedBean.filme.legenda}" />
+
+							<h:outputLabel for="formato" value="Formato: " />
+							<h:outputText id="formato"
+								value="#{filmeManagedBean.filme.formato}" />
+
+							<h:outputLabel for="qualidade" value="Qualidade: " />
+							<h:outputText id="qualidade"
+								value="#{filmeManagedBean.filme.qualidade}" />
+
+							<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
+							<h:outputText id="tempoDuracao"
+								value="#{filmeManagedBean.filme.tempoDuracao}" />
+								
+							<h:outputLabel for="descricao" value="Descricão: " />
+							<h:outputText id="descricao"
+								value="#{filmeManagedBean.filme.descricao}"  />	
+
+						</h:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+
+				<p:confirmDialog id="confirmDialog"
+					message="Deseja realmente excluir o filme '#{filme.titulo}'?"
+					header="Confirmação de exclusão"
+					widgetVar="confirmation" >
+
+					<p:commandButton id="confirm" value="Sim" update="messages"
+						oncomplete="confirmation.hide()" ajax="false"
+						action="#{filmeManagedBean.excluir}">
+						<f:setPropertyActionListener target="#{filmeManagedBean.filme}" value="#{filme}" />
+					</p:commandButton>
+					<p:commandButton id="decline" value="Não"
+						onclick="confirmation.hide()" type="button" />
+
+				</p:confirmDialog>
+				
+
+
 			</h:form>
+
       
     </div><!-- end of center content -->
     </ui:define>
