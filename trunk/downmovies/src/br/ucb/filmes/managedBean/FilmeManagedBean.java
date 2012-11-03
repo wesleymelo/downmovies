@@ -98,7 +98,7 @@ public class FilmeManagedBean implements Serializable {
 			FacesUtil.mensErro("Erro ao salvar o filme");
 		}
 		filme = new Filme();
-		return "filmeList";
+		return "filmes";
 	}
 	
 	public void excluir(){

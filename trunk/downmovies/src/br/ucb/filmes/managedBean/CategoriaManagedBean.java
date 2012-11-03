@@ -1,5 +1,6 @@
 package br.ucb.filmes.managedBean;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -8,8 +9,12 @@ import br.ucb.filmes.dao.CategoriaDAO;
 
 @ManagedBean
 @RequestScoped
-public class CategoriaManagedBean {
+public class CategoriaManagedBean implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Categoria categoria;
 	private List<Categoria> categorias;
 	
