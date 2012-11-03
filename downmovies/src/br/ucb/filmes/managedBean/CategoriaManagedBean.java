@@ -11,7 +11,11 @@ import br.ucb.filmes.dao.CategoriaDAO;
 public class CategoriaManagedBean {
 	
 	private Categoria categoria;
-	private List<Categoria> categorias = new CategoriaDAO().recoveryAll();
+	private List<Categoria> categorias;
+	
+	public CategoriaManagedBean() {
+		this.categorias = new CategoriaDAO().recoveryAll();
+	}
 	
 	public Categoria getCategoria() {
 		return categoria;

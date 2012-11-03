@@ -1,13 +1,12 @@
 package br.ucb.filmes.managedBean;
 
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.event.ActionEvent;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 
 import org.apache.log4j.Logger;
 import org.primefaces.model.UploadedFile;
@@ -20,7 +19,7 @@ import br.ucb.filmes.upload.UploadArquivo;
 import br.ucb.filmes.util.FacesUtil;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class FilmeManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -31,18 +30,30 @@ public class FilmeManagedBean implements Serializable {
 	private List<Filme> filteredFilmes;
 	private UploadArquivo uploadArquivo;
 	private UploadedFile arqFilme; 
+	private UIComponent validaUpload;
 	private UploadedFile arqImagem; 
+	
  	public FilmeManagedBean() {
  	    filmes = new FilmeDAO().recoveryAll();
 		filme = new Filme();
 		uploadArquivo = new UploadArquivo();
 	}
 	
-	public List<Filme> getFilteredFilmes() {
-		return filteredFilmes;
+	public UIComponent getValidaUpload() {
+		return validaUpload;
 	}
 
 
+
+	public void setValidaUpload(UIComponent validaUpload) {
+		this.validaUpload = validaUpload;
+	}
+
+
+
+	public List<Filme> getFilteredFilmes() {
+		return filteredFilmes;
+	}
 
 	public void setFilteredFilmes(List<Filme> filteredFilmes) {
 		this.filteredFilmes = filteredFilmes;
@@ -60,7 +71,7 @@ public class FilmeManagedBean implements Serializable {
 	}
 	
 	
-	public String cadastraFilme()	{
+	public String salvar()	{
 
 		try {
 			
@@ -70,26 +81,27 @@ public class FilmeManagedBean implements Serializable {
 			if(arqImagem != null )uploadArquivo.fileUploadActionImagem(arqImagem);
 			if(arqImagem != null )filme.setExtensaoImg(uploadArquivo.getExtensaoImg());
 			
-			dao.insert(filme);
+			System.out.println("Id: "+filme.getIdFilme());
+			
+			dao.insert(this.filme);
 			
 			if(arqFilme != null || arqImagem != null )uploadArquivo.setNomeArquivo(filme.getIdFilme().toString());
 			if(arqFilme != null)uploadArquivo.gravarFilme();
 			if(arqImagem != null )uploadArquivo.gravarImagem();
 			filmes = dao.recoveryAll();
 			
-			FacesUtil.mensInfo("Filme cadastrado com Sucesso");
-			log.info("Filme cadastrado com Sucesso");
+			FacesUtil.mensInfo("Filme salvo com Sucesso");
+			log.info("Filme salvo com Sucesso");
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error(e.getMessage(), e);
-			FacesUtil.mensErro("Erro ao cadastrar filme");
+			FacesUtil.mensErro("Erro ao salvar o filme");
 		}
+		filme = new Filme();
 		return "filmeList";
 	}
-
 	
-	public void excluir(ActionEvent evento) throws SQLException {
-		this.filme = (Filme) evento.getComponent().getAttributes().get("filme");
+	public void excluir(){
 		FilmeDAO dao = new FilmeDAO();
 		dao.delete(filme);
 		FacesUtil.mensInfo("Filme excluído com sucesso");		
@@ -101,25 +113,17 @@ public class FilmeManagedBean implements Serializable {
 		return arqFilme;
 	}
 
-
-
 	public void setArqFilme(UploadedFile arqFilme) {
 		this.arqFilme = arqFilme;
 	}
-
-
 
 	public UploadedFile getArqImagem() {
 		return arqImagem;
 	}
 
-
-
 	public void setArqImagem(UploadedFile arqImagem) {
 		this.arqImagem = arqImagem;
 	}
-
-
 
 	public List<Filme> getFilmes() {
 		return filmes;
