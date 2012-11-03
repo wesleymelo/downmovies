@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -23,7 +24,7 @@
 					<p:panel header="#{filme.titulo}" style="text-align:center">
 						<h:panelGrid columns="1" style="width:100%">
 						
-							<p:graphicImage value="C:/downmovies/filmes/#{filme.idFilme}.#{filme.extensaoImg}"
+							<p:graphicImage value="../filmes/#{filme.idFilme}.#{filme.extensaoImg}"
 								width="90" height="100" />
 	
 							<h:outputLabel value="#{filme.diretor}" />
@@ -47,7 +48,7 @@
 						layout="block">
 
 						<p:graphicImage
-							value="C:/downmovies/filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
+							value="../filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
 							 width="130" height="140"  />
 														
 
