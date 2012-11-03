@@ -11,18 +11,17 @@ public class UploadArquivo {
 
 	private UploadedFile arquivoFilme;
 	private UploadedFile arquivoImagem;
-	
-	private static final  String caminho = "/downmovies/filmes/";
+	private static final  String CAMINHO = "C:/Users/Wesley/Dropbox/TF 1.2/downmovies/WebContent/filmes/";
 	private String nomeArquivo = null;
 	private String extensaoImg;
 	
 	public void fileUploadActionTorrent(UploadedFile  event) {
 		
 		//String caminho = FacesContext.getCurrentInstance().getCurrentInstance().getExternalContext().getRequestContextPath();
-		//System.out.println(caminho);
+		//System.out.println(CAMINHO);
 		arquivoFilme = event;
 		filmeArq = arquivoFilme.getContents();
-		File file = new File(caminho);
+		File file = new File(CAMINHO);
 		file.mkdirs();
 		
 	}
@@ -31,7 +30,7 @@ public class UploadArquivo {
 		imagemArq = arquivoImagem.getContents();
 		nomeArquivo = event.getFileName();
 		extensaoImg = nomeArquivo.substring((nomeArquivo.indexOf(".")+1), nomeArquivo.length());
-		File file = new File(caminho);
+		File file = new File(CAMINHO);
 		file.mkdirs();
 	}
 
@@ -42,7 +41,7 @@ public class UploadArquivo {
 		try {
 
 			FileOutputStream fos;
-			fos = new FileOutputStream(this.caminho+nomeArquivo+".torrent");
+			fos = new FileOutputStream(this.CAMINHO+nomeArquivo+".torrent");
 			fos.write(filmeArq);
 			fos.flush();
 			fos.close();
@@ -55,7 +54,7 @@ public class UploadArquivo {
 		
 		try {
 			FileOutputStream fos;
-			fos = new FileOutputStream(this.caminho+nomeArquivo+"."+extensaoImg);
+			fos = new FileOutputStream(this.CAMINHO+nomeArquivo+"."+extensaoImg);
 			fos.write(imagemArq);
 			fos.flush();
 			fos.close();
@@ -94,15 +93,15 @@ public class UploadArquivo {
 	public void setNomeArquivo(String nomeArquivo) {
 		this.nomeArquivo = nomeArquivo;
 	}
-	public static String getCaminho() {
-		return caminho;
-	}
+	
 	public String getExtensaoImg() {
 		return extensaoImg;
 	}
 	public void setExtensaoImg(String extensaoImg) {
 		this.extensaoImg = extensaoImg;
 	}
-	
+	public static String getCaminho() {
+		return CAMINHO;
+	}
 	
 }
