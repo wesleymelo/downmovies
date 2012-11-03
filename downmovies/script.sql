@@ -119,12 +119,12 @@ DROP TABLE IF EXISTS `downmovies`.`Logs` ;
 
 CREATE  TABLE IF NOT EXISTS `downmovies`.`Logs` (
 
-  `idLog` INT(11) NOT NULL AUTO_INCREMENT ,
-
-  `mensagem` VARCHAR(100),
-  `data` VARCHAR(100),
-  
-  PRIMARY KEY (`idLog`) )
+  `user_id` VARCHAR(20) NOT NULL,
+  `data` DATETIME NOT NULL,
+  `logger` VARCHAR(50) NOT NULL, 
+  `level` VARCHAR(10) NOT NULL, 
+  `mensagem` VARCHAR(1000) NOT NULL
+ )
 
 ENGINE = InnoDB;
 
