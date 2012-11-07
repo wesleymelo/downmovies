@@ -12,21 +12,34 @@
 
 </h:head>
 
-	<ui:composition template="../modelo/template.xhtml">
-    <ui:define name="conteudo">
-      	<div class="center_content">
-      		<h:form id="form">
-				
-				<p:dataGrid var="filme" value="#{filmeManagedBean.filmes}" paginator="true"
-					columns="3" rows="12" 
+<ui:composition template="../modelo/template.xhtml">
+	<ui:define name="conteudo">
+
+		<div class="left_content">
+			<div class="title_box">Categories</div>
+
+
+			<p:menu model="#{categoriaManagedBean.menu}"/>
+
+
+		</div>
+		<!-- end of left content -->
+
+
+		<div class="center_content">
+			<h:form id="form">
+
+				<p:dataGrid var="filme" value="#{filmeManagedBean.filmes}"
+					paginator="true" columns="3" rows="12"
 					rowsPerPageTemplate="9,12,15">
 
 					<p:panel header="#{filme.titulo}" style="text-align:center">
 						<h:panelGrid columns="1" style="width:100%">
-						
-							<p:graphicImage value="../filmes/#{filme.idFilme}.#{filme.extensaoImg}"
+
+							<p:graphicImage
+								value="../filmes/#{filme.idFilme}.#{filme.extensaoImg}"
 								width="90" height="100" />
-	
+
 							<h:outputLabel value="#{filme.diretor}" />
 							<h:outputText value="#{filme.anoLancamento}" />
 							<h:outputText value="#{filme.categoria.descricao}" />
@@ -43,13 +56,15 @@
 
 				</p:dataGrid>
 
-				<p:dialog header="Filme Detalhada" widgetVar="filmeDialog" modal="true">
-					<p:outputPanel id="filmeDetail"  style="text-align:center;" layout="block">
+				<p:dialog header="Filme Detalhada" widgetVar="filmeDialog"
+					modal="true">
+					<p:outputPanel id="filmeDetail" style="text-align:center;"
+						layout="block">
 
 						<p:graphicImage
 							value="../filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
-							 width="130" height="140"  />
-														
+							width="130" height="140" />
+
 
 						<h:panelGrid columns="2" cellpadding="5">
 							<h:outputLabel for="id" value="Id: " />
@@ -90,18 +105,19 @@
 							<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
 							<h:outputText id="tempoDuracao"
 								value="#{filmeManagedBean.filme.tempoDuracao}" />
-								
+
 							<h:outputLabel for="descricao" value="Descricão: " />
 							<h:outputText id="descricao"
-								value="#{filmeManagedBean.filme.descricao}" />	
+								value="#{filmeManagedBean.filme.descricao}" />
 
 						</h:panelGrid>
 					</p:outputPanel>
 				</p:dialog>
 
 			</h:form>
-    	</div><!-- end of center content -->
-    </ui:define>
-  	</ui:composition>
+		</div>
+		<!-- end of center content -->
+	</ui:define>
+</ui:composition>
 
 </html>

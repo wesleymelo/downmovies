@@ -2,11 +2,14 @@ package br.ucb.filmes.interfaces;
 
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
+
 public interface DAO<T> {
 	
-	public int insert(T obj);
-	public void delete(int id);
-	public void update(int id, T obj);
-	public List<T> recoverAll();
+	void insert(T object);
+	void delete(T object) throws ConstraintViolationException;
+	void update(T object);
+	List<T> recoveryAll();
+	T consult(Integer id);
 	
 }
