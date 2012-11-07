@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
 
 import org.apache.log4j.Logger;
 import org.primefaces.model.UploadedFile;
@@ -30,27 +29,17 @@ public class FilmeManagedBean implements Serializable {
 	private List<Filme> filteredFilmes;
 	private UploadArquivo uploadArquivo;
 	private UploadedFile arqFilme; 
-	private UIComponent validaUpload;
-	private UploadedFile arqImagem; 
+	private UploadedFile arqImagem;
+	private FilmeDAO dao;
+	
 	
  	public FilmeManagedBean() {
- 	    filmes = new FilmeDAO().recoveryAll();
+ 		dao = new FilmeDAO();
+ 	    filmes = dao.recoveryAll();
 		filme = new Filme();
 		uploadArquivo = new UploadArquivo();
 	}
 	
-	public UIComponent getValidaUpload() {
-		return validaUpload;
-	}
-
-
-
-	public void setValidaUpload(UIComponent validaUpload) {
-		this.validaUpload = validaUpload;
-	}
-
-
-
 	public List<Filme> getFilteredFilmes() {
 		return filteredFilmes;
 	}
@@ -74,8 +63,6 @@ public class FilmeManagedBean implements Serializable {
 	public String salvar()	{
 
 		try {
-			
-			FilmeDAO dao = new FilmeDAO();
 			
 			if(arqFilme != null)uploadArquivo.fileUploadActionTorrent(arqFilme);
 			if(arqImagem != null )uploadArquivo.fileUploadActionImagem(arqImagem);
@@ -102,7 +89,6 @@ public class FilmeManagedBean implements Serializable {
 	}
 	
 	public void excluir(){
-		FilmeDAO dao = new FilmeDAO();
 		dao.delete(filme);
 		FacesUtil.mensInfo("Filme excluído com sucesso");		
 		this.filme = new Filme();

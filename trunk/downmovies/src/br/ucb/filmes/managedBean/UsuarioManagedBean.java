@@ -1,9 +1,10 @@
 package br.ucb.filmes.managedBean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import br.ucb.filmes.beans.Usuario;
 import br.ucb.filmes.dao.UsuarioDAO;
@@ -11,42 +12,65 @@ import br.ucb.filmes.util.FacesUtil;
 import br.ucb.filmes.validator.ValidaSenha;
 
 @ManagedBean 
-@ViewScoped
+@SessionScoped
 public class UsuarioManagedBean  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String nomeUsuario;
-	private String sobrenome;
-	private String email;
-	private String senha;
 	private Usuario usuario;
+	private List<Usuario> usuarios;
+	private List<Usuario> filteredUsuarios;
 	private String confirmaSenha;
+	private UsuarioDAO dao;
+		
+	public UsuarioManagedBean() {
+		dao = new UsuarioDAO();
+		usuarios = dao.recoveryAll();
+		usuario = new Usuario();	
+	}
 	
+	public List<Usuario> getFilteredUsuarios() {
+		return filteredUsuarios;
+	}
 
-	public void cadastrarUsuario(){
+	public void setFilteredUsuarios(List<Usuario> filteredUsuarios) {
+		this.filteredUsuarios = filteredUsuarios;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public String cadastrarUsuario(){
 		try {
-			UsuarioDAO insert = new UsuarioDAO();
-			String erros = ValidaSenha.verificarValidadeSenha(getSenha(), getConfirmaSenha());
-			if(!erros.isEmpty())
+			String erros = ValidaSenha.verificarValidadeSenha(usuario.getSenha(), getConfirmaSenha());
+			if(!erros.isEmpty()){
 				FacesUtil.mensErro(erros);
+				usuario = new Usuario();
+				return null;
+			}
 			else{
-				insert.insert(atribuicaoUsuario());
+				dao.insert(usuario);
+				usuarios = dao.recoveryAll();
 				FacesUtil.mensInfo("Usuario cadastrado com Sucesso");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.mensErro("Erro ao cadastrar usuario");
 		}
+		usuario = new Usuario();
+		return "usuarios";
 	}
 	
-	
-	private Usuario atribuicaoUsuario() {
-		usuario = new Usuario();
-		usuario.setNome(nomeUsuario);
-		usuario.setSobrenome(sobrenome);
-		usuario.setEmail(email);
-		usuario.setSenha(senha);
+	public Usuario getUsuario() {
 		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getConfirmaSenha() {
@@ -54,29 +78,5 @@ public class UsuarioManagedBean  implements Serializable {
 	}
 	public void setConfirmaSenha(String confirmaSenha) {
 		this.confirmaSenha = confirmaSenha;
-	}
-	public String getNomeUsuario() {
-		return nomeUsuario;
-	}
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
-	}
-	public String getSobrenome() {
-		return sobrenome;
-	}
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 }
