@@ -174,7 +174,7 @@
 
 			<h:form id="dlg">
 
-            <p:confirmDialog message="Deseja realmente excluir o filme selecionado?" hideEffect="explode" header="Aviso" severity="alert" widgetVar="confirmation" modal="true">
+            <p:confirmDialog  message="Deseja realmente excluir o filme selecionado?" hideEffect="explode" header="Aviso" severity="alert" widgetVar="confirmation" modal="true">
 
                 <!--caso seja sim chamo o metodo excluir, e fecho o modal com o oncomplete, tenho o process que estou dizendo para processar o form, e update para atualizar a tabela-->
 
@@ -182,7 +182,7 @@
 
                 <!--caso seja não somente fecha o modal-->
 
-                <p:commandButton id="btnNao" value="Não" onclick="confirmation.hide();" type="button"/>
+                <p:commandButton id="btnNao" value="Não" oncomplete="confirmation.hide();" action="#{filmeManagedBean.init}" process="@form" update=":form:tabela"/>
 
             </p:confirmDialog>
 

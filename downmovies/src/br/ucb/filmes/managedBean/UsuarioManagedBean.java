@@ -11,9 +11,9 @@ import br.ucb.filmes.dao.UsuarioDAO;
 import br.ucb.filmes.util.FacesUtil;
 import br.ucb.filmes.validator.ValidaSenha;
 
-@ManagedBean 
+@ManagedBean
 @SessionScoped
-public class UsuarioManagedBean  implements Serializable {
+public class UsuarioManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
@@ -21,13 +21,38 @@ public class UsuarioManagedBean  implements Serializable {
 	private List<Usuario> filteredUsuarios;
 	private String confirmaSenha;
 	private UsuarioDAO dao;
-		
+	private Boolean isAlter;
+
 	public UsuarioManagedBean() {
 		dao = new UsuarioDAO();
 		usuarios = dao.recoveryAll();
-		usuario = new Usuario();	
+		usuario = new Usuario();
 	}
-	
+
+	public UsuarioDAO getDao() {
+		return dao;
+	}
+
+
+
+	public void setDao(UsuarioDAO dao) {
+		this.dao = dao;
+	}
+
+
+
+	public Boolean getIsAlter() {
+		return isAlter;
+	}
+
+
+
+	public void setIsAlter(Boolean isAlter) {
+		this.isAlter = isAlter;
+	}
+
+
+
 	public List<Usuario> getFilteredUsuarios() {
 		return filteredUsuarios;
 	}
@@ -44,27 +69,52 @@ public class UsuarioManagedBean  implements Serializable {
 		this.usuarios = usuarios;
 	}
 
-	public String cadastrarUsuario(){
+	public String salvar() {
 		try {
-			String erros = ValidaSenha.verificarValidadeSenha(usuario.getSenha(), getConfirmaSenha());
-			if(!erros.isEmpty()){
-				FacesUtil.mensErro(erros);
-				usuario = new Usuario();
-				return null;
+			String erros = ValidaSenha.verificarValidadeSenha(
+					usuario.getSenha(), getConfirmaSenha());
+			if(isAlter != null && !isAlter){
+				if (dao.consult(usuario.getEmail()) != null) {
+					FacesUtil.mensErro("Email já cadastrado");
+					return "usuario";
+				}
 			}
-			else{
+
+			if (!erros.isEmpty()) {
+				FacesUtil.mensErro(erros);
+				return null;
+			} else {
 				dao.insert(usuario);
 				usuarios = dao.recoveryAll();
-				FacesUtil.mensInfo("Usuario cadastrado com Sucesso");
+				if(isAlter)
+				   FacesUtil.mensInfo("Usuario alterado com Sucesso");
+				else
+				   FacesUtil.mensInfo("Usuario cadastrado com Sucesso");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			FacesUtil.mensErro("Erro ao cadastrar usuario");
+			if(isAlter)
+				FacesUtil.mensErro("Erro ao alterar usuario");
+			else 
+				FacesUtil.mensErro("Erro ao cadastrar usuario");
 		}
 		usuario = new Usuario();
+		isAlter = false;
 		return "usuarios";
 	}
+
+	public void excluir() {
+		dao.delete(usuario);
+		FacesUtil.mensInfo("Usuário excluído com sucesso");
+		usuario = new Usuario();
+		usuarios = dao.recoveryAll();
+	}
 	
+	public void init() {
+		usuario = new Usuario();
+	}
+	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -76,6 +126,7 @@ public class UsuarioManagedBean  implements Serializable {
 	public String getConfirmaSenha() {
 		return confirmaSenha;
 	}
+
 	public void setConfirmaSenha(String confirmaSenha) {
 		this.confirmaSenha = confirmaSenha;
 	}

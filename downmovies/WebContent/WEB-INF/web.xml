@@ -71,7 +71,7 @@
 
 	<error-page>
 		<error-code>403</error-code>
-		<location>/views/acessoNegado.jsf</location>
+		<location>/views/login.jsf</location>
 	</error-page>
 
 	
