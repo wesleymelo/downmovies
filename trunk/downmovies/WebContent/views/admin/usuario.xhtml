@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="#{facesContext.externalContext.request.contextPath}/views/modelo/template.xhtml">
+<ui:composition template="../modelo/template.xhtml">
 	<ui:define name="conteudo">
 		<div class="center_content">
 			<h:form id="form">
@@ -40,7 +40,7 @@
 							<h:outputLabel for="email" value="E-mail: *" />
 						</p:column>
 						<p:column styleClass="grid-427">
-							<p:inputText id="email"
+							<p:inputText id="email" readonly="#{usuarioManagedBean.isAlter == true}"
 								styleClass="alignLeft margin-20r input-size-270"
 								requiredMessage="E-mail é obrigatório." maxlength="180"
 								value="#{usuarioManagedBean.usuario.email}" required="true"
@@ -87,7 +87,7 @@
 					</h:panelGrid>
 
 					<p:commandButton value="Cadastrar" ajax="false"
-						action="#{usuarioManagedBean.cadastrarUsuario}" />
+						action="#{usuarioManagedBean.salvar}" />
 				</p:panel>
 
 			</h:form>

@@ -4,40 +4,54 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
-	
-	<h:head>
+
+
+<h:head>
+
+	<link rel="stylesheet" type="text/css" href="/downmovies/views/css/style.css" />
+
+</h:head>
+
+
+<h:body>
+
+	<div id="main_container">
+
 		
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-	
-	</h:head>
-	
-	
-	<h:body>
 		
-		<p:growl id="growl" showDetail="true" sticky="true" />
-	
-		<div id="main_container">
-	
-								
-				<div class="center_content">
-				
-				<p:panel header="Down Movies - Login">
-					
-					<form action="j_security_check" method="post" >
-						<label>Email:</label><br />
-						<input type="text" name="j_username" /><p />
-						<label>Password:</label><br />
-						<input type="password" name="j_password" /><p />
-						<input type="submit" value="OK" />
-					</form>
-				</p:panel>
-				
-				</div><!-- end of center content -->
-				
-		</div><!-- end of main_container -->
-	</h:body>
-	
-    
-    
+		<div class="center_content">
+
+			<p:panel header="Down Movies - Login">
+
+				<form action="j_security_check" method="post">
+					<label>Email:</label><br /> <input type="text" name="j_username" />
+					<p />
+					<label>Password:</label><br /> <input type="password"
+						name="j_password" />
+					<p />
+					<input type="submit" value="OK" />
+				</form>
+			</p:panel>
+
+		</div>
+		<!-- end of center content -->
+
+
+		<div class="footer">
+
+			<div class="center_footer">
+				<br />Down Movies. All Rights Reserved 2012<br />
+			</div>
+
+		</div>
+
+	</div>
+	<!-- end of main_container -->
+
+
+
+</h:body>
+
+
+
 </html>

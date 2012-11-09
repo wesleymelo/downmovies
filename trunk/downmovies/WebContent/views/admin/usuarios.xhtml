@@ -10,7 +10,7 @@
     <ui:define name="conteudo">
       <div class="center_content">
 		
-			<h:form>
+			<h:form id="form">
 		
 				<p:messages id="messages" />
 
@@ -26,7 +26,7 @@
 				<br/><br/>
 				
 		
-				<p:dataTable id="dataTable" var="usuario" value="#{usuarioManagedBean.usuarios}" widgetVar="usuariosTable"
+				<p:dataTable id="tabela" var="usuario" value="#{usuarioManagedBean.usuarios}" widgetVar="usuariosTable"
 					paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Nenhuma usuario encontrada" filteredValue="#{usuarioManagedBean.filteredUsuarios}" >
 					
 					<f:facet name="header">
@@ -45,14 +45,46 @@
 						#{usuario.email}
 					</p:column>
 					
-					<p:column headerText="Opções" style="width:10px">  
-            			  
-        			</p:column>  
+					
+					<p:column headerText="Ações" width="45">
+						
+						<h:commandLink action="usuario">
+							<f:setPropertyActionListener target="#{usuarioManagedBean.usuario}"
+								value="#{usuario}" />
+							<f:setPropertyActionListener target="#{usuarioManagedBean.isAlter}"
+								value="true" />
+							<h:graphicImage value="../images/edit2.png" title="Editar"
+								style="border: none" />
+						</h:commandLink>
+
+						&nbsp;						
+					
+						<p:commandLink onclick="confirmation.show()" update=":form:messages">
+							<p:graphicImage value="../images/delete2.png" title="Excluir"
+								style="border: none" />
+							<f:setPropertyActionListener value="#{usuario}" target="#{usuarioManagedBean.usuario}" />
+						</p:commandLink>
+						
+					</p:column>
 					
 					
-					
-				</p:dataTable>
+				</p:dataTable>			
+
 			</h:form>
+
+
+			<h:form id="dlg">
+
+            <p:confirmDialog message="Deseja realmente excluir o usuario selecionado?"  hideEffect="explode" header="Aviso" severity="alert" widgetVar="confirmation" modal="true">
+
+                <p:commandButton id="btnSim" value="Sim" oncomplete="confirmation.hide();" action="#{usuarioManagedBean.excluir}" process="@form" update=":form:tabela" />
+
+                <p:commandButton id="btnNao" value="Não" oncomplete="confirmation.hide();" action="#{usuarioManagedBean.init}" process="@form" update=":form:tabela"/>
+
+            </p:confirmDialog>
+
+        </h:form>
+
       
     </div><!-- end of center content -->
     </ui:define>

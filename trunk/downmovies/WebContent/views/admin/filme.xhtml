@@ -40,10 +40,10 @@
 									<f:selectItems value="#{categoriaManagedBean.categorias}" var="categoria"  itemValue="#{categoria}" itemLabel="#{categoria.descricao}"  />
 							</p:selectOneMenu>						
 
-							<h:outputLabel value="Ano Lançamento:" for="ano_lancamento" />
+							<h:outputLabel value="Ano Lançamento(Ex.: 2000):" for="ano_lancamento" />
 							<p:inputText  requiredMessage="Ano Lançamento é obrigatorio" value="#{filmeManagedBean.filme.anoLancamento}" size="4"
 								id="ano_lancamento" required="true" maxlength="4">
-								<f:validateLongRange minimum="10" />
+								<f:validateLongRange minimum="1000" maximum="2012"  />
 							</p:inputText>
 
 							<h:outputLabel value="Idioma:"  />
@@ -80,14 +80,14 @@
 									<f:selectItems value="#{filmeManagedBean.mapQualidade}" var="qualidade"  itemValue="#{qualidade}" itemLabel="#{qualidade}"  />
 							</p:selectOneMenu>
 							
-							<h:outputLabel value="Tamanho (em MB - MegaByte):"
+							<h:outputLabel value="Tamanho (em MB - MegaByte. Ex.: 800):"
 								for="tamanho" />
 							<p:inputText  requiredMessage="Tamanho é obrigatorio" value="#{filmeManagedBean.filme.tamanho}"
 								id="tamanho" required="true">
 								<f:validateLongRange minimum="1" />
 							</p:inputText>
 							
-							<h:outputLabel value="Tempo de Duração(em minutos):"
+							<h:outputLabel value="Tempo de Duração(em minutos. Ex.: 120):"
 								for="tempo_duracao" />
 							<p:inputText  requiredMessage="Tempo de Duração é obrigatorio" value="#{filmeManagedBean.filme.tempoDuracao}"
 								id="tempo_duracao" required="true">

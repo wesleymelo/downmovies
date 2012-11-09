@@ -91,8 +91,12 @@ public class FilmeManagedBean implements Serializable {
 	public void excluir(){
 		dao.delete(filme);
 		FacesUtil.mensInfo("Filme excluído com sucesso");		
-		this.filme = new Filme();
-		this.filmes = dao.recoveryAll();
+		filme = new Filme();
+		filmes = dao.recoveryAll();
+	}
+	
+	public void init() {
+		filme = new Filme();
 	}
 	
 	public UploadedFile getArqFilme() {
