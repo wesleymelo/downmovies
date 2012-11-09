@@ -14,8 +14,8 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<filter>
 		<filter-name>PrimeFaces FileUpload Filter</filter-name>
 
@@ -29,8 +29,55 @@
 		<param-name>com.sun.faces.writeStateAtFormEnd</param-name>
 		<param-value>false</param-value>
 	</context-param>
+
+	<!-- JAAS - Papeis (atuacao) -->	
+	<security-role>
+		<role-name>1<!-- Administrador --></role-name>
+	</security-role>
+	<security-role>
+		<role-name>2<!-- Usuario --></role-name>
+	</security-role>
+
+	<!-- JAAS - Restricoes de acesso -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Admin</web-resource-name>
+			<url-pattern>/views/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>1<!-- Administrador --></role-name>
+		</auth-constraint>
+	</security-constraint>
+
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>User</web-resource-name>
+			<url-pattern>/views/user/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>2<!-- Usuário --></role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<!-- JAAS - Login -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/views/login.jsf</form-login-page>
+			<form-error-page>/views/login.jsf</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/views/acessoNegado.jsf</location>
+	</error-page>
+
 	
-	
-	
-	
+
+
+
+
+
 </web-app>

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -22,25 +21,25 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
-	private Integer idUsuario;
+	private String email;
 	
 	@Column
 	private String nome;
 	
 	@Column	
-	private String sobrenome;
-	
-	@Column
-	private String email;
+	private String sobrenome; 
 	
 	@Column
 	private String senha;
-	
+	 
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="autorizacao",
-			joinColumns={@JoinColumn(name="idUsuario")},
-			inverseJoinColumns={@JoinColumn(name="idPerfil")}		
+			joinColumns={
+				@JoinColumn(name="email")				
+			},
+			inverseJoinColumns={
+				@JoinColumn(name="idPerfil")
+			}		
 	)
 	
 	private List<Perfil> perfis;   
@@ -80,14 +79,6 @@ public class Usuario implements Serializable{
 		this.perfis = perfis;
 	}
 
-	public Integer getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -125,9 +116,8 @@ public class Usuario implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result
-				+ ((idUsuario == null) ? 0 : idUsuario.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((perfil == null) ? 0 : perfil.hashCode());
 		result = prime * result + ((perfis == null) ? 0 : perfis.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		result = prime * result
@@ -149,15 +139,15 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (idUsuario == null) {
-			if (other.idUsuario != null)
-				return false;
-		} else if (!idUsuario.equals(other.idUsuario))
-			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (perfil == null) {
+			if (other.perfil != null)
+				return false;
+		} else if (!perfil.equals(other.perfil))
 			return false;
 		if (perfis == null) {
 			if (other.perfis != null)
@@ -175,7 +165,6 @@ public class Usuario implements Serializable{
 		} else if (!sobrenome.equals(other.sobrenome))
 			return false;
 		return true;
-	}
-	
+	}	
 	
 }

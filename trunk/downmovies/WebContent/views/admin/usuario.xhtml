@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="../modelo/template.xhtml">
+<ui:composition template="#{facesContext.externalContext.request.contextPath}/views/modelo/template.xhtml">
 	<ui:define name="conteudo">
 		<div class="center_content">
 			<h:form id="form">

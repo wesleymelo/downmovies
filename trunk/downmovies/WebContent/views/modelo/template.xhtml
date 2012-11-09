@@ -7,7 +7,7 @@
 
 <h:head>
 
-	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.request.contextPath}/views/css/style.css" />
 
 </h:head>
 <h:body>
@@ -19,14 +19,26 @@
 		<ui:insert name="topo">
 			<div class="top_bar">
 
+				<div class="float-left">
+					
+					<h:outputText value="Usuário logado:
+							#{facesContext.externalContext.userPrincipal.name} - " />
+				
+					<h:outputLink value="#{facesContext.externalContext.request.contextPath}/views/login.xhtml">
+					<h:outputText value="Logoff" />
+</h:outputLink>
+				
+				</div>
+				
+				
 				<div class="languages">
 					<div class="lang_text">Languages:</div>
 
 					<p:commandLink styleClass="lang">
-						<p:graphicImage value="../images/en.png"></p:graphicImage>
+						<p:graphicImage value="#{facesContext.externalContext.request.contextPath}/views/images/en.png"></p:graphicImage>
 					</p:commandLink>
 					<p:commandLink styleClass="lang">
-						<p:graphicImage value="../images/br.png"></p:graphicImage>
+						<p:graphicImage value="#{facesContext.externalContext.request.contextPath}/views/images/br.png"></p:graphicImage>
 					</p:commandLink>
 				</div>
 
@@ -34,7 +46,7 @@
 			<div id="header">
 				
 				<p:commandLink action="index" >
-						<p:graphicImage value="../images/down_movies.png"></p:graphicImage>
+						<p:graphicImage value="#{facesContext.externalContext.request.contextPath}/views/images/down_movies.png"></p:graphicImage>
 				</p:commandLink>
 				
 			</div>
@@ -44,10 +56,10 @@
 				<div id="menu_tab">
 				
 					<p:tabMenu>
-						<p:menuitem url="../user/index.jsf?faces-redirect=true" value="Home" styleClass="home" icon="" />
-						<p:menuitem url="../admin/filmes.jsf?faces-redirect=true" value="Filmes" styleClass="movies" icon=""  />
-						<p:menuitem url="../admin/usuarioList?faces-redirect=true" value="Usuários" styleClass="users" icon=""  />
-						<p:menuitem url="../contatos?faces-redirect=true" value="Contatos" styleClass="contacts" icon=""  />
+						<p:menuitem url="#{facesContext.externalContext.request.contextPath}/views/user/index.jsf?faces-redirect=true" value="Home" styleClass="home" icon="" />
+						<p:menuitem url="#{facesContext.externalContext.request.contextPath}/views/admin/filmes.jsf?faces-redirect=true" value="Filmes" styleClass="movies" icon=""  />
+						<p:menuitem url="#{facesContext.externalContext.request.contextPath}/views/admin/usuarios.jsf?faces-redirect=true" value="Usuários" styleClass="users" icon=""  />
+						<p:menuitem url="#{facesContext.externalContext.request.contextPath}/views/contatos?faces-redirect=true" value="Contatos" styleClass="contacts" icon=""  />
 					</p:tabMenu>
 				
 				</div>
