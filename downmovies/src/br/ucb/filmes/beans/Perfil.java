@@ -32,7 +32,7 @@ public class Perfil implements Serializable {
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="autorizacao",
 			joinColumns={@JoinColumn(name="idPerfil")},
-			inverseJoinColumns={@JoinColumn(name="idUsuario")}		
+			inverseJoinColumns={@JoinColumn(name="email")}		
 	)
 	private List<Usuario> usuarios;
 	//private Map<Integer, Usuario> usuarios;

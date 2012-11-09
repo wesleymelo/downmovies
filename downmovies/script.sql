@@ -6,11 +6,10 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 
 
-DROP SCHEMA IF EXISTS `downmovies` ;
-
-CREATE SCHEMA IF NOT EXISTS `downmovies` ;
+CREATE SCHEMA IF NOT EXISTS `downmovies` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 
 USE `downmovies` ;
+
 
 
 -- -----------------------------------------------------
@@ -25,7 +24,7 @@ DROP TABLE IF EXISTS `downmovies`.`Categoria` ;
 
 CREATE  TABLE IF NOT EXISTS `downmovies`.`Categoria` (
 
-  `idCategoria` INT(11) NOT NULL AUTO_INCREMENT,
+  `idCategoria` INT(11) NOT NULL AUTO_INCREMENT ,
 
   `descricao` VARCHAR(45) NOT NULL ,
 
@@ -35,17 +34,19 @@ ENGINE = InnoDB;
 
 
 
+
+
 -- -----------------------------------------------------
 
--- Table `downmovies`.`downmovies`
+-- Table `downmovies`.`Filme`
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `downmovies`.`filme` ;
+DROP TABLE IF EXISTS `downmovies`.`Filme` ;
 
 
 
-CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Filme` (
 
   `idFilme` INT(11) NOT NULL AUTO_INCREMENT ,
 
@@ -54,26 +55,26 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
   `descricao` TEXT NOT NULL ,
 
   `diretor` VARCHAR(50) NOT NULL ,
-  
+
   `anoLancamento` INT(11) NOT NULL ,
 
   `idioma` VARCHAR(30) NOT NULL ,
 
   `legenda` VARCHAR(30) NOT NULL ,
 
-  `formato` VARCHAR(30)  NOT NULL ,
+  `formato` INT(11) NOT NULL ,
 
-  `qualidade` VARCHAR(30)  NOT NULL ,
+  `qualidade` INT(11) NOT NULL ,
+
+  `tamanho` DOUBLE NOT NULL ,
 
   `tempoDuracao` INT(11) NOT NULL ,
-  
-  `tamanho` INT(11) NOT NULL ,
-  
+
   `idCategoria` INT(11) NOT NULL ,
-  
+
   `extensaoImg` VARCHAR(4) NOT NULL ,
 
-   PRIMARY KEY (`idFilme`) ,
+  PRIMARY KEY (`idFilme`) ,
 
   INDEX `fk_Filme_Categoria1` (`idCategoria` ASC) ,
 
@@ -89,13 +90,15 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`filme` (
 
 ENGINE = InnoDB;
 
+
 -- -----------------------------------------------------
 
--- Table `downmovies`.`Perfis`
+-- Table `downmovies`.`Perfil`
 
 -- -----------------------------------------------------
 
 DROP TABLE IF EXISTS `downmovies`.`Perfil` ;
+
 
 
 CREATE  TABLE IF NOT EXISTS `downmovies`.`Perfil` (
@@ -110,46 +113,77 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 
--- Table `downmovies`.`LOGS`
-
--- -----------------------------------------------------
-
-DROP TABLE IF EXISTS `downmovies`.`Logs` ;
-
-
-CREATE  TABLE IF NOT EXISTS `downmovies`.`Logs` (
-
-  `user_id` VARCHAR(20) NOT NULL,
-  `data` DATETIME NOT NULL,
-  `logger` VARCHAR(50) NOT NULL, 
-  `level` VARCHAR(10) NOT NULL, 
-  `mensagem` VARCHAR(1000) NOT NULL
- )
-
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
-
--- Table `downmovies`.`Usuarios`
+-- Table `downmovies`.`Usuario`
 
 -- -----------------------------------------------------
 
 DROP TABLE IF EXISTS `downmovies`.`Usuario` ;
 
 
+
 CREATE  TABLE IF NOT EXISTS `downmovies`.`Usuario` (
 
-  `idUsuario` INT(11) NOT NULL AUTO_INCREMENT ,
+  `email` VARCHAR(100) NOT NULL ,
 
   `nome` VARCHAR(50) NOT NULL ,
 
   `sobrenome` VARCHAR(50) NOT NULL ,
 
-  `email` VARCHAR(200) NOT NULL ,
-
   `senha` TEXT NOT NULL ,
 
-  PRIMARY KEY (`idUsuario`) )
+  PRIMARY KEY (`email`) )
+
+ENGINE = InnoDB;
+
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table `downmovies`.`Aquisicao`
+
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `downmovies`.`Aquisicao` ;
+
+
+
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Aquisicao` (
+
+  `idAquisicao` INT(11) NOT NULL AUTO_INCREMENT ,
+
+  `email` VARCHAR(100) NOT NULL ,
+
+  `idFilme` INT(11) NOT NULL ,
+
+  `data` DATE NOT NULL ,
+
+  PRIMARY KEY (`idAquisicao`, `email`, `idFilme`) ,
+
+  INDEX `fk_Aquisicoes_Filmes1` (`idFilme` ASC) ,
+
+  INDEX `fk_Aquisicao_Usuario1` (`email` ASC) ,
+
+  CONSTRAINT `fk_Aquisicoes_Filmes1`
+
+    FOREIGN KEY (`idFilme` )
+
+    REFERENCES `downmovies`.`Filme` (`idFilme` )
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION,
+
+  CONSTRAINT `fk_Aquisicao_Usuario1`
+
+    FOREIGN KEY (`email` )
+
+    REFERENCES `downmovies`.`Usuario` (`email` )
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
 
 ENGINE = InnoDB;
 
@@ -163,17 +197,18 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `downmovies`.`Autorizacao` ;
 
 
+
 CREATE  TABLE IF NOT EXISTS `downmovies`.`Autorizacao` (
 
   `idPerfil` INT(11) NOT NULL ,
 
-  `idUsuario` INT(11) NOT NULL ,
+  `email` VARCHAR(100) NOT NULL ,
 
-  PRIMARY KEY (`idPerfil`, `idUsuario`) ,
+  PRIMARY KEY (`idPerfil`, `email`) ,
 
   INDEX `fk_Autorizacao_Perfis1` (`idPerfil` ASC) ,
 
-  INDEX `fk_Autorizacao_Usuarios1` (`idUsuario` ASC) ,
+  INDEX `fk_Autorizacao_Usuario1` (`email` ASC) ,
 
   CONSTRAINT `fk_Autorizacao_Perfis1`
 
@@ -185,11 +220,11 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`Autorizacao` (
 
     ON UPDATE NO ACTION,
 
-  CONSTRAINT `fk_Autorizacao_Usuarios1`
+  CONSTRAINT `fk_Autorizacao_Usuario1`
 
-    FOREIGN KEY (`idUsuario` )
+    FOREIGN KEY (`email` )
 
-    REFERENCES `downmovies`.`Usuario` (`idUsuario` )
+    REFERENCES `downmovies`.`Usuario` (`email` )
 
     ON DELETE NO ACTION
 
@@ -197,50 +232,30 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`Autorizacao` (
 
 ENGINE = InnoDB;
 
+
+
 -- -----------------------------------------------------
 
--- Table `downmovies`.`Aquisicoes`
+-- Table `downmovies`.`LOGS`
 
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `downmovies`.`Aquisicao` ;
+DROP TABLE IF EXISTS `downmovies`.`Logs` ;
 
 
-CREATE  TABLE IF NOT EXISTS `downmovies`.`Aquisicao` (
+CREATE  TABLE IF NOT EXISTS `downmovies`.`Logs` (
 
-  `idAquisicao` INT(11) NOT NULL AUTO_INCREMENT ,
-
-  `idUsuario` INT(11) NOT NULL ,
-
-  `idFilme` INT(11) NOT NULL ,
-
-  `data` DATE NOT NULL ,
-
-  PRIMARY KEY (`idAquisicao`, `idUsuario`, `idFilme`) ,
-
-  INDEX `fk_Aquisicoes_Filmes1` (`idFilme` ASC) ,
-
-  INDEX `fk_Aquisicoes_Usuarios1` (`idUsuario` ASC) ,
-
-  CONSTRAINT `fk_Aquisicoes_Filmes1`
-
-    FOREIGN KEY (`idFilme` )
-
-    REFERENCES `downmovies`.`Filme` (`idFilme` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION,
-
-  CONSTRAINT `fk_Aquisicoes_Usuarios1`
-
-    FOREIGN KEY (`idUsuario` )
-
-    REFERENCES `downmovies`.`Usuario` (`idUsuario` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION)
+  `user_id` VARCHAR(20) NOT NULL,
+  
+  `data` DATETIME NOT NULL,
+  
+  `logger` VARCHAR(50) NOT NULL,
+  
+  `level` VARCHAR(10) NOT NULL,
+  
+  `mensagem` VARCHAR(1000) NOT NULL
+  
+ )
 
 ENGINE = InnoDB;
 
@@ -250,6 +265,8 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
 
 
 insert into perfil(descricao) values ('administrador');
