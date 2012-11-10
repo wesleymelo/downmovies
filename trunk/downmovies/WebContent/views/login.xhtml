@@ -69,21 +69,10 @@
 									label="confirma senha"
 									requiredMessage="Confirma Senha é obrigatório" maxlength="15" />
 
-								<h:outputLabel for="perfil" value="Perfil: *" />
-								<p:selectOneMenu requiredMessage="Perfil é obrigatorio"
-									value="#{usuarioManagedBean.usuario.perfil}"
-									converter="PerfilConverter"
-									required="true" effect="fade">
-									<f:selectItem itemLabel="" />
-									<f:selectItems value="#{perfilManagedBean.perfis}" var="p"
-										itemValue="#{p}" itemLabel="#{p.descricao}" />
-								</p:selectOneMenu>
-
-
 						</h:panelGrid>
 
 						<p:commandButton value="Cadastrar" ajax="false"
-							action="#{usuarioManagedBean.salvar}" />
+							action="#{usuarioManagedBean.salvarUser}" />
 
 					</h:form>
 

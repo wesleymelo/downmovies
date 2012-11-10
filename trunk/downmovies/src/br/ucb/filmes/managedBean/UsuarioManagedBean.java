@@ -6,9 +6,10 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import br.ucb.filmes.beans.Usuario;
-import br.ucb.filmes.dao.HibernateUtil;
+import br.ucb.filmes.dao.PerfilDAO;
 import br.ucb.filmes.dao.UsuarioDAO;
 import br.ucb.filmes.util.FacesUtil;
 import br.ucb.filmes.validator.ValidaSenha;
@@ -82,6 +83,30 @@ public class UsuarioManagedBean implements Serializable {
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
+	
+	public void salvarUser() {
+		try {
+			usuario.setPerfil(new PerfilDAO().consult(2));
+			
+			String erros = ValidaSenha.verificarValidadeSenha(
+					usuario.getSenha(), getConfirmaSenha());
+
+			if (!erros.isEmpty()) {
+				FacesUtil.mensErro(erros);
+				return;
+			} else {
+				dao.insert(usuario);
+				usuarios = dao.recoveryAll();
+				FacesUtil.mensInfo("Usuario cadastrado com Sucesso");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesUtil.mensErro("Erro ao cadastrar usuario");
+		}
+		usuario = new Usuario();
+		isAlter = false;
+	}
+	
 
 	public String salvar() {
 		try {
@@ -118,8 +143,10 @@ public class UsuarioManagedBean implements Serializable {
 	}
 
 	public String disconnect(){
-		HibernateUtil.getSession().close();
-		return "/downmovies/views/login.jsf";
+		FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession)fc.getExternalContext().getSession(false);
+        session.invalidate();
+		return "../login.jsf?faces-redirect=true";
 	}
 	
 	public void excluir() {
