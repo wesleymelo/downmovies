@@ -16,11 +16,17 @@
 	<ui:define name="conteudo">
 
 		<div class="left_content">
-			<p:menu model="#{categoriaManagedBean.menu}" />
+			<div class="title_box">Categories</div>
+
+
+			<p:menu model="#{categoriaManagedBean.menu}"/>
+
+
 		</div>
 		<!-- end of left content -->
 
-		<div class="center_content_index">
+
+		<div class="center_content">
 			<h:form id="form">
 
 				<p:dataGrid var="filme" value="#{filmeManagedBean.filmes}"
@@ -37,8 +43,11 @@
 							<h:outputLabel value="#{filme.diretor}" />
 							<h:outputText value="#{filme.anoLancamento}" />
 							<h:outputText value="#{filme.categoria.descricao}" />
-							<h:outputText value="#{filme.descricaoFormato}" />
-
+							<p:commandLink  ajax="false">
+							<p:graphicImage value="../images/down.png"
+									styleClass="margin-5r margin-5l" alt="Download de Filme" title="Download de Filme"/>
+								<p:fileDownload value="#{filmeManagedBean.download(filme.idFilme,filme.titulo)}"/>
+							</p:commandLink>
 							<p:commandLink update=":form:filmeDetail"
 								oncomplete="filmeDialog.show()" title="Visão Detalhada">
 								<h:outputText styleClass="ui-icon ui-icon-search"
@@ -62,6 +71,8 @@
 
 
 						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="id" value="Id: " />
+							<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
 
 							<h:outputLabel for="titulo" value="Título: " />
 							<h:outputText id="titulo"
@@ -81,19 +92,19 @@
 
 							<h:outputLabel for="idioma" value="Idioma: " />
 							<h:outputText id="idioma"
-								value="#{filmeManagedBean.filme.descricaoIdioma}" />
+								value="#{filmeManagedBean.filme.idioma}" />
 
 							<h:outputLabel for="legenda" value="Legenda: " />
 							<h:outputText id="legenda"
-								value="#{filmeManagedBean.filme.descricaoLegenda}" />
+								value="#{filmeManagedBean.filme.legenda}" />
 
 							<h:outputLabel for="formato" value="Formato: " />
 							<h:outputText id="formato"
-								value="#{filmeManagedBean.filme.descricaoFormato}" />
+								value="#{filmeManagedBean.filme.formato}" />
 
 							<h:outputLabel for="qualidade" value="Qualidade: " />
 							<h:outputText id="qualidade"
-								value="#{filmeManagedBean.filme.descricaoQualidade}" />
+								value="#{filmeManagedBean.filme.qualidade}" />
 
 							<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
 							<h:outputText id="tempoDuracao"
