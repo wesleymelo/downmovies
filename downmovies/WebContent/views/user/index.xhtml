@@ -38,7 +38,7 @@
 							<h:outputText value="#{filme.anoLancamento}" />
 							<h:outputText value="#{filme.categoria.descricao}" />
 							<p:commandLink  ajax="false">
-							<p:graphicImage value="../images/down.png"
+							<p:graphicImage value="../images/down.png" style="border: 0px;"
 									styleClass="margin-5r margin-5l" alt="Download de Filme" title="Download de Filme"/>
 								<p:fileDownload value="#{filmeManagedBean.download(filme.idFilme,filme.titulo)}"/>
 							</p:commandLink>
