@@ -7,108 +7,120 @@
 
 <h:head>
 
-	<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.request.contextPath}/views/css/style.css" />
+	<link rel="stylesheet" type="text/css"
+		href="#{facesContext.externalContext.request.contextPath}/views/css/style.css" />
 
 </h:head>
 <h:body>
 
-	<p:growl id="grow1" showDetail="true" sticky="true"/>
+	<p:growl id="grow1" showDetail="true" sticky="true" />
 
 	<div id="main_container">
 
 		<ui:insert name="topo">
 			<div class="top_bar">
-
+				&nbsp;&nbsp;&nbsp;&nbsp;
 				<div class="float-left">
 					
-					<h:outputText value="Usuário logado:
-							#{facesContext.externalContext.userPrincipal.name} - " />
-				
-					<h:outputLink value="#{facesContext.externalContext.request.contextPath}/views/login.xhtml">
-					<h:outputText value="Logoff" />
-</h:outputLink>
-				
+					<div class="languages">
+						<div class="lang_text">Bem-Vindo:
+							#{usuarioManagedBean.usuarioLogado.fullName}</div>
+
+					</div>
+					
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<p:commandLink action="#{usuarioManagedBean.disconnect}"
+						styleClass="lang">
+
+						<p:graphicImage value="../images/logout.png" alt="logout"
+							style="border:0" />
+
+					</p:commandLink>
+
 				</div>
-				
-				
+
+
 				<div class="languages">
+				
 					<div class="lang_text">Languages:</div>
 
 					<p:commandLink styleClass="lang">
-						<p:graphicImage value="../images/en.png"></p:graphicImage>
+						<p:graphicImage value="../images/en.png" style="border:0"></p:graphicImage>
 					</p:commandLink>
 					<p:commandLink styleClass="lang">
-						<p:graphicImage value="../images/br.png"></p:graphicImage>
+						<p:graphicImage value="../images/br.png" style="border:0"></p:graphicImage>
 					</p:commandLink>
 				</div>
 
 			</div>
 			<div id="header">
-				
-				<p:commandLink action="index" >
-						<p:graphicImage value="../images/down_movies.png"></p:graphicImage>
+
+				<p:commandLink action="index">
+					<p:graphicImage value="../images/down_movies.png" style="border:0;" />
 				</p:commandLink>
-				
+
 			</div>
 
 			<div id="main_content">
-			
+
 				<div id="menu_tab">
-				
+
 					<p:tabMenu>
-						<p:menuitem url="../user/index.jsf?faces-redirect=true" value="Home" styleClass="home" icon="" />
-						<p:menuitem url="../admin/filmes.jsf?faces-redirect=true" value="Filmes" styleClass="movies" icon=""  />
-						<p:menuitem url="../admin/usuarios.jsf?faces-redirect=true" value="Usuários" styleClass="users" icon=""  />
-						<p:menuitem url="../contatos?faces-redirect=true" value="Contatos" styleClass="contacts" icon=""  />
+						<p:menuitem url="../user/index.jsf?faces-redirect=true"
+							value="Home" styleClass="home" icon="" />
+						<p:menuitem url="../admin/filmes.jsf?faces-redirect=true"
+							value="Filmes" styleClass="movies" icon="" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+						<p:menuitem url="../admin/usuarios.jsf?faces-redirect=true"
+							value="Usuários" styleClass="users" icon="" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+						<p:menuitem url="../contato.jsf?faces-redirect=true" value="Contatos" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" 
+							styleClass="contacts" icon="" />
 					</p:tabMenu>
-				
+
 				</div>
 				<!-- end of menu tab -->
-				
+
 				<!-- <div class="crumb_navigation">
     				Navigation: <span class="current">Home</span>
     			</div> -->
-    			<br/> 
-    			<br/> 
-    			<br/> 
+				<br /> <br /> <br />
 			</div>
 			<!-- end of main content -->
 		</ui:insert>
 
 		<ui:insert name="conteudo">
-		
+
 			<div class="left_content">
-					<div class="title_box">Categories</div>
-					
-					
-					<p:menu styleClass="left_menu">  
-				        <p:menuitem url="#" value="Usuários" icon="ui-icon-check"  />
-
-				         
-    				</p:menu>  
-					
-					<div class="banner_adds"></div>
+				<div class="title_box">Categories</div>
 
 
-				</div>
-				<!-- end of left content -->
+				<p:menu styleClass="left_menu">
+					<p:menuitem url="#" value="Usuários" icon="ui-icon-check" />
 
 
-				<div class="right_content">
-					<div class="session">
-						<div class="session_title">Sess&aacute;o</div>
+				</p:menu>
 
-						<div class="session_details">
-							3 items <br /> <span class="border_session"></span> Total: <span
-								class="price">350$</span>
-						</div>
+				<div class="banner_adds"></div>
 
+
+			</div>
+			<!-- end of left content -->
+
+
+			<div class="right_content">
+				<div class="session">
+					<div class="session_title">Sess&aacute;o</div>
+
+					<div class="session_details">
+						3 items <br /> <span class="border_session"></span> Total: <span
+							class="price">350$</span>
 					</div>
 
-					<div class="banner_adds"></div>
-
 				</div>
-				<!-- end of right content -->
+
+				<div class="banner_adds"></div>
+
+			</div>
+			<!-- end of right content -->
 		</ui:insert>
 
 
@@ -122,12 +134,13 @@
 				<div class="center_footer">
 					<br />Down Movies. All Rights Reserved 2012<br />
 				</div>
-				
+
 				<div class="right_footer">
-					<p:commandLink value="Home" action="#"/>
-					<p:commandLink value="Filmes" action="#"/>
-					<p:commandLink value="Categorias" action="#"/>
-					<p:commandLink value="Contatos" action="#"/>
+					<p:commandLink value="Home" url="../user/index.jsf?faces-redirect=true" />
+					<p:commandLink value="Filmes" url="../admin/filmes.jsf?faces-redirect=true" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+					<p:commandLink value="Categorias" url="../admin/usuarios.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+					<p:commandLink value="Contatos" url="../contato.jsf?faces-redirect=true" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"  />
+					
 				</div>
 
 			</div>

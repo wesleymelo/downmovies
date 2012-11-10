@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import org.primefaces.component.menuitem.MenuItem;
+import org.primefaces.component.submenu.Submenu;
 import org.primefaces.model.DefaultMenuModel;
 import org.primefaces.model.MenuModel;
 
@@ -33,18 +34,35 @@ public class CategoriaManagedBean implements Serializable {
 
 		MenuItem item;
 
+
+		menu = new DefaultMenuModel();
+
+
+		Submenu submenu = new Submenu();
+		submenu.setLabel("Categorias");
+
+
 		for (Categoria c : this.categorias) {
-			item = new MenuItem();
-			item.setValue(c.getDescricao());
-			item.setUrl("#");
+			if(!c.getDescricao().equalsIgnoreCase("Nao Disponivel")){
+				item = new MenuItem();
+				item.setValue(c.getDescricao());
+				item.setUrl("#");
+				item.setOnclick("filtrar");
+				submenu.getChildren().add(item);
+			}
 		}
 
+		menu.addSubmenu(submenu);
 	}
 
 	public MenuModel getMenu() {
 		return menu;
 	}
 
+	
+	public void filtrar(){
+		System.out.println("jaskdhjskdfh sdgfj sdfh ghdghh jack");
+	}
 
 
 	public void setMenu(MenuModel menu) {

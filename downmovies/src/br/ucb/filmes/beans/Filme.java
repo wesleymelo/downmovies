@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.ucb.filmes.enums.EnumFormato;
+import br.ucb.filmes.enums.EnumIdioma;
+import br.ucb.filmes.enums.EnumQualidade;
+
 
 @Entity
 @Table
@@ -29,12 +33,6 @@ public class Filme implements Serializable {
 	
 	@Column
 	private Integer anoLancamento;
-	
-	@Column
-	private String idioma;
-	
-	@Column
-	private String legenda;
 
 	@Column
 	private Integer tempoDuracao;
@@ -48,6 +46,12 @@ public class Filme implements Serializable {
 	
 	@Column
 	private Integer qualidade;
+	
+	@Column
+	private Integer idioma;
+	
+	@Column
+	private Integer legenda;
 	
 	@Column
 	private Integer tamanho;
@@ -68,8 +72,6 @@ public class Filme implements Serializable {
 	public String getExtensaoImg() {
 		return extensaoImg;
 	}
-	
-	
 	
 	public void setExtensaoImg(String extensaoImg) {
 		this.extensaoImg = extensaoImg;
@@ -132,18 +134,46 @@ public class Filme implements Serializable {
 		this.diretor = diretor;
 	}
 
-	public String getIdioma() {
+	public Integer getIdioma() {
 		return idioma;
 	}
-	public void setIdioma(String idioma) {
+	public void setIdioma(Integer idioma) {
 		this.idioma = idioma;
 	}
-	public String getLegenda() {
+	public Integer getLegenda() {
 		return legenda;
 	}
-	public void setLegenda(String legenda) {
+	public void setLegenda(Integer legenda) {
 		this.legenda = legenda;
 	}
+	
+	public String getDescricaoFormato(){
+		if(formato != null)
+			return EnumFormato.findByFormat((int)formato).getNome();
+		return null;
+		
+	}
+	
+	public String getDescricaoLegenda(){
+		if(legenda != null)
+			return EnumIdioma.findByValue((int)legenda).getNome();
+		return null;
+		
+	}
+	
+	public String getDescricaoIdioma(){
+		if(idioma != null)
+			return EnumIdioma.findByValue((int)idioma).getNome();
+		return null;
+		
+	}
+	
+	public String getDescricaoQualidade(){
+		if(qualidade != null)
+			return EnumQualidade.findByQuality((int)qualidade).getNome();
+		return null;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -249,11 +279,13 @@ public class Filme implements Serializable {
 	public String toString() {
 		return "Filme [idFilme=" + idFilme + ", titulo=" + titulo
 				+ ", diretor=" + diretor + ", anoLancamento=" + anoLancamento
-				+ ", idioma=" + idioma + ", legenda=" + legenda
 				+ ", tempoDuracao=" + tempoDuracao + ", categoria=" + categoria
 				+ ", formato=" + formato + ", qualidade=" + qualidade
-				+ ", tamanho=" + tamanho + ", descricao=" + descricao
-				+ ", extensaoImg=" + extensaoImg + "]";
+				+ ", idioma=" + idioma + ", legenda=" + legenda + ", tamanho="
+				+ tamanho + ", descricao=" + descricao + ", extensaoImg="
+				+ extensaoImg + "]";
 	}
+	
+	
 
 }

@@ -9,7 +9,7 @@ public enum EnumQualidade {
 	TC("MPEG",3),
 	SCR("SCR",4),
 	DVDscr("DVDscr",5),
-	DVDRip("VCD",6),
+	DVDRip("DVDRip",6),
 	R5("R5",7),
 	NAO_DISPONIVEL("Não disponível",8);
 	

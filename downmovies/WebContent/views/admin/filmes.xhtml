@@ -54,9 +54,9 @@
 						#{filme.anoLancamento}
 					</p:column>
 
-					<p:column headerText="Idioma" sortBy="#{filme.idioma}"
-						filterBy="#{filme.idioma}">
-						#{filme.idioma}
+					<p:column headerText="Idioma" sortBy="#{filme.descricaoIdioma}"
+						filterBy="#{filme.descricaoIdioma}">
+						#{filme.descricaoIdioma}
 					</p:column>
 
 					<p:column headerText="Ações" width="70">
@@ -116,7 +116,6 @@
 
 						</h:panelGrid>
 
-
 						<h:panelGrid columns="2" cellpadding="5">
 							<h:outputLabel for="id" value="Código: " />
 							<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
@@ -139,19 +138,19 @@
 
 							<h:outputLabel for="idioma" value="Idioma: " />
 							<h:outputText id="idioma"
-								value="#{filmeManagedBean.filme.idioma}" />
+								value="#{filmeManagedBean.filme.descricaoIdioma}" />
 
 							<h:outputLabel for="legenda" value="Legenda: " />
 							<h:outputText id="legenda"
-								value="#{filmeManagedBean.filme.legenda}" />
+								value="#{filmeManagedBean.filme.descricaoLegenda}" />
 
 							<h:outputLabel for="formato" value="Formato: " />
 							<h:outputText id="formato"
-								value="#{filmeManagedBean.filme.formato}" />
+								value="#{filmeManagedBean.filme.descricaoFormato}" />
 
 							<h:outputLabel for="qualidade" value="Qualidade: " />
 							<h:outputText id="qualidade"
-								value="#{filmeManagedBean.filme.qualidade}" />
+								value="#{filmeManagedBean.filme.descricaoQualidade}" />
 
 							<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
 							<h:outputText id="tempoDuracao"
