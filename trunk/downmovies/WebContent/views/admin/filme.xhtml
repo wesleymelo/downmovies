@@ -46,24 +46,21 @@
 								<f:validateLongRange minimum="1000" maximum="2012"  />
 							</p:inputText>
 
+							
+							
 							<h:outputLabel value="Idioma:"  />
 							<p:selectOneMenu  requiredMessage="Idioma é obrigatorio" value="#{filmeManagedBean.filme.idioma}"
-								id="idioma" required="true" editable="true" effect="fade">
-								<f:selectItem itemLabel="Português/Inglês" itemValue="Portugues/Ingles" />
-								<f:selectItem itemLabel="Português" itemValue="Portugues" />
-								<f:selectItem itemLabel="Inglês" itemValue="Ingles" />
-								<f:selectItem itemLabel="Não disponível"
-									itemValue="Nao disponivel" />
+								id="idioma" required="true" effect="fade">
+									<f:selectItem itemLabel=""/>
+									<f:selectItems value="#{filmeManagedBean.mapIdioma}" var="idioma"  itemValue="#{idioma}" itemLabel="#{idioma}"  />									
 							</p:selectOneMenu>
-
+							
+							
 							<h:outputLabel value="legenda:" />
 							<p:selectOneMenu  requiredMessage="Legenda é obrigatorio" value="#{filmeManagedBean.filme.legenda}"
-								id="legenda" required="true" editable="true" effect="fade">
-								<f:selectItem itemLabel="Português/Ingles" itemValue="Portugues/Ingles" />
-								<f:selectItem itemLabel="Português" itemValue="Portugues" />
-								<f:selectItem itemLabel="Inglês" itemValue="Ingles" />
-								<f:selectItem itemLabel="Não disponível"
-									itemValue="Nao disponivel" />
+								id="legenda" required="true" effect="fade">
+									<f:selectItem itemLabel=""/>
+									<f:selectItems value="#{filmeManagedBean.idiomas}" var="legenda"  itemValue="#{legenda.valor}" itemLabel="#{legenda.nome}"  />									
 							</p:selectOneMenu>
 
 							<h:outputLabel value="Formato:"  />						

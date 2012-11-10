@@ -43,6 +43,7 @@ no web.xml do projeto adicionar:
 			<url-pattern>/views/user/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
+		    <role-name>1<!-- Administrador --></role-name>
 			<role-name>2<!-- Usuário --></role-name>
 		</auth-constraint>
 	</security-constraint>

@@ -13,6 +13,7 @@ import org.primefaces.model.UploadedFile;
 import br.ucb.filmes.beans.Filme;
 import br.ucb.filmes.dao.FilmeDAO;
 import br.ucb.filmes.enums.EnumFormato;
+import br.ucb.filmes.enums.EnumIdioma;
 import br.ucb.filmes.enums.EnumQualidade;
 import br.ucb.filmes.upload.UploadArquivo;
 import br.ucb.filmes.util.FacesUtil;
@@ -48,7 +49,13 @@ public class FilmeManagedBean implements Serializable {
 		this.filteredFilmes = filteredFilmes;
 	}
 
+	public List<EnumIdioma> getIdiomas() {
+		return EnumIdioma.getIdiomas();
+	}
 
+	public Map<String, Integer> getMapIdioma() {
+		return EnumIdioma.getMapaIdioma();
+	}
 
 	public Map<String, Integer> getMapFormato() {
 		return EnumFormato.getMapaFomato();

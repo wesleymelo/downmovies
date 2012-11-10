@@ -381,8 +381,14 @@ padding:10px 0 10px 0;
 width: 585px;
 float: left;
 padding: 5px 190px;
-
 }
+
+.center_content_index{
+width: 600px;
+float: left;
+padding: 5px 10px 5px 10px;
+}
+
 .center_title_bar{
 width:520px;
 height:33px;

@@ -31,7 +31,7 @@ public class Usuario implements Serializable{
 	
 	@Column
 	private String senha;
-	 
+	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="autorizacao",
 			joinColumns={
@@ -61,7 +61,9 @@ public class Usuario implements Serializable{
 	private Perfil perfil;
 	
 	public Perfil getPerfil() {
-		return perfil;
+		if(perfis != null)
+			return perfis.get(0);
+		return null;
 	}
 
 	public void setPerfil(Perfil perfil) {
@@ -105,6 +107,10 @@ public class Usuario implements Serializable{
 
 	public String getSenha() {
 		return senha;
+	}
+	
+	public String getFullName(){
+		return (nome+" "+sobrenome).toUpperCase();
 	}
 
 	public void setSenha(String senha) {

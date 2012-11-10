@@ -844,7 +844,7 @@ public class Formata{
 
 	 private  static   String centavos(String num2) {
 		 StringBuffer str = new StringBuffer();
-		 int aux;
+		 //int aux;
 		 StringBuffer strcent = new StringBuffer();
 		 String num = "0" + num2;
 

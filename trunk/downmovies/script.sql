@@ -58,9 +58,9 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`Filme` (
 
   `anoLancamento` INT(11) NOT NULL ,
 
-  `idioma` VARCHAR(30) NOT NULL ,
+  `idioma` INT(11) NOT NULL ,
 
-  `legenda` VARCHAR(30) NOT NULL ,
+  `legenda` INT(11) NOT NULL ,
 
   `formato` INT(11) NOT NULL ,
 
@@ -267,11 +267,6 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-
-
-insert into perfil(descricao) values ('administrador');
-insert into perfil(descricao) values ('usuario');
-
 insert into categoria(descricao) values('Acao');
 insert into categoria(descricao) values('Aventura');
 insert into categoria(descricao) values('Classico');
@@ -287,3 +282,13 @@ insert into categoria(descricao) values('Suspense');
 insert into categoria(descricao) values('Terror');
 insert into categoria(descricao) values('Policial');
 insert into categoria(descricao) values('Nao Disponivel');
+
+
+insert into perfil(descricao) values ('administrador');
+insert into perfil(descricao) values ('usuario');
+
+INSERT INTO usuario VALUES('admin@admin.com', 'admin', 'admin', 'aaaa1111');
+INSERT INTO usuario VALUES('user@user.com', 'user', 'user', 'aaaa1111');
+
+insert autorizacao values(1, 'admin@admin.com');
+insert autorizacao values(2, 'user@user.com');
