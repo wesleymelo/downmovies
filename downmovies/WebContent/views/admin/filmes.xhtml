@@ -105,16 +105,11 @@
 
 				<p:dialog header="Filme detalhado" widgetVar="filmeDialog"
 					modal="true">
-					<p:outputPanel id="filmeDetail" layout="block">
-
-						<h:panelGrid columnClasses="">
-
+					<p:outputPanel id="filmeDetail" style="text-align:center;" layout="block">
 							<p:graphicImage
 								value="../filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
 								alt="#{filmeManagedBean.filme.titulo}" width="230" height="240" />
 
-
-						</h:panelGrid>
 
 						<h:panelGrid columns="2" cellpadding="5">
 							<h:outputLabel for="id" value="Código: " />

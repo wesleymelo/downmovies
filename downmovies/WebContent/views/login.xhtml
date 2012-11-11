@@ -59,14 +59,14 @@
 									label="senha" requiredMessage="Senha é obrigatório."
 									redisplay="true" maxlength="15"
 									validatorMessage="A Confirmação da Senha deve ser igual à senha."
-									feedback="false">
+									feedback="true">
 								</p:password>
 
 								<h:outputLabel for="confirmaSenha" value="Confirma Senha: *" />
 								<p:password id="confirmaSenha"
 									value="#{usuarioManagedBean.confirmaSenha}" required="true"
 									label="confirma senha"
-									requiredMessage="Confirma Senha é obrigatório" maxlength="15" />
+									requiredMessage="Confirma Senha é obrigatório" maxlength="15" feedback="true" />
 
 						</p:panelGrid>
 

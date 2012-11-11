@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.ucb.filmes.dao.FilmeDAO;
+import br.ucb.filmes.dao.UsuarioDAO;
+
 @Entity
 public class Aquisicao implements Serializable {
 
@@ -37,6 +40,14 @@ public class Aquisicao implements Serializable {
 
 	public void setAquisicaoPK(AquisicaoPK aquisicaoPK) {
 		this.aquisicaoPK = aquisicaoPK;
+	}
+	
+	public Filme getFilme(){
+		return new FilmeDAO().consult(aquisicaoPK.getIdFilme());
+	}
+	
+	public Usuario getUsuario(){
+		return new UsuarioDAO().consult(aquisicaoPK.getEmail());
 	}
 
 	public Date getData() {

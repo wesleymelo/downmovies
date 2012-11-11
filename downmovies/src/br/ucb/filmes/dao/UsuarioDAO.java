@@ -1,6 +1,7 @@
 package br.ucb.filmes.dao;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import br.ucb.filmes.beans.Usuario;
 
@@ -21,6 +22,20 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 		}
 		session.close();
 		return usuario;
+	}
+	
+	public void update(Usuario usuario) {
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			session.update(usuario);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			transaction.rollback();
+		} finally {
+			session.close();
+		}
 	}
 
 

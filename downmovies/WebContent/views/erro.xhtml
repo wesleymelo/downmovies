@@ -4,30 +4,35 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
-	
-	<h:head>
-		
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-	
-	</h:head>
-	
-	
-	<h:body>
-		
-		<p:growl id="growl" showDetail="true" sticky="true" />
-	
-		<div id="main_container">
-					
-				<div class="center_content">
-				
-				ERROR.
-				
-				</div><!-- end of center content -->
-				
-		</div><!-- end of main_container -->
-	</h:body>
-	
-    
-    
+
+
+<h:head>
+
+	<link rel="stylesheet" type="text/css"
+		href="/downmovies/views/css/style.css" />
+
+</h:head>
+
+
+<h:body>
+
+	<div id="main_container">
+
+		<div class="center_content">
+
+			
+
+				<p:panel header="Erro de login">
+					Usuário ou senha inválido. Verique seus dados de acesso.
+				</p:panel>
+
+		</div>
+		<!-- end of center content -->
+
+	</div>
+	<!-- end of main_container -->
+</h:body>
+
+
+
 </html>
