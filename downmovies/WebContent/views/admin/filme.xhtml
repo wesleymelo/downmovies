@@ -23,13 +23,13 @@
                  		
 							<h:outputLabel value="Título:" for="titulo" />                 		
 							<p:inputText value="#{filmeManagedBean.filme.titulo}" id="titulo" size="50"
-								required="true"  requiredMessage="Título é obrigatorio" maxlength="50">
+								required="true"  requiredMessage="Título é obrigatorio"  validatorMessage="Titulo invalido" maxlength="50">
 								<f:validateLength maximum="50" minimum="1" />
 							</p:inputText>
 						
 	                    	<h:outputLabel value="Diretor:" for="diretor" />
 							<p:inputText value="#{filmeManagedBean.filme.diretor}" id="diretor" size="50"
-								required="true" requiredMessage="Diretor é obrigatorio" maxlength="50">
+								required="true" requiredMessage="Diretor é obrigatorio" validatorMessage="Diretor invalido" maxlength="50">
 								<f:validateLength maximum="50" minimum="1" />
 							</p:inputText>
 	
@@ -41,7 +41,7 @@
 							</p:selectOneMenu>						
 
 							<h:outputLabel value="Ano Lançamento(Ex.: 2000):" for="ano_lancamento" />
-							<p:inputText  requiredMessage="Ano Lançamento é obrigatorio" value="#{filmeManagedBean.filme.anoLancamento}" size="4"
+							<p:inputText  requiredMessage="Ano Lançamento é obrigatorio" validatorMessage="Ano invalido" value="#{filmeManagedBean.filme.anoLancamento}" size="4"
 								id="ano_lancamento" required="true" maxlength="4">
 								<f:validateLongRange minimum="1000" maximum="2012"  />
 							</p:inputText>
@@ -79,7 +79,7 @@
 							
 							<h:outputLabel value="Tamanho (em MB - MegaByte. Ex.: 800):"
 								for="tamanho" />
-							<p:inputText  requiredMessage="Tamanho é obrigatorio" value="#{filmeManagedBean.filme.tamanho}"
+							<p:inputText  requiredMessage="Tamanho é obrigatorio" validatorMessage="Tamanho invalido" value="#{filmeManagedBean.filme.tamanho}"
 								id="tamanho" required="true">
 								<f:validateLongRange minimum="1" />
 							</p:inputText>
@@ -92,7 +92,7 @@
 							</p:inputText>
 		
 							<h:outputLabel value="Descrição:" for="descricao" />
-							<p:inputTextarea value="#{filmeManagedBean.filme.descricao}"  requiredMessage="Descrição é obrigatorio" autoResize="" cols="80" rows="7"
+							<p:inputTextarea value="#{filmeManagedBean.filme.descricao}" validatorMessage="Descrição invalida" requiredMessage="Descrição é obrigatorio" autoResize="" cols="80" rows="7"
 								id="descricao" required="true"  >
 								<f:validateLength minimum="1" />
 							</p:inputTextarea>
