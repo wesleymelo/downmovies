@@ -26,8 +26,22 @@
 						#{aquisicao.aquisicaoPK.email}
 					</p:column>
 					
-					<p:column headerText="Filme"  sortBy="#{aquisicao.aquisicaoPK.idFilme}" filterBy="#{aquisicao.aquisicaoPK.idFilme}" style="widht:20px" >
-						#{aquisicao.aquisicaoPK.idFilme}
+					<p:column headerText="Nome Completo"  sortBy="#{aquisicao.usuario.fullName}" filterBy="#{aquisicao.usuario.fullName}" style="widht:50px" >
+						#{aquisicao.usuario.fullName}
+					</p:column>
+					
+					<p:column headerText="Filme"  sortBy="#{aquisicao.filme.titulo}" filterBy="#{aquisicao.filme.titulo}" style="widht:20px" >
+						#{aquisicao.filme.titulo}
+						
+						<p:commandLink update=":form:filmeDetail"
+							oncomplete="filmeDialog.show()" title="Visão Detalhada">
+							<h:graphicImage value="../images/search.png" title="Detalhar"
+								style="border: none" />
+							<f:setPropertyActionListener value="#{aquisicao.filme}"
+								target="#{filmeManagedBean.filme}" />
+						</p:commandLink>
+						
+						
 					</p:column>
 					
 					<p:column headerText="Data"  sortBy="#{aquisicao.data}" filterBy="#{aquisicao.data}" style="widht:15px" >
@@ -38,7 +52,64 @@
                         
 					</p:column>
 					
-				</p:dataTable>			
+				</p:dataTable>		
+				
+				
+				<p:dialog header="Filme detalhado" widgetVar="filmeDialog"
+					modal="true">
+					<p:outputPanel id="filmeDetail" style="text-align:center;" layout="block">
+
+							<p:graphicImage
+								value="../filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
+								alt="#{filmeManagedBean.filme.titulo}" width="230" height="240" />
+
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="id" value="Código: " />
+							<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
+
+							<h:outputLabel for="titulo" value="Título: " />
+							<h:outputText id="titulo"
+								value="#{filmeManagedBean.filme.titulo}" />
+
+							<h:outputLabel for="diretor" value="Diretor: " />
+							<h:outputText id="diretor"
+								value="#{filmeManagedBean.filme.diretor}" />
+
+							<h:outputLabel for="categoria" value="Categoria: " />
+							<h:outputText id="categoria"
+								value="#{filmeManagedBean.filme.categoria.descricao}" />
+
+							<h:outputLabel for="anoLancamento" value="Ano Lançamento: " />
+							<h:outputText id="anoLancamento"
+								value="#{filmeManagedBean.filme.anoLancamento}" />
+
+							<h:outputLabel for="idioma" value="Idioma: " />
+							<h:outputText id="idioma"
+								value="#{filmeManagedBean.filme.descricaoIdioma}" />
+
+							<h:outputLabel for="legenda" value="Legenda: " />
+							<h:outputText id="legenda"
+								value="#{filmeManagedBean.filme.descricaoLegenda}" />
+
+							<h:outputLabel for="formato" value="Formato: " />
+							<h:outputText id="formato"
+								value="#{filmeManagedBean.filme.descricaoFormato}" />
+
+							<h:outputLabel for="qualidade" value="Qualidade: " />
+							<h:outputText id="qualidade"
+								value="#{filmeManagedBean.filme.descricaoQualidade}" />
+
+							<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
+							<h:outputText id="tempoDuracao"
+								value="#{filmeManagedBean.filme.tempoDuracao}" />
+
+							<h:outputLabel for="descricao" value="Descricão: " />
+							<h:outputText id="descricao"
+								value="#{filmeManagedBean.filme.descricao}" />
+
+						</h:panelGrid>
+					</p:outputPanel>
+				</p:dialog>	
 
 			</h:form>
 

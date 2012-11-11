@@ -23,6 +23,7 @@ public class UsuarioManagedBean implements Serializable {
 	private Usuario usuarioLogado;
 	private List<Usuario> usuarios;
 	private List<Usuario> filteredUsuarios;
+	private String senhaAtual;
 	private String confirmaSenha;
 	private UsuarioDAO dao;
 	private Boolean isAlter;
@@ -31,6 +32,14 @@ public class UsuarioManagedBean implements Serializable {
 		dao = new UsuarioDAO();
 		usuarios = dao.recoveryAll();
 		usuario = new Usuario();
+	}
+	
+	public String getSenhaAtual() {
+		return senhaAtual;
+	}
+
+	public void setSenhaAtual(String senhaAtual) {
+		this.senhaAtual = senhaAtual;
 	}
 
 	public UsuarioDAO getDao() {
@@ -107,6 +116,29 @@ public class UsuarioManagedBean implements Serializable {
 		isAlter = false;
 	}
 	
+	
+	public void alteraSenha(){
+		try {
+			Usuario usuario = dao.consult(usuarioLogado.getEmail());
+			
+			if(senhaAtual.equals(usuario.getSenha())){
+				System.out.println("Senha:" +confirmaSenha);
+				usuario.setSenha(confirmaSenha);
+				dao.update(usuario);
+				FacesUtil.mensInfo("Senha Alterado com sucesso");
+				senhaAtual = null;
+				confirmaSenha = null;
+				return;
+			}
+			FacesUtil.mensErro("Senha atual não confere");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesUtil.mensErro("Erro ao alterar senha");
+		}
+		senhaAtual = null;
+		confirmaSenha = null;
+	}
 
 	public String salvar() {
 		try {
