@@ -15,114 +15,153 @@
 <ui:composition template="../modelo/template.xhtml">
 	<ui:define name="conteudo">
 
-		<div class="left_content">
-			<p:menu model="#{categoriaManagedBean.menu}" />
-		</div>
 		<!-- end of left content -->
 
-		<div class="center_content_index">
 			<h:form id="form">
-				<p:messages showDetail="false" showSummary="true"/>
+				<div class="left_content">
+					<p:menu>
+						<p:submenu label="Categorias">
+							<p:menuitem value="Ação" update="@form" action="#{filmeManagedBean.buscCategoriaId(1)}"  />
+							<p:menuitem value="Aventura"  update="@form"  action="#{filmeManagedBean.buscCategoriaId(2)}"  />
+							<p:menuitem value="Classico"   update="@form"  action="#{filmeManagedBean.buscCategoriaId(3)}"  />
+							<p:menuitem value="Comedia"   update="@form" action="#{filmeManagedBean.buscCategoriaId(4)}"  />
+							<p:menuitem value="Documentario"  update="@form"   action="#{filmeManagedBean.buscCategoriaId(5)}"  />
+							<p:menuitem value="Drama"  update="@form"  action="#{filmeManagedBean.buscCategoriaId(6)}"  />
+							<p:menuitem value="Faroeste"   update="@form" action="#{filmeManagedBean.buscCategoriaId(7)}"  />
+							<p:menuitem value="Ficcao"  update="@form"   action="#{filmeManagedBean.buscCategoriaId(8)}"  />
+							<p:menuitem value="Infantil"  update="@form"  action="#{filmeManagedBean.buscCategoriaId(9)}"  />
+							<p:menuitem value="Musical"  update="@form"  action="#{filmeManagedBean.buscCategoriaId(10)}"  />
+							<p:menuitem value="Romance"   update="@form" action="#{filmeManagedBean.buscCategoriaId(11)}"  />
+							<p:menuitem value="Suspense" update="@form"  action="#{filmeManagedBean.buscCategoriaId(12)}"  />
+							<p:menuitem value="Terror"   update="@form" action="#{filmeManagedBean.buscCategoriaId(13)}"  />
+							<p:menuitem value="Policial"  update="@form"  action="#{filmeManagedBean.buscCategoriaId(14)}"  />
 
-				<p:dataGrid var="filme" value="#{filmeManagedBean.filmes}"
-					paginator="true" columns="3" rows="12"
-					rowsPerPageTemplate="9,12,15">
+						</p:submenu>
+					</p:menu>
+				</div>
 
-					<p:panel header="#{filme.titulo}" style="text-align:center">
-						<h:panelGrid columns="1" style="width:100%">
-
-							<p:graphicImage
-								value="../filmes/#{filme.idFilme}.#{filme.extensaoImg}"
-								width="90" height="100" />
-
-							<h:outputLabel value="#{filme.diretor}" />
-							<h:outputText value="#{filme.anoLancamento}" />
-							<h:outputText value="#{filme.categoria.descricao}" />
-							<p:commandLink  ajax="false">
-							<p:graphicImage value="../images/down.png" style="border: 0px;"
-									styleClass="margin-5r margin-5l" alt="Download de Filme" title="Download de Filme"/>
-								<p:fileDownload value="#{filmeManagedBean.download(filme.idFilme,filme.titulo)}"/>
-							</p:commandLink>
-							<p:commandLink update=":form:filmeDetail"
-								oncomplete="filmeDialog.show()" title="Visão Detalhada">
-								<h:outputText styleClass="ui-icon ui-icon-search"
-									style="margin:0 auto;" />
-								<f:setPropertyActionListener value="#{filme}"
-									target="#{filmeManagedBean.filme}" />
-							</p:commandLink>
-						</h:panelGrid>
-					</p:panel>
-
-				</p:dataGrid>
-
-				<p:dialog header="Filme Detalhada" widgetVar="filmeDialog"
-					modal="true">
-					<p:outputPanel id="filmeDetail" style="text-align:center;"
-						layout="block">
-
-						<p:graphicImage
-							value="../filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
-							width="130" height="140" />
-							
-							<br/><br/>
-							
-							<p:commandLink  ajax="false">
+				<div class="center_content_index">
+					<p:dataGrid rendered="#{not filmeManagedBean.mostraFilmes}" var="filme" value="#{filmeManagedBean.filmes}"
+						paginator="true" columns="3" rows="12"
+						rowsPerPageTemplate="9,12,15">
+	
+						<p:panel header="#{filme.titulo}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+	
+								<p:graphicImage
+									value="../filmes/#{filme.idFilme}.#{filme.extensaoImg}"
+									width="90" height="100" />
+	
+								<h:outputLabel value="#{filme.diretor}" />
+								<h:outputText value="#{filme.anoLancamento}" />
+								<h:outputText value="#{filme.categoria.descricao}" />
+								<p:commandLink  ajax="false">
 								<p:graphicImage value="../images/down.png" style="border: 0px;"
-									styleClass="margin-5r margin-5l" alt="Download de Filme" title="Download de Filme"/>
-								<p:fileDownload value="#{filmeManagedBean.download(filmeManagedBean.filme.idFilme,filmeManagedBean.filme.titulo)}"/>
-							</p:commandLink>
+										styleClass="margin-5r margin-5l" alt="Download de Filme" title="Download de Filme"/>
+									<p:fileDownload value="#{filmeManagedBean.download(filme.idFilme,filme.titulo)}"/>
+								</p:commandLink>
+								<p:commandLink update=":form:filmeDetail"
+									oncomplete="filmeDialog.show()" title="Visão Detalhada">
+									<h:outputText styleClass="ui-icon ui-icon-search"
+										style="margin:0 auto;" />
+									<f:setPropertyActionListener value="#{filme}"
+										target="#{filmeManagedBean.filme}" />
+								</p:commandLink>
+							</h:panelGrid>
+						</p:panel>
+	
+					</p:dataGrid>
+					<p:dataGrid rendered="#{filmeManagedBean.mostraFilmes and not empty filmeManagedBean.filmesCategoria }" var="filme" value="#{filmeManagedBean.filmesCategoria}"
+						paginator="true" columns="3" rows="12"
+						rowsPerPageTemplate="9,12,15">
+	
+						<p:panel header="#{filme.titulo}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+	
+								<p:graphicImage
+									value="../filmes/#{filme.idFilme}.#{filme.extensaoImg}"
+									width="90" height="100" />
+	
+								<h:outputLabel value="#{filme.diretor}" />
+								<h:outputText value="#{filme.anoLancamento}" />
+								<h:outputText value="#{filme.categoria.descricao}" />
+								<p:commandLink  ajax="false">
+								<p:graphicImage value="../images/down.png" style="border: 0px;"
+										styleClass="margin-5r margin-5l" alt="Download de Filme" title="Download de Filme"/>
+									<p:fileDownload value="#{filmeManagedBean.download(filme.idFilme,filme.titulo)}"/>
+								</p:commandLink>
+								<p:commandLink update=":form:filmeDetail"
+									oncomplete="filmeDialog.show()" title="Visão Detalhada">
+									<h:outputText styleClass="ui-icon ui-icon-search"
+										style="margin:0 auto;" />
+									<f:setPropertyActionListener value="#{filme}"
+										target="#{filmeManagedBean.filme}" />
+								</p:commandLink>
+							</h:panelGrid>
+						</p:panel>
+	
+					</p:dataGrid>
+	
+					<p:dialog header="Filme Detalhada" widgetVar="filmeDialog"
+						modal="true">
+						<p:outputPanel id="filmeDetail" style="text-align:center;"
+							layout="block">
+	
+							<p:graphicImage
+								value="../filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
+								width="130" height="140" />
+	
+	
+							<h:panelGrid columns="2" cellpadding="5">
+								<h:outputLabel for="id" value="Id: " />
+								<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
+	
+								<h:outputLabel for="titulo" value="Título: " />
+								<h:outputText id="titulo"
+									value="#{filmeManagedBean.filme.titulo}" />
+	
+								<h:outputLabel for="diretor" value="Diretor: " />
+								<h:outputText id="diretor"
+									value="#{filmeManagedBean.filme.diretor}" />
+	
+								<h:outputLabel for="categoria" value="Categoria: " />
+								<h:outputText id="categoria"
+									value="#{filmeManagedBean.filme.categoria.descricao}" />
+	
+								<h:outputLabel for="anoLancamento" value="Ano Lançamento: " />
+								<h:outputText id="anoLancamento"
+									value="#{filmeManagedBean.filme.anoLancamento}" />
+	
+								<h:outputLabel for="idioma" value="Idioma: " />
+								<h:outputText id="idioma"
+									value="#{filmeManagedBean.filme.descricaoIdioma}" />
+	
+								<h:outputLabel for="legenda" value="Legenda: " />
+								<h:outputText id="legenda"
+									value="#{filmeManagedBean.filme.descricaoLegenda}" />
+	
+								<h:outputLabel for="formato" value="Formato: " />
+								<h:outputText id="formato"
+									value="#{filmeManagedBean.filme.descricaoFormato}" />
+	
+								<h:outputLabel for="qualidade" value="Qualidade: " />
+								<h:outputText id="qualidade"
+									value="#{filmeManagedBean.filme.descricaoQualidade}" />
+	
+								<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
+								<h:outputText id="tempoDuracao"
+									value="#{filmeManagedBean.filme.tempoDuracao}" />
+	
+								<h:outputLabel for="descricao" value="Descricão: " />
+								<h:outputText id="descricao"
+									value="#{filmeManagedBean.filme.descricao}" />
+	
+							</h:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
 
-
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputLabel for="id" value="Id: " />
-							<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
-
-							<h:outputLabel for="titulo" value="Título: " />
-							<h:outputText id="titulo"
-								value="#{filmeManagedBean.filme.titulo}" />
-
-							<h:outputLabel for="diretor" value="Diretor: " />
-							<h:outputText id="diretor"
-								value="#{filmeManagedBean.filme.diretor}" />
-
-							<h:outputLabel for="categoria" value="Categoria: " />
-							<h:outputText id="categoria"
-								value="#{filmeManagedBean.filme.categoria.descricao}" />
-
-							<h:outputLabel for="anoLancamento" value="Ano Lançamento: " />
-							<h:outputText id="anoLancamento"
-								value="#{filmeManagedBean.filme.anoLancamento}" />
-
-							<h:outputLabel for="idioma" value="Idioma: " />
-							<h:outputText id="idioma"
-								value="#{filmeManagedBean.filme.descricaoIdioma}" />
-
-							<h:outputLabel for="legenda" value="Legenda: " />
-							<h:outputText id="legenda"
-								value="#{filmeManagedBean.filme.descricaoLegenda}" />
-
-							<h:outputLabel for="formato" value="Formato: " />
-							<h:outputText id="formato"
-								value="#{filmeManagedBean.filme.descricaoFormato}" />
-
-							<h:outputLabel for="qualidade" value="Qualidade: " />
-							<h:outputText id="qualidade"
-								value="#{filmeManagedBean.filme.descricaoQualidade}" />
-
-							<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
-							<h:outputText id="tempoDuracao"
-								value="#{filmeManagedBean.filme.tempoDuracao}" />
-
-							<h:outputLabel for="descricao" value="Descricão: " />
-							<h:outputText id="descricao"
-								value="#{filmeManagedBean.filme.descricao}" />
-
-						</h:panelGrid>
-					</p:outputPanel>
-				</p:dialog>
-
+				</div>
 			</h:form>
-		</div>
 		<!-- end of center content -->
 	</ui:define>
 </ui:composition>

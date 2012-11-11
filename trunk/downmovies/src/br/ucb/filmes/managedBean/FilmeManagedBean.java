@@ -2,11 +2,12 @@ package br.ucb.filmes.managedBean;
 
 import java.io.FileNotFoundException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
@@ -25,7 +26,7 @@ import br.ucb.filmes.util.FacesUtil;
 import br.ucb.filmes.util.FileUtil;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class FilmeManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,12 +34,13 @@ public class FilmeManagedBean implements Serializable {
 	private static final Logger log = Logger.getLogger(FilmeManagedBean.class);
 	private Filme filme;
 	private List<Filme> filmes;
+	private List<Filme> filmesCategoria;
 	private List<Filme> filteredFilmes;
 	private UploadArquivo uploadArquivo;
 	private UploadedFile arqFilme; 
 	private UploadedFile arqImagem;
 	private FilmeDAO dao;
-	
+	private boolean mostraFilmes;
  	public FilmeManagedBean() {
  		dao = new FilmeDAO();
  	    filmes = dao.recoveryAll();
@@ -50,12 +52,40 @@ public class FilmeManagedBean implements Serializable {
 		return filteredFilmes;
 	}
 
+
+	public void buscCategoriaId(Integer categoria) {
+ 	    filmesCategoria = new ArrayList<Filme>();
+		for (Filme filmeTemp : filmes) {
+			if(filmeTemp.getCategoria().getIdCategoria() == categoria){
+				filmesCategoria.add(filmeTemp);
+			}
+		}
+		mostraFilmes = true;
+	}
+
+	public List<Filme> getFilmesCategoria() {
+
+		return filmesCategoria;
+	}
+
+	public void setFilmesCategoria(List<Filme> filmesCategoria) {
+		this.filmesCategoria = filmesCategoria;
+	}
+
 	public void setFilteredFilmes(List<Filme> filteredFilmes) {
 		this.filteredFilmes = filteredFilmes;
 	}
 
 	public List<EnumIdioma> getIdiomas() {
 		return EnumIdioma.getIdiomas();
+	}
+
+	public boolean isMostraFilmes() {
+		return mostraFilmes;
+	}
+
+	public void setMostraFilmes(boolean mostraFilmes) {
+		this.mostraFilmes = mostraFilmes;
 	}
 
 	public Map<String, Integer> getMapIdioma() {
