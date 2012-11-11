@@ -142,12 +142,12 @@
 				</div>
 
 				<div class="right_footer">
-					<p:commandLink value="Home" url="../user/index.jsf?faces-redirect=true" />
-					<p:commandLink value="Filmes" url="../admin/filmes.jsf?faces-redirect=true" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
-					<p:commandLink value="Categorias" url="../admin/usuarios.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
-					<p:commandLink value="Aquisições" url="../admin/aquisicoes.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
-					<p:commandLink value="Meus Downloads" url="../user/aquisicoes.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" />
-					<p:commandLink value="Contatos" url="../contato.jsf?faces-redirect=true" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"  />
+					<p:commandLink value="Home" url="../user/index.jsf?faces-redirect=true" immediate="true" />
+					<p:commandLink value="Filmes" url="../admin/filmes.jsf?faces-redirect=true" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" immediate="true" />
+					<p:commandLink value="Categorias" url="../admin/usuarios.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" immediate="true" />
+					<p:commandLink value="Aquisições" url="../admin/aquisicoes.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" immediate="true" />
+					<p:commandLink value="Meus Downloads" url="../user/aquisicoes.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" immediate="true" />
+					<p:commandLink value="Contatos" url="../contato.jsf?faces-redirect=true" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" immediate="true" />
 					
 				</div>
 
