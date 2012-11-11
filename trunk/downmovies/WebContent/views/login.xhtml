@@ -5,14 +5,12 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-
 <h:head>
 
 	<link rel="stylesheet" type="text/css"
 		href="/downmovies/views/css/style.css" />
 
 </h:head>
-
 
 <h:body>
 
@@ -32,8 +30,9 @@
 						<p:messages showDetail="false" showSummary="true"
 							autoUpdate="true" />
 
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<p:panelGrid columns="2" columnClasses="label, value">
 							
+								
 								<h:outputLabel for="nome" value="Nome: *" />							
 								<p:inputText id="nome"
 									requiredMessage="Nome é obrigatório."
@@ -69,7 +68,7 @@
 									label="confirma senha"
 									requiredMessage="Confirma Senha é obrigatório" maxlength="15" />
 
-						</h:panelGrid>
+						</p:panelGrid>
 
 						<p:commandButton value="Cadastrar" ajax="false"
 							action="#{usuarioManagedBean.salvarUser}" />
@@ -79,25 +78,16 @@
 
 
 				</p:panel>
-
-
-
-
-
-				<p:panel header="Login">
-					<form action="j_security_check" method="post">
-						<label>Email:</label><br /> <input type="text" name="j_username" />
-						<p />
-						<label>Password:</label><br /> <input type="password"
-							name="j_password" />
-						<p />
-						<input type="submit" value="OK" />
-					</form>
-				</p:panel>
-
-
-
-
+					<p:panel header="Login">
+						<form action="j_security_check" method="post">
+							<label>Email:</label><br /> <input type="text" name="j_username" />
+							<p />
+							<label>Password:</label><br /> <input type="password"
+								name="j_password" />
+							<p />
+							<input type="submit" value="OK" />
+						</form>
+					</p:panel>
 			</p:panelGrid>
 
 

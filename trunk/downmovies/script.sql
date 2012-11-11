@@ -157,7 +157,7 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`Aquisicao` (
 
   `idFilme` INT(11) NOT NULL ,
 
-  `data` DATE NOT NULL ,
+  `data` DATETIME NOT NULL ,
 
   PRIMARY KEY (`idAquisicao`, `email`, `idFilme`) ,
 
@@ -249,7 +249,7 @@ CREATE  TABLE IF NOT EXISTS `downmovies`.`Logs` (
   
   `data` DATETIME NOT NULL,
   
-  `logger` VARCHAR(50) NOT NULL,
+  `logger` VARCHAR(255) NOT NULL,
   
   `level` VARCHAR(10) NOT NULL,
   

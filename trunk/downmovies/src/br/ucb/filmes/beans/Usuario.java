@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -32,6 +33,9 @@ public class Usuario implements Serializable{
 	@Column
 	private String senha;
 	
+	@OneToMany
+	private List<Filme> filmes = new ArrayList<Filme>();
+	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="autorizacao",
 			joinColumns={
@@ -41,6 +45,7 @@ public class Usuario implements Serializable{
 				@JoinColumn(name="idPerfil")
 			}		
 	)
+	
 	
 	private List<Perfil> perfis;   
 	//private Map<Integer, Perfil> perfis;
@@ -57,6 +62,14 @@ public class Usuario implements Serializable{
 		this.perfis = perfis;
 	}*/
 	
+	public List<Filme> getFilmes() {
+		return filmes;
+	}
+
+	public void setFilmes(List<Filme> filmes) {
+		this.filmes = filmes;
+	}
+
 	@Transient
 	private Perfil perfil;
 	
