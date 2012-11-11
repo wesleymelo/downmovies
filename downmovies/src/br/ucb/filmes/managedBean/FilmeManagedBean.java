@@ -7,12 +7,15 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
+import br.ucb.filmes.beans.Aquisicao;
 import br.ucb.filmes.beans.Filme;
+import br.ucb.filmes.dao.AquisicaoDAO;
 import br.ucb.filmes.dao.FilmeDAO;
 import br.ucb.filmes.enums.EnumFormato;
 import br.ucb.filmes.enums.EnumIdioma;
@@ -69,11 +72,19 @@ public class FilmeManagedBean implements Serializable {
 	}
 	public StreamedContent download(String arquivo,String nomeFilme){  
 
-		 FileUtil file = null;
+		FileUtil file = null;
 		try {
 	    	file = new FileUtil();
-			file.downloadFile(UploadArquivo.getCaminho(),arquivo, nomeFilme+".torrent");
 			
+	    	file.downloadFile(UploadArquivo.getCaminho(),arquivo, nomeFilme+".torrent");
+			
+			AquisicaoDAO dao = new AquisicaoDAO();
+			Aquisicao aquisicao = new Aquisicao();
+			aquisicao.getAquisicaoPK().setIdFilme(new Integer(arquivo));
+			aquisicao.getAquisicaoPK().setEmail(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+			dao.insert(aquisicao);
+			FacesUtil.mensInfo("Download de filme realizado com Sucesso");
+			log.info("Download de filme realizado com Sucesso");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

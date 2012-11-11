@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../modelo/template.xhtml">
+    <ui:define name="conteudo">
+      <div class="center_content">
+		
+			<h:form id="form">
+		
+				<p:messages id="messages" />
+				
+		
+				<p:dataTable id="tabela" var="aquisicao" value="#{aquisicaoManagedBean.aquisicoesByUser}"
+					paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Nenhuma aquisição encontrada" filteredValue="#{aquisicaoManagedBean.filteredAquisicoes}" >
+					
+					<f:facet name="header">
+						Meus Downloads
+					</f:facet>
+					
+					<p:column headerText="Filme"  sortBy="#{aquisicao.aquisicaoPK.idFilme}" filterBy="#{aquisicao.aquisicaoPK.idFilme}" style="widht:20px" >
+						#{aquisicao.aquisicaoPK.idFilme}
+					</p:column>
+					
+					<p:column headerText="Data"  sortBy="#{aquisicao.data}" filterBy="#{aquisicao.data}" style="widht:15px" >
+						
+						<h:outputLabel value="#{aquisicao.data}">
+                                                   <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"></f:convertDateTime>
+                        </h:outputLabel>
+                        
+					</p:column>
+					
+				</p:dataTable>			
+
+			</h:form>
+
+      
+    </div><!-- end of center content -->
+    </ui:define>
+  	</ui:composition>
+
+</html>

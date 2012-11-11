@@ -1,6 +1,8 @@
 package br.ucb.filmes.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.ucb.filmes.enums.EnumFormato;
@@ -62,7 +65,15 @@ public class Filme implements Serializable {
 	@Column
 	private String extensaoImg;
 	
+	@OneToMany
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
 	public Integer getTamanho() {
 		return tamanho;
 	}

@@ -18,5 +18,6 @@ DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 		<mapping class="br.ucb.filmes.beans.Usuario" />
 		<mapping class="br.ucb.filmes.beans.Categoria" />
 		<mapping class="br.ucb.filmes.beans.Perfil" />
+		<mapping class="br.ucb.filmes.beans.Aquisicao" />
 	</session-factory>
 </hibernate-configuration>

@@ -28,7 +28,7 @@
 
 					</div>
 					
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;
 					<p:commandLink action="#{usuarioManagedBean.disconnect}"
 						styleClass="lang">
 
@@ -55,9 +55,7 @@
 			</div>
 			<div id="header">
 
-				<p:commandLink action="index">
-					<p:graphicImage value="../images/down_movies.png" style="border:0;" />
-				</p:commandLink>
+			
 
 			</div>
 
@@ -72,6 +70,10 @@
 							value="Filmes" styleClass="movies" icon="" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
 						<p:menuitem url="../admin/usuarios.jsf?faces-redirect=true"
 							value="Usuários" styleClass="users" icon="" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+						<p:menuitem url="../admin/aquisicoes.jsf?faces-redirect=true"
+							value="Aquisições" styleClass="download" icon="" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+						<p:menuitem url="../user/aquisicoes.jsf?faces-redirect=true"
+							value="Meus Downloads" styleClass="download" icon="" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" />	
 						<p:menuitem url="../contato.jsf?faces-redirect=true" value="Contatos" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" 
 							styleClass="contacts" icon="" />
 					</p:tabMenu>
@@ -139,6 +141,8 @@
 					<p:commandLink value="Home" url="../user/index.jsf?faces-redirect=true" />
 					<p:commandLink value="Filmes" url="../admin/filmes.jsf?faces-redirect=true" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
 					<p:commandLink value="Categorias" url="../admin/usuarios.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+					<p:commandLink value="Aquisições" url="../admin/aquisicoes.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+					<p:commandLink value="Meus Downloads" url="../user/aquisicoes.jsf?faces-redirect=true"  rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" />
 					<p:commandLink value="Contatos" url="../contato.jsf?faces-redirect=true" rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"  />
 					
 				</div>
