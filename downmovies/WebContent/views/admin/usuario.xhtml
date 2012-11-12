@@ -79,7 +79,7 @@
 							<p:selectOneMenu  requiredMessage="#{msg.msgPerfil}" value="#{usuarioManagedBean.usuario.perfil}" converter="PerfilConverter" styleClass="alignLeft margin-20r input-size-270"
 								id="perfil" required="true" effect="fade">
 									<f:selectItem itemLabel=""/>
-									<f:selectItems value="#{perfilManagedBean.perfis}" var="p"  itemValue="#{p}" itemLabel="#{p.descricao}"  />
+									<f:selectItems value="#{perfilManagedBean.perfis}" var="p"  itemValue="#{p}" itemLabel="#{msg[p.descricao]}"  />
 							</p:selectOneMenu>		
 								
 						</p:column>

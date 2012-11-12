@@ -2,6 +2,7 @@ package br.ucb.filmes.managedBean;
 
 import java.io.Serializable;
 import java.util.Locale;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIViewRoot;
@@ -30,7 +31,7 @@ public class InternacionalizacaoManagerBean implements Serializable {
 		currentLocale = new Locale("pt", "BR");  
 		viewRoot.setLocale(currentLocale); 
 	}  
-
+	
 	public Locale getCurrentLocale() {  
 		return currentLocale;  
 	}  

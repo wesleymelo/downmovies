@@ -44,7 +44,7 @@
 						
 						<p:commandLink update=":form:filmeDetail"
 							oncomplete="filmeDialog.show()" title="#{msg.visaoDetalhada}">
-							<h:graphicImage value="../images/search.png" title="Detalhar"
+							<h:graphicImage value="../images/search.png" title="#{msg.detalhar}"
 								style="border: none" />
 							<f:setPropertyActionListener value="#{aquisicao.filme}"
 								target="#{filmeManagedBean.filme}" />
@@ -88,7 +88,7 @@
 
 							<h:outputLabel for="categoria" value="#{msg.categoria}: " />
 							<h:outputText id="categoria"
-								value="#{filmeManagedBean.filme.categoria.descricao}" />
+								value="#{msg[filmeManagedBean.filme.categoria.descricao]}" />
 
 							<h:outputLabel for="anoLancamento" value="#{msg.anoLancamento}: " />
 							<h:outputText id="anoLancamento"
@@ -96,11 +96,11 @@
 
 							<h:outputLabel for="idioma" value="#{msg.idioma}: " />
 							<h:outputText id="idioma"
-								value="#{filmeManagedBean.filme.descricaoIdioma}" />
+								value="#{msg[filmeManagedBean.filme.descricaoIdioma]}" />
 
 							<h:outputLabel for="legenda" value="#{msg.legenda}: " />
 							<h:outputText id="legenda"
-								value="#{filmeManagedBean.filme.descricaoLegenda}" />
+								value="#{msg[filmeManagedBean.filme.descricaoLegenda]}" />
 
 							<h:outputLabel for="formato" value="#{msg.formato}: " />
 							<h:outputText id="formato"

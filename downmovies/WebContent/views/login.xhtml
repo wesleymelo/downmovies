@@ -14,125 +14,129 @@
 
 
 <f:view locale="#{internacionalizacaoManagerBean.currentLocale}">
-<h:body>
-	<div id="main_container">
+	<h:body>
+		<div id="main_container">
 
-		<div class="top_bar">
-
-
-			<div class="languages">
-
-				<div class="lang_text">
-					<h:outputText value="#{msg.idiomas}" />
-				</div>
-				
-				<p:commandLink action="#{internacionalizacaoManagerBean.englishLocale}" immediate="true"
-					styleClass="lang">
-					<p:graphicImage alt="#{msg.ingles}" value="../images/en.png"
-						style="border:0"></p:graphicImage>
-				</p:commandLink>
-				
-				<p:commandLink action="#{internacionalizacaoManagerBean.portugueseLocale}" immediate="true"
-					styleClass="lang">
-					<p:graphicImage alt="#{msg.portugues}" value="../images/br.png"
-						style="border:0"></p:graphicImage>
-				</p:commandLink>
-				
-				
-		
-			</div>
-
-		</div>
+			<div class="top_bar">
 
 
-		<div class="center_content">
+				<div class="languages">
+
+					<div class="lang_text">
+						<h:outputText value="#{msg.idiomas}" />
+					</div>
 
 
+					<h:form>
+						<p:commandLink
+							action="#{internacionalizacaoManagerBean.englishLocale}"
+							 ajax="false" styleClass="lang">
+							<p:graphicImage alt="#{msg.ingles}" value="../images/en.png"
+								style="border:0"></p:graphicImage>
+						</p:commandLink>
 
-			<p:panelGrid columns="2">
-
-				<p:panel header="#{msg.cadastre}">
-
-					<h:form id="form">
-						<p:messages showDetail="false" showSummary="true"
-							autoUpdate="true" />
-
-						<p:panelGrid columns="2" columnClasses="label, value">
-
-
-							<h:outputLabel for="nome" value="#{msg.nome}: *" />
-							<p:inputText id="nome" requiredMessage="#{msg.msgNome}."
-								value="#{usuarioManagedBean.usuario.nome}" required="true"
-								label="nome" />
-
-
-							<h:outputLabel for="sobrenome" value="#{msg.sobrenome}: *" />
-							<p:inputText id="sobrenome"
-								requiredMessage="#{msg.msgSobrenome}."
-								value="#{usuarioManagedBean.usuario.sobrenome}" required="true"
-								label="sobrenome" />
-
-
-							<h:outputLabel for="email" value="#{msg.email}: *" />
-							<p:inputText id="email" requiredMessage="#{msg.msgEmail}."
-								maxlength="180" value="#{usuarioManagedBean.usuario.email}"
-								required="true" label="email" validator="validaEmail" />
-
-							<h:outputLabel for="senha" value="#{msg.senha}: *" />
-							<p:password id="senha"
-								value="#{usuarioManagedBean.usuario.senha}" required="true"
-								label="#{msg.senha}" requiredMessage="#{msg.msgSenha}."
-								redisplay="true" maxlength="15"
-								validatorMessage="#{msg.msgSenhasIguais}." feedback="true">
-							</p:password>
-
-							<h:outputLabel for="confirmaSenha" value="#{msg.resenha}: *" />
-							<p:password id="confirmaSenha"
-								value="#{usuarioManagedBean.confirmaSenha}" required="true"
-								label="#{msg.resenha}" requiredMessage="#{msg.msgResenha}"
-								maxlength="15" feedback="true" />
-
-						</p:panelGrid>
-
-						<p:commandButton value="#{msg.cadastrar}" ajax="false"
-							action="#{usuarioManagedBean.salvarUser}" />
-
+						<p:commandLink
+							action="#{internacionalizacaoManagerBean.portugueseLocale}"
+							 ajax="false" styleClass="lang">
+							<p:graphicImage alt="#{msg.portugues}" value="../images/br.png"
+								style="border:0"></p:graphicImage>
+						</p:commandLink>
 					</h:form>
 
 
+				</div>
 
-				</p:panel>
-				<p:panel header="Login">
-					<form action="j_security_check" method="post">
-						<label>Email:</label><br /> <input type="text" name="j_username" />
-						<p />
-						<label>Password:</label><br /> <input type="password"
-							name="j_password" />
-						<p />
-						<input type="submit" value="OK" />
-					</form>
-				</p:panel>
-			</p:panelGrid>
+			</div>
 
 
-		</div>
-		<!-- end of center content -->
+			<div class="center_content">
 
 
-		<div class="footer">
 
-			<div class="center_footer">
-				<br />Down Movies. All Rights Reserved 2012<br />
+				<p:panelGrid columns="2">
+
+					<p:panel header="#{msg.cadastre}">
+
+						<h:form id="form">
+							<p:messages showDetail="false" showSummary="true"
+								autoUpdate="true" />
+
+							<p:panelGrid columns="2" columnClasses="label, value">
+
+
+								<h:outputLabel for="nome" value="#{msg.nome}: *" />
+								<p:inputText id="nome" requiredMessage="#{msg.msgNome}."
+									value="#{usuarioManagedBean.usuario.nome}" required="true"
+									label="nome" />
+
+
+								<h:outputLabel for="sobrenome" value="#{msg.sobrenome}: *" />
+								<p:inputText id="sobrenome"
+									requiredMessage="#{msg.msgSobrenome}."
+									value="#{usuarioManagedBean.usuario.sobrenome}" required="true"
+									label="sobrenome" />
+
+
+								<h:outputLabel for="email" value="#{msg.email}: *" />
+								<p:inputText id="email" requiredMessage="#{msg.msgEmail}."
+									maxlength="180" value="#{usuarioManagedBean.usuario.email}"
+									required="true" label="email" validator="validaEmail" />
+
+								<h:outputLabel for="senha" value="#{msg.senha}: *" />
+								<p:password id="senha"
+									value="#{usuarioManagedBean.usuario.senha}" required="true"
+									label="#{msg.senha}" requiredMessage="#{msg.msgSenha}."
+									redisplay="true" maxlength="15"
+									validatorMessage="#{msg.msgSenhasIguais}." feedback="true">
+								</p:password>
+
+								<h:outputLabel for="confirmaSenha" value="#{msg.resenha}: *" />
+								<p:password id="confirmaSenha"
+									value="#{usuarioManagedBean.confirmaSenha}" required="true"
+									label="#{msg.resenha}" requiredMessage="#{msg.msgResenha}"
+									maxlength="15" feedback="true" />
+
+							</p:panelGrid>
+
+							<p:commandButton value="#{msg.cadastrar}" ajax="false"
+								action="#{usuarioManagedBean.salvarUser}" />
+
+						</h:form>
+
+
+
+					</p:panel>
+					<p:panel header="Login">
+						<form action="j_security_check" method="post">
+							<label>Email:</label><br /> <input type="text" name="j_username" />
+							<p />
+							<label>Password:</label><br /> <input type="password"
+								name="j_password" />
+							<p />
+							<input type="submit" value="OK" />
+						</form>
+					</p:panel>
+				</p:panelGrid>
+
+
+			</div>
+			<!-- end of center content -->
+
+
+			<div class="footer">
+
+				<div class="center_footer">
+					<br />Down Movies. All Rights Reserved 2012<br />
+				</div>
+
 			</div>
 
 		</div>
-
-	</div>
-	<!-- end of main_container -->
+		<!-- end of main_container -->
 
 
 
-</h:body>
+	</h:body>
 
 </f:view>
 

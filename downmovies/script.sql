@@ -267,21 +267,21 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-insert into categoria(descricao) values('Acao');
-insert into categoria(descricao) values('Aventura');
-insert into categoria(descricao) values('Classico');
-insert into categoria(descricao) values('Comedia');
-insert into categoria(descricao) values('Documentario');
-insert into categoria(descricao) values('Drama');
-insert into categoria(descricao) values('Faroeste');
-insert into categoria(descricao) values('Ficcao');
-insert into categoria(descricao) values('Infantil');
-insert into categoria(descricao) values('Musical');
-insert into categoria(descricao) values('Romance');
-insert into categoria(descricao) values('Suspense');
-insert into categoria(descricao) values('Terror');
-insert into categoria(descricao) values('Policial');
-insert into categoria(descricao) values('Nao Disponivel');
+insert into categoria(descricao) values('acao');
+insert into categoria(descricao) values('aventura');
+insert into categoria(descricao) values('classico');
+insert into categoria(descricao) values('comedia');
+insert into categoria(descricao) values('documentario');
+insert into categoria(descricao) values('drama');
+insert into categoria(descricao) values('faroeste');
+insert into categoria(descricao) values('ficcao');
+insert into categoria(descricao) values('infantil');
+insert into categoria(descricao) values('musical');
+insert into categoria(descricao) values('romance');
+insert into categoria(descricao) values('suspense');
+insert into categoria(descricao) values('terror');
+insert into categoria(descricao) values('policial');
+insert into categoria(descricao) values('naoDisponivel');
 
 
 insert into perfil(descricao) values ('administrador');
