@@ -18,7 +18,7 @@
 				<div class="float-float">
 
 					<p:commandLink action="usuario.jsf?faces-redirect=true">
-						<p:graphicImage value="../images/plus2.png" alt="Novo Usuario"
+						<p:graphicImage value="../images/plus2.png" alt="#{msg.novo}"
 							style="border:0px;" />
 					</p:commandLink>
 
@@ -27,40 +27,40 @@
 				
 		
 				<p:dataTable id="tabela" var="usuario" value="#{usuarioManagedBean.usuarios}" widgetVar="usuariosTable"
-					paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Nenhuma usuario encontrada" filteredValue="#{usuarioManagedBean.filteredUsuarios}" >
+					paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="#{msg.nadaEncontrado}" filteredValue="#{usuarioManagedBean.filteredUsuarios}" >
 					
 					<f:facet name="header">
-						Usuários
+						<h:outputText value="#{msg.usuarios}" />
 					</f:facet>
 										
-					<p:column headerText="Nome"  sortBy="#{usuario.nome}" filterBy="#{usuario.nome}" style="widht:20px" >
+					<p:column headerText="#{msg.nome}"  sortBy="#{usuario.nome}" filterBy="#{usuario.nome}" style="widht:20px" >
 						#{usuario.nome}
 					</p:column>
 					
-					<p:column headerText="Sobre Nome"  sortBy="#{usuario.sobrenome}" filterBy="#{usuario.sobrenome}" style="widht:20px" >
+					<p:column headerText="#{msg.sobrenome}"  sortBy="#{usuario.sobrenome}" filterBy="#{usuario.sobrenome}" style="widht:20px" >
 						#{usuario.sobrenome}
 					</p:column>
 					
-					<p:column headerText="Email"  sortBy="#{usuario.email}" filterBy="#{usuario.email}" style="widht:50px" >
+					<p:column headerText="#{msg.email}"  sortBy="#{usuario.email}" filterBy="#{usuario.email}" style="widht:50px" >
 						#{usuario.email}
 					</p:column>
 					
 					
-					<p:column headerText="Ações" width="45">
+					<p:column headerText="#{msg.acoes}" width="45">
 						
 						<h:commandLink action="usuario">
 							<f:setPropertyActionListener target="#{usuarioManagedBean.usuario}"
 								value="#{usuario}" />
 							<f:setPropertyActionListener target="#{usuarioManagedBean.isAlter}"
 								value="true" />
-							<h:graphicImage value="../images/edit2.png" title="Editar"
+							<h:graphicImage value="../images/edit2.png" title="#{msg.editar}"
 								style="border: none" />
 						</h:commandLink>
 
 						&nbsp;						
 					
 						<p:commandLink onclick="confirmation.show()" update=":form:messages">
-							<p:graphicImage value="../images/delete2.png" title="Excluir"
+							<p:graphicImage value="../images/delete2.png" title="#{msg.excluir}"
 								style="border: none" />
 							<f:setPropertyActionListener value="#{usuario}" target="#{usuarioManagedBean.usuario}" />
 						</p:commandLink>
@@ -75,11 +75,11 @@
 
 			<h:form id="dlg">
 
-            <p:confirmDialog message="Deseja realmente excluir o usuario selecionado?"  hideEffect="explode" header="Aviso" severity="alert" widgetVar="confirmation" modal="true">
+            <p:confirmDialog message="#{msg.msgConfirmacaoExclusao}"  hideEffect="explode" header="#{msg.aviso}" severity="alert" widgetVar="confirmation" modal="true">
 
-                <p:commandButton id="btnSim" value="Sim" oncomplete="confirmation.hide();" action="#{usuarioManagedBean.excluir}" process="@form" update=":form:tabela" />
+                <p:commandButton id="btnSim" value="#{msg.sim}" oncomplete="confirmation.hide();" action="#{usuarioManagedBean.excluir}" process="@form" update=":form:tabela" />
 
-                <p:commandButton id="btnNao" value="Não" oncomplete="confirmation.hide();" action="#{usuarioManagedBean.init}" process="@form" update=":form:tabela"/>
+                <p:commandButton id="btnNao" value="#{msg.nao}" oncomplete="confirmation.hide();" action="#{usuarioManagedBean.init}" process="@form" update=":form:tabela"/>
 
             </p:confirmDialog>
 
