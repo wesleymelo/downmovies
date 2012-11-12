@@ -12,10 +12,37 @@
 
 </h:head>
 
-<h:body>
 
+<f:view locale="#{internacionalizacaoManagerBean.currentLocale}">
+<h:body>
 	<div id="main_container">
 
+		<div class="top_bar">
+
+
+			<div class="languages">
+
+				<div class="lang_text">
+					<h:outputText value="#{msg.idiomas}" />
+				</div>
+				
+				<p:commandLink action="#{internacionalizacaoManagerBean.englishLocale}" immediate="true"
+					styleClass="lang">
+					<p:graphicImage alt="#{msg.ingles}" value="../images/en.png"
+						style="border:0"></p:graphicImage>
+				</p:commandLink>
+				
+				<p:commandLink action="#{internacionalizacaoManagerBean.portugueseLocale}" immediate="true"
+					styleClass="lang">
+					<p:graphicImage alt="#{msg.portugues}" value="../images/br.png"
+						style="border:0"></p:graphicImage>
+				</p:commandLink>
+				
+				
+		
+			</div>
+
+		</div>
 
 
 		<div class="center_content">
@@ -24,53 +51,50 @@
 
 			<p:panelGrid columns="2">
 
-				<p:panel header="Cadastre-se">
+				<p:panel header="#{msg.cadastre}">
 
 					<h:form id="form">
 						<p:messages showDetail="false" showSummary="true"
 							autoUpdate="true" />
 
 						<p:panelGrid columns="2" columnClasses="label, value">
-							
-								
-								<h:outputLabel for="nome" value="Nome: *" />							
-								<p:inputText id="nome"
-									requiredMessage="Nome é obrigatório."
-									value="#{usuarioManagedBean.usuario.nome}" required="true"
-									label="nome" />
-							
-							
-								<h:outputLabel for="sobrenome" value="Sobrenome: *" />
-								<p:inputText id="sobrenome"
-									requiredMessage="Sobrenome é obrigatório."
-									value="#{usuarioManagedBean.usuario.sobrenome}" required="true"
-									label="sobrenome" />
-							
-							
-								<h:outputLabel for="email" value="E-mail: *" />
-								<p:inputText id="email"
-									requiredMessage="E-mail é obrigatório." maxlength="180"
-									value="#{usuarioManagedBean.usuario.email}" required="true"
-									label="email" validator="validaEmail" />
 
-								<h:outputLabel for="senha" value="Senha: *" />
-								<p:password id="senha"
-									value="#{usuarioManagedBean.usuario.senha}" required="true"
-									label="senha" requiredMessage="Senha é obrigatório."
-									redisplay="true" maxlength="15"
-									validatorMessage="A Confirmação da Senha deve ser igual à senha."
-									feedback="true">
-								</p:password>
 
-								<h:outputLabel for="confirmaSenha" value="Confirma Senha: *" />
-								<p:password id="confirmaSenha"
-									value="#{usuarioManagedBean.confirmaSenha}" required="true"
-									label="confirma senha"
-									requiredMessage="Confirma Senha é obrigatório" maxlength="15" feedback="true" />
+							<h:outputLabel for="nome" value="#{msg.nome}: *" />
+							<p:inputText id="nome" requiredMessage="#{msg.msgNome}."
+								value="#{usuarioManagedBean.usuario.nome}" required="true"
+								label="nome" />
+
+
+							<h:outputLabel for="sobrenome" value="#{msg.sobrenome}: *" />
+							<p:inputText id="sobrenome"
+								requiredMessage="#{msg.msgSobrenome}."
+								value="#{usuarioManagedBean.usuario.sobrenome}" required="true"
+								label="sobrenome" />
+
+
+							<h:outputLabel for="email" value="#{msg.email}: *" />
+							<p:inputText id="email" requiredMessage="#{msg.msgEmail}."
+								maxlength="180" value="#{usuarioManagedBean.usuario.email}"
+								required="true" label="email" validator="validaEmail" />
+
+							<h:outputLabel for="senha" value="#{msg.senha}: *" />
+							<p:password id="senha"
+								value="#{usuarioManagedBean.usuario.senha}" required="true"
+								label="#{msg.senha}" requiredMessage="#{msg.msgSenha}."
+								redisplay="true" maxlength="15"
+								validatorMessage="#{msg.msgSenhasIguais}." feedback="true">
+							</p:password>
+
+							<h:outputLabel for="confirmaSenha" value="#{msg.resenha}: *" />
+							<p:password id="confirmaSenha"
+								value="#{usuarioManagedBean.confirmaSenha}" required="true"
+								label="#{msg.resenha}" requiredMessage="#{msg.msgResenha}"
+								maxlength="15" feedback="true" />
 
 						</p:panelGrid>
 
-						<p:commandButton value="Cadastrar" ajax="false"
+						<p:commandButton value="#{msg.cadastrar}" ajax="false"
 							action="#{usuarioManagedBean.salvarUser}" />
 
 					</h:form>
@@ -78,16 +102,16 @@
 
 
 				</p:panel>
-					<p:panel header="Login">
-						<form action="j_security_check" method="post">
-							<label>Email:</label><br /> <input type="text" name="j_username" />
-							<p />
-							<label>Password:</label><br /> <input type="password"
-								name="j_password" />
-							<p />
-							<input type="submit" value="OK" />
-						</form>
-					</p:panel>
+				<p:panel header="Login">
+					<form action="j_security_check" method="post">
+						<label>Email:</label><br /> <input type="text" name="j_username" />
+						<p />
+						<label>Password:</label><br /> <input type="password"
+							name="j_password" />
+						<p />
+						<input type="submit" value="OK" />
+					</form>
+				</p:panel>
 			</p:panelGrid>
 
 
@@ -110,6 +134,6 @@
 
 </h:body>
 
-
+</f:view>
 
 </html>

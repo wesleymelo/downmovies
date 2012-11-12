@@ -13,22 +13,20 @@
 	
 	</h:head>
 	
-	
+	<f:view locale="#{internacionalizacaoManagerBean.currentLocale}">
 	<h:body>
-	
 		<div id="main_container">
 					
 				<div class="center_content">
 				
-				<p:panel header="Acesso Negado">
-					Você não possue acesso a esta área
+				<p:panel header="#{msg.acessoNegado}">
+					<h:outputText value="#{msg.msgAcessoNegado}" />
 				</p:panel>
 				
 				</div><!-- end of center content -->
 				
 		</div><!-- end of main_container -->
 	</h:body>
-	
-    
+	</f:view>
     
 </html>

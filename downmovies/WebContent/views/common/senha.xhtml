@@ -11,21 +11,21 @@
 		<div class="center_content">
 			<h:form id="form">
 				<p:messages showDetail="false" showSummary="true" autoUpdate="true" />
-				<p:panel styleClass="  " header="Usuario">
+				<p:panel styleClass="  " header="#{msg.usuario}">
 
 					<h:panelGrid columns="2" id="match" columnClasses="label, value"
 						styleClass="formulario">
 						
 						<p:column styleClass="alignRight">
-							<h:outputLabel for="senhaAtual" value="Senha Atual: *" />
+							<h:outputLabel for="senhaAtual" value="#{msg.senhaAtual}: *" />
 						</p:column>
 						<p:column styleClass="grid-427">
 							<p:password id="senhaAtual"
 								styleClass="alignLeft margin-20r input-size-270"
 								value="#{usuarioManagedBean.senhaAtual}" required="true"
-								label="senha" requiredMessage="Senha atual é obrigatória."
+								label="#{msg.senhaAtual}" requiredMessage="#{msg.msgSenhaAtualEmpty}."
 								redisplay="true" maxlength="15"
-								validatorMessage="A Senha atual deve ser igual à senha de acesso atualmente."
+								validatorMessage="#{msg.msgSenhaAtual}"
 								feedback="false">
 							</p:password>
 						</p:column>
@@ -33,34 +33,34 @@
 						
 						
 						<p:column styleClass="alignRight">
-							<h:outputLabel for="senha" value="Nova Senha: *" />
+							<h:outputLabel for="senha" value="#{msg.nova} #{msg.senha}: *" />
 						</p:column>
 						<p:column styleClass="grid-427">
 							<p:password id="senha"
 								styleClass="alignLeft margin-20r input-size-270"
 								value="#{usuarioManagedBean.confirmaSenha}" required="true"
-								label="senha" match="confirmaSenha" requiredMessage="Nova Senha é obrigatória."
+								label="#{msg.nova} #{msg.senha}" match="confirmaSenha" requiredMessage="#{msg.nova} #{msg.msgSenha}."
 								redisplay="true" maxlength="15"
-								validatorMessage="A Confirmação da Nova Senha deve ser igual à Nova Senha."
+								validatorMessage="#{msg.msgSenhasIguais}"
 								feedback="true">
 							</p:password>
 						</p:column>
 						
 						<p:column styleClass="alignRight">
-							<h:outputLabel for="confirmaSenha" value="Confirma Nova Senha: *" />
+							<h:outputLabel for="confirmaSenha" value="#{msg.resenha}: *" />
 						</p:column>
 						<p:column styleClass="grid-427">
 							<p:password id="confirmaSenha"
 								styleClass="alignLeft margin-20r input-size-270" 
 								value="#{usuarioManagedBean.confirmaSenha}" required="true"
-								label="confirma senha"
-								requiredMessage="Confirma Nova Senha é obrigatória" maxlength="15"
+								label="#{msg.resenha}"
+								requiredMessage="#{msg.msgResenha}" maxlength="15"
 								feedback="true" />
 						</p:column>
 
 					</h:panelGrid>
 
-					<p:commandButton id="save" value="Cadastrar" ajax="false" update="match"
+					<p:commandButton id="save" value="#{msg.cadastrar}" ajax="false" update="match"
 						action="#{usuarioManagedBean.alteraSenha}" />
 				</p:panel>
 
