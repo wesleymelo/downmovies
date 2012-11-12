@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
@@ -26,7 +26,7 @@ import br.ucb.filmes.util.FacesUtil;
 import br.ucb.filmes.util.FileUtil;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class FilmeManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
