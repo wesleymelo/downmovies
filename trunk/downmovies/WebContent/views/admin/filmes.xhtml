@@ -18,56 +18,58 @@
 				<div class="float-float">
 
 					<p:commandLink action="filme.jsf?faces-redirect=true">
-						<p:graphicImage value="../images/plus2.png" alt="Novo Filme"
+						<p:graphicImage value="../images/plus2.png" alt="#{msg.novo}"
 							style="border:0px;" />
 					</p:commandLink>
 
 				</div>
-				<br/><br/>
+				<br />
+				<br />
 				<p:dataTable id="tabela" value="#{filmeManagedBean.filmes}"
 					var="filme" widgetVar="filmesTable" paginator="true"
 					rowsPerPageTemplate="5,10,20,30" rows="10"
-					emptyMessage="Nenhum filme encontrado"
+					emptyMessage="#{msg.nadaEncontrado}"
 					filteredValue="#{filmeManagedBean.filteredFilmes}">
 
-					<f:facet name="header">  
-			            Lista de Filmes
-		        	</f:facet>
+					<f:facet name="header">
+						<h:outputText value="#{msg.filmes}" />
+					</f:facet>
 
 					<p:column headerText="#" sortBy="#{filme.idFilme}">
 						#{filme.idFilme}
 					</p:column>
 
-					<p:column headerText="Título" sortBy="#{filme.titulo}"
+					<p:column headerText="#{msg.titulo}" sortBy="#{filme.titulo}"
 						filterBy="#{filme.titulo}">
 						#{filme.titulo}
 					</p:column>
 
-					<p:column headerText="Diretor" sortBy="#{filme.diretor}"
+					<p:column headerText="#{msg.diretor}" sortBy="#{filme.diretor}"
 						filterBy="#{filme.diretor}">
 						#{filme.diretor}
 					</p:column>
 
 
-					<p:column headerText="Ano de Lançamento"
+					<p:column headerText="#{msg.anoLancamento}"
 						sortBy="#{filme.anoLancamento}" filterBy="#{filme.anoLancamento}">
 						#{filme.anoLancamento}
 					</p:column>
 
-					<p:column headerText="Idioma" sortBy="#{filme.descricaoIdioma}"
+					<p:column headerText="#{msg.idioma}"
+						sortBy="#{filme.descricaoIdioma}"
 						filterBy="#{filme.descricaoIdioma}">
 						#{filme.descricaoIdioma}
 					</p:column>
 
-					<p:column headerText="Ações" width="70">
+					<p:column headerText="#{msg.acoes}" width="70">
 
 
 
 
 						<p:commandLink update=":form:filmeDetail"
-							oncomplete="filmeDialog.show()" title="Visão Detalhada">
-							<h:graphicImage value="../images/search.png" title="Detalhar"
-								style="border: none" />
+							oncomplete="filmeDialog.show()" title="#{msg.visaoDetalhada}">
+							<h:graphicImage value="../images/search.png"
+								title="#{msg.detalhar}" style="border: none" />
 							<f:setPropertyActionListener value="#{filme}"
 								target="#{filmeManagedBean.filme}" />
 						</p:commandLink>
@@ -77,81 +79,83 @@
 						<h:commandLink action="filme">
 							<f:setPropertyActionListener target="#{filmeManagedBean.filme}"
 								value="#{filme}" />
-							<h:graphicImage value="../images/edit2.png" title="Editar"
+							<h:graphicImage value="../images/edit2.png" title="#{msg.editar}"
 								style="border: none" />
 						</h:commandLink>
 
 						&nbsp;						
 					
 						<p:commandLink onclick="confirmation.show()">
-							<p:graphicImage value="../images/delete2.png" title="Excluir"
-								style="border: none" />
-							<f:setPropertyActionListener value="#{filme}" target="#{filmeManagedBean.filme}" />
+							<p:graphicImage value="../images/delete2.png"
+								title="#{msg.excluir}" style="border: none" />
+							<f:setPropertyActionListener value="#{filme}"
+								target="#{filmeManagedBean.filme}" />
 						</p:commandLink>
-						
-						
+
+
 						<!-- <p:commandButton value="EXCLUIR" title="Excluir" onclick="confirmation.show()" style="margin-left: 5px" >
 							<h:graphicImage value="../images/delete2.png" title="Excluir"
 								style="border: none" /> -->
-                        <!-- Abaixo temos o setPropertyActionListener que é utilizado para pegar o objeto cli e setar no objeto cliente la no nosso bean, para posteriomente excluirmos-->
+						<!-- Abaixo temos o setPropertyActionListener que é utilizado para pegar o objeto cli e setar no objeto cliente la no nosso bean, para posteriomente excluirmos-->
 
-                        <!--  <f:setPropertyActionListener value="#{filme}" target="#{filmeManagedBean.filme}" />
+						<!--  <f:setPropertyActionListener value="#{filme}" target="#{filmeManagedBean.filme}" />
 
                     </p:commandButton>-->
-						
+
 					</p:column>
 
 				</p:dataTable>
 
-				<p:dialog header="Filme detalhado" widgetVar="filmeDialog"
+				<p:dialog header="#{msg.filmeDetalhado}" widgetVar="filmeDialog"
 					modal="true">
-					<p:outputPanel id="filmeDetail" style="text-align:center;" layout="block">
-							<p:graphicImage
-								value="../filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
-								alt="#{filmeManagedBean.filme.titulo}" width="230" height="240" />
+					<p:outputPanel id="filmeDetail" style="text-align:center;"
+						layout="block">
+						<p:graphicImage
+							value="../filmes/#{filmeManagedBean.filme.idFilme}.#{filmeManagedBean.filme.extensaoImg}"
+							alt="#{filmeManagedBean.filme.titulo}" width="230" height="240" />
 
 
 						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputLabel for="id" value="Código: " />
+							<h:outputLabel for="id" value="#{msg.codigo}: " />
 							<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
 
-							<h:outputLabel for="titulo" value="Título: " />
+							<h:outputLabel for="titulo" value="#{msg.titulo}: " />
 							<h:outputText id="titulo"
 								value="#{filmeManagedBean.filme.titulo}" />
 
-							<h:outputLabel for="diretor" value="Diretor: " />
+							<h:outputLabel for="diretor" value="#{msg.diretor}: " />
 							<h:outputText id="diretor"
 								value="#{filmeManagedBean.filme.diretor}" />
 
-							<h:outputLabel for="categoria" value="Categoria: " />
+							<h:outputLabel for="categoria" value="#{msg.categoria}: " />
 							<h:outputText id="categoria"
 								value="#{filmeManagedBean.filme.categoria.descricao}" />
 
-							<h:outputLabel for="anoLancamento" value="Ano Lançamento: " />
+							<h:outputLabel for="anoLancamento" value="#{msg.anoLancamento}: " />
 							<h:outputText id="anoLancamento"
 								value="#{filmeManagedBean.filme.anoLancamento}" />
 
-							<h:outputLabel for="idioma" value="Idioma: " />
+							<h:outputLabel for="idioma" value="#{msg.idioma}: " />
 							<h:outputText id="idioma"
 								value="#{filmeManagedBean.filme.descricaoIdioma}" />
 
-							<h:outputLabel for="legenda" value="Legenda: " />
+							<h:outputLabel for="legenda" value="#{msg.legenda}: " />
 							<h:outputText id="legenda"
 								value="#{filmeManagedBean.filme.descricaoLegenda}" />
 
-							<h:outputLabel for="formato" value="Formato: " />
+							<h:outputLabel for="formato" value="#{msg.formato}: " />
 							<h:outputText id="formato"
 								value="#{filmeManagedBean.filme.descricaoFormato}" />
 
-							<h:outputLabel for="qualidade" value="Qualidade: " />
+							<h:outputLabel for="qualidade" value="#{msg.qualidade}: " />
 							<h:outputText id="qualidade"
 								value="#{filmeManagedBean.filme.descricaoQualidade}" />
 
-							<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
+							<h:outputLabel for="tempoDuracao" value="#{msg.tempoDuracao}: " />
 							<h:outputText id="tempoDuracao"
 								value="#{filmeManagedBean.filme.tempoDuracao}" />
 
-							<h:outputLabel for="descricao" value="Descricão: " />
+							<h:outputLabel for="descricao" value="#{msg.descricao}: " />
 							<h:outputText id="descricao"
 								value="#{filmeManagedBean.filme.descricao}" />
 
@@ -168,20 +172,29 @@
 
 			<h:form id="dlg">
 
-            <p:confirmDialog  message="Deseja realmente excluir o filme selecionado?" hideEffect="explode" header="Aviso" severity="alert" widgetVar="confirmation" modal="true">
+				<p:confirmDialog
+					message="#{msg.msgConfirmacaoExclusao}"
+					hideEffect="explode" header="#{msg.aviso}" severity="alert"
+					widgetVar="confirmation" modal="true">
 
-                <!--caso seja sim chamo o metodo excluir, e fecho o modal com o oncomplete, tenho o process que estou dizendo para processar o form, e update para atualizar a tabela-->
+					<!--caso seja sim chamo o metodo excluir, e fecho o modal com o oncomplete, tenho o process que estou dizendo para processar o form, e update para atualizar a tabela-->
 
-                <p:commandButton id="btnSim" value="Sim" oncomplete="confirmation.hide();" action="#{filmeManagedBean.excluir}" process="@form" update=":form:tabela" />
+					<p:commandButton id="btnSim" value="#{msg.sim}"
+						oncomplete="confirmation.hide();"
+						action="#{filmeManagedBean.excluir}" process="@form"
+						update=":form:tabela" />
 
-                <!--caso seja não somente fecha o modal-->
+					<!--caso seja não somente fecha o modal-->
 
-                <p:commandButton id="btnNao" value="Não" oncomplete="confirmation.hide();" action="#{filmeManagedBean.init}" process="@form" update=":form:tabela"/>
+					<p:commandButton id="btnNao" value="#{msg.nao}"
+						oncomplete="confirmation.hide();"
+						action="#{filmeManagedBean.init}" process="@form"
+						update=":form:tabela" />
 
-            </p:confirmDialog>
+				</p:confirmDialog>
 
-        </h:form>
-			
+			</h:form>
+
 
 
 		</div>

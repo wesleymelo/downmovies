@@ -11,72 +11,72 @@
 		<div class="center_content">
 			<h:form id="form">
 				<p:messages showDetail="false" showSummary="true" autoUpdate="true" />
-				<p:panel styleClass="  " header="Usuario">
+				<p:panel styleClass="  " header="#{msg.usuario}">
 
 					<h:panelGrid columns="2" columnClasses="label, value"
 						styleClass="formulario">
 						<p:column styleClass="alignRight">
-							<h:outputLabel for="nome" value="Nome: *" />
+							<h:outputLabel for="nome" value="#{msg.nome}: *" />
 						</p:column>
 						
 						<p:column styleClass="grid-427">
 							<p:inputText id="nome"
 								styleClass="alignLeft margin-20r input-size-270"
-								requiredMessage="Nome é obrigatório."
+								requiredMessage="#{msg.msgNome}."
 								value="#{usuarioManagedBean.usuario.nome}" required="true"
-								label="nome" />
+								label="#{msg.nome}" />
 						</p:column>
 						<p:column styleClass="alignRight">
-							<h:outputLabel for="sobrenome" value="Sobrenome: *" />
+							<h:outputLabel for="sobrenome" value="#{msg.sobrenome}: *" />
 						</p:column>
 						<p:column styleClass="grid-427">
 							<p:inputText id="sobrenome"
 								styleClass="alignLeft margin-20r input-size-270"
-								requiredMessage="Sobrenome é obrigatório."
+								requiredMessage="#{msg.msgSobrenome}."
 								value="#{usuarioManagedBean.usuario.sobrenome}" required="true"
-								label="sobrenome" />
+								label="#{msg.sobrenome}" />
 						</p:column>
 						<p:column styleClass="alignRight">
-							<h:outputLabel for="email" value="E-mail: *" />
+							<h:outputLabel for="email" value="#{msg.email}: *" />
 						</p:column>
 						<p:column styleClass="grid-427">
 							<p:inputText id="email" readonly="#{usuarioManagedBean.isAlter == true}"
 								styleClass="alignLeft margin-20r input-size-270"
-								requiredMessage="E-mail é obrigatório." maxlength="180"
+								requiredMessage="#{msg.msgEmail}." maxlength="180"
 								value="#{usuarioManagedBean.usuario.email}" required="true"
-								label="email" validator="validaEmail" />
+								label="#{msg.email}" validator="validaEmail" />
 
 						</p:column>
 						<p:column styleClass="alignRight">
-							<h:outputLabel for="senha" value="Senha: *" />
+							<h:outputLabel for="senha" value="#{msg.senha}: *" />
 						</p:column>
 						<p:column styleClass="grid-427">
 							<p:password id="senha"
 								styleClass="alignLeft margin-20r input-size-270"
 								value="#{usuarioManagedBean.usuario.senha}" required="true"
-								label="senha" requiredMessage="Senha é obrigatório."
+								label="senha" requiredMessage="#{msg.msgSenha}."
 								redisplay="true" maxlength="15"
-								validatorMessage="A Confirmação da Senha deve ser igual à senha."
+								validatorMessage="#{msg.msgSenhasIguais}."
 								feedback="false">
 							</p:password>
 						</p:column>
 						<p:column styleClass="alignRight">
-							<h:outputLabel for="confirmaSenha" value="Confirma Senha: *" />
+							<h:outputLabel for="confirmaSenha" value="#{msg.resenha}: *" />
 						</p:column>
 						<p:column styleClass="grid-427">
 							<p:password id="confirmaSenha"
 								styleClass="alignLeft margin-20r input-size-270" 
 								value="#{usuarioManagedBean.confirmaSenha}" required="true"
-								label="confirma senha"
-								requiredMessage="Confirma Senha é obrigatório" maxlength="15" />
+								label="#{msg.resenha}"
+								requiredMessage="#{msg.msgResenha}" maxlength="15" />
 						</p:column>
 
 						<p:column styleClass="alignRight">
-							<h:outputLabel for="perfil" value="Perfil: *" />
+							<h:outputLabel for="perfil" value="#{msg.perfil}: *" />
 						</p:column>
 						<p:column styleClass="grid-427">
 
-							<p:selectOneMenu  requiredMessage="Perfil é obrigatorio" value="#{usuarioManagedBean.usuario.perfil}" converter="PerfilConverter" styleClass="alignLeft margin-20r input-size-270"
+							<p:selectOneMenu  requiredMessage="#{msg.msgPerfil}" value="#{usuarioManagedBean.usuario.perfil}" converter="PerfilConverter" styleClass="alignLeft margin-20r input-size-270"
 								id="perfil" required="true" effect="fade">
 									<f:selectItem itemLabel=""/>
 									<f:selectItems value="#{perfilManagedBean.perfis}" var="p"  itemValue="#{p}" itemLabel="#{p.descricao}"  />
@@ -86,7 +86,7 @@
 
 					</h:panelGrid>
 
-					<p:commandButton value="Cadastrar" ajax="false"
+					<p:commandButton value="#{msg.salvar}" ajax="false"
 						action="#{usuarioManagedBean.salvar}" />
 				</p:panel>
 
