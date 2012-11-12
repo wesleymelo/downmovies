@@ -37,7 +37,7 @@
 							<p:selectOneMenu  requiredMessage="#{msg.msgCategoria}" value="#{filmeManagedBean.filme.categoria}" converter="CategoriaConverter"
 								id="categoria" required="true" effect="fade">
 									<f:selectItem itemLabel=""/>	
-									<f:selectItems value="#{categoriaManagedBean.categorias}" var="categoria"  itemValue="#{categoria}" itemLabel="#{categoria.descricao}"  />
+									<f:selectItems value="#{categoriaManagedBean.categorias}" var="categoria"  itemValue="#{categoria}" itemLabel="#{msg[categoria.descricao]}"  />
 							</p:selectOneMenu>						
 
 							<h:outputLabel value="#{msg.anoLancamento}(Ex.: 2000):" for="ano_lancamento" />
@@ -52,7 +52,7 @@
 							<p:selectOneMenu  requiredMessage="#{msg.msgIdioma}" value="#{filmeManagedBean.filme.idioma}"
 								id="idioma" required="true" effect="fade">
 									<f:selectItem itemLabel=""/>
-									<f:selectItems value="#{filmeManagedBean.mapIdioma}" var="idioma"  itemValue="#{idioma}" itemLabel="#{idioma}"  />									
+									<f:selectItems value="#{filmeManagedBean.idiomas}" var="idioma"  itemValue="#{idioma.valor}" itemLabel="#{msg[idioma.nome]}"  />									
 							</p:selectOneMenu>
 							
 							
@@ -60,7 +60,7 @@
 							<p:selectOneMenu  requiredMessage="#{msg.msgLegenda}" value="#{filmeManagedBean.filme.legenda}"
 								id="legenda" required="true" effect="fade">
 									<f:selectItem itemLabel=""/>
-									<f:selectItems value="#{filmeManagedBean.idiomas}" var="legenda"  itemValue="#{legenda.valor}" itemLabel="#{legenda.nome}"  />									
+									<f:selectItems value="#{filmeManagedBean.idiomas}" var="legenda"  itemValue="#{legenda.valor}" itemLabel="#{msg[legenda.nome]}"  />									
 							</p:selectOneMenu>
 
 							<h:outputLabel value="#{msg.formato}:"  />						

@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 public enum EnumIdioma {
-	PT("Portugues",1),
-	EN("Ingles",2),
-	PT_EN("Portugues/Ingles",3),
-	NAO_DISPONIVEL("Não disponível",4);
+	PT("portugues",1),
+	EN("ingles",2),
+	PT_EN("portuguesIngles",3),
+	NAO_DISPONIVEL("naoDisponivel",4);
 	
 	private String nome;
 	private int valor;

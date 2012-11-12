@@ -48,24 +48,29 @@
 					<div class="lang_text">
 						<h:outputText value="#{msg.idiomas}" />
 					</div>
+					
+					<h:form>
 
-					<p:commandLink action="#{internacionalizacaoManagerBean.englishLocale}"
-						immediate="true" styleClass="lang">
-						<p:graphicImage alt="#{msg.ingles}" value="../images/en.png"
-							style="border:0"></p:graphicImage>
-					</p:commandLink>
+							<p:commandLink
+								action="#{internacionalizacaoManagerBean.englishLocale}" ajax="false"
+								immediate="true" styleClass="lang">
+								<p:graphicImage alt="#{msg.ingles}" value="../images/en.png"
+									style="border:0"></p:graphicImage>
+							</p:commandLink>
 
-					<p:commandLink action="#{internacionalizacaoManagerBean.portugueseLocale}"
-						immediate="true" styleClass="lang">
-						<p:graphicImage alt="#{msg.portugues}" value="../images/br.png"
-							style="border:0"></p:graphicImage>
-					</p:commandLink>
+							<p:commandLink
+								action="#{internacionalizacaoManagerBean.portugueseLocale}" ajax="false"
+								immediate="true" styleClass="lang">
+								<p:graphicImage alt="#{msg.portugues}" value="../images/br.png"
+									style="border:0"></p:graphicImage>
+							</p:commandLink>
 
-					<p:commandLink styleClass="lang"
-						action="../common/senha.jsf?faces-redirect=true">
-						<p:graphicImage alt="#{msg.alterarSenha}"
-							value="../images/key.png" style="border:0" />
-					</p:commandLink>
+							<p:commandLink styleClass="lang"
+								action="../common/senha.jsf?faces-redirect=true" ajax="false" >
+								<p:graphicImage alt="#{msg.alterarSenha}"
+									value="../images/key.png" style="border:0" />
+							</p:commandLink>
+					</h:form>
 				</div>
 
 			</div>
