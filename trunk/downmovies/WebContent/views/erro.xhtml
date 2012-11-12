@@ -13,17 +13,14 @@
 
 </h:head>
 
-
+<f:view locale="#{internacionalizacaoManagerBean.currentLocale}">
 <h:body>
-
 	<div id="main_container">
 
 		<div class="center_content">
 
-			
-
-				<p:panel header="Erro de login">
-					Usuário ou senha inválido. Verique seus dados de acesso.
+				<p:panel header="#{msg.erroLogin}">
+					<h:outputText value="#{msg.msgErroLogin}" />
 				</p:panel>
 
 		</div>
@@ -33,6 +30,6 @@
 	<!-- end of main_container -->
 </h:body>
 
-
+</f:view>
 
 </html>
