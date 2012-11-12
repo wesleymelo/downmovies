@@ -9,7 +9,7 @@
 <ui:composition template="../modelo/template.xhtml">
 	<ui:define name="conteudo">
 		<div class="center_content">
-			<p:panel header="Endereço">
+			<p:panel header="#{msg.endereco}">
 				
 				<strong>Campus I - QS 07 Lote 01 EPCT</strong><br/>
 				<strong>Águas Claras - CEP: 71966-700</strong><br/>
@@ -21,14 +21,14 @@
 				
 				<strong>Email:</strong> wesley@ucb.br<br/>
 				<strong>Email:</strong> daniel@ucb.br<br/>
-			  	<strong>Telefone:</strong> (61) 3356-9000<br/>
+			  	<strong><h:outputText value="#{msg.telefone}" />:</strong> (61) 3356-9000<br/>
 				
 			</p:panel>
 			<br/><br/>
-			<p:panel header="Componentes">
+			<p:panel header="#{msg.componentes}">
 				
-				<strong>Nome:</strong> Wesley Melo - <strong>Matrícula:</strong> UC10076176<br/>
-				<strong>Nome:</strong> Daniel Neto - <strong>Matrícula:</strong> UC10076176<br/>
+				<strong><h:outputText value="#{msg.nome}" />:</strong> Wesley Melo - <strong><h:outputText value="#{msg.matricula}" />:</strong> UC10076176<br/>
+				<strong><h:outputText value="#{msg.nome}" />:</strong> Daniel Neto - <strong><h:outputText value="#{msg.matricula}" />:</strong> UC10076176<br/>
 				
 			</p:panel>
 

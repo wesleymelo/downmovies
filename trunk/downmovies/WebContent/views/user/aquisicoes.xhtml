@@ -16,25 +16,25 @@
 				
 		
 				<p:dataTable id="tabela" var="aquisicao" value="#{aquisicaoManagedBean.aquisicoesByUser}"
-					paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Nenhuma aquisição encontrada" filteredValue="#{aquisicaoManagedBean.filteredAquisicoes}" >
+					paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="#{msg.nadaEncontrado}" filteredValue="#{aquisicaoManagedBean.filteredAquisicoes}" >
 					
 					<f:facet name="header">
-						Meus Downloads
+						<h:outputText value="#{msg.meusDownloads}" />
 					</f:facet>
 					
-					<p:column headerText="Filme"  sortBy="#{aquisicao.filme.titulo}" filterBy="#{aquisicao.filme.titulo}" style="widht:20px" >
+					<p:column headerText="#{msg.filme}"  sortBy="#{aquisicao.filme.titulo}" filterBy="#{aquisicao.filme.titulo}" style="widht:20px" >
 						#{aquisicao.filme.titulo}
 						
 						<p:commandLink update=":form:filmeDetail"
-							oncomplete="filmeDialog.show()" title="Visão Detalhada">
-							<h:graphicImage value="../images/search.png" title="Detalhar"
+							oncomplete="filmeDialog.show()" title="#{msg.visaoDetalhada}">
+							<h:graphicImage value="../images/search.png" title="#{msg.detalhar}"
 								style="border: none" />
 							<f:setPropertyActionListener value="#{aquisicao.filme}"
 								target="#{filmeManagedBean.filme}" />
 						</p:commandLink>
 					</p:column>
 					
-					<p:column headerText="Data"  sortBy="#{aquisicao.data}" filterBy="#{aquisicao.data}" style="widht:15px" >
+					<p:column headerText="#{msg.data}"  sortBy="#{aquisicao.data}" filterBy="#{aquisicao.data}" style="widht:15px" >
 						
 						<h:outputLabel value="#{aquisicao.data}">
                                                    <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"></f:convertDateTime>
@@ -45,7 +45,7 @@
 				</p:dataTable>	
 				
 				
-				<p:dialog header="Filme detalhado" widgetVar="filmeDialog"
+				<p:dialog header="#{msg.filmeDetalhado}" widgetVar="filmeDialog"
 					modal="true">
 					<p:outputPanel id="filmeDetail" style="text-align:center;" layout="block">
 
@@ -54,46 +54,46 @@
 								alt="#{filmeManagedBean.filme.titulo}" width="230" height="240" />
 
 						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputLabel for="id" value="Código: " />
+							<h:outputLabel for="id" value="#{msg.codigo}: " />
 							<h:outputText id="id" value="#{filmeManagedBean.filme.idFilme}" />
 
-							<h:outputLabel for="titulo" value="Título: " />
+							<h:outputLabel for="titulo" value="#{msg.titulo}: " />
 							<h:outputText id="titulo"
 								value="#{filmeManagedBean.filme.titulo}" />
 
-							<h:outputLabel for="diretor" value="Diretor: " />
+							<h:outputLabel for="diretor" value="#{msg.diretor}: " />
 							<h:outputText id="diretor"
 								value="#{filmeManagedBean.filme.diretor}" />
 
-							<h:outputLabel for="categoria" value="Categoria: " />
+							<h:outputLabel for="categoria" value="#{msg.categoria}: " />
 							<h:outputText id="categoria"
 								value="#{filmeManagedBean.filme.categoria.descricao}" />
 
-							<h:outputLabel for="anoLancamento" value="Ano Lançamento: " />
+							<h:outputLabel for="anoLancamento" value="#{msg.anoLancamento}: " />
 							<h:outputText id="anoLancamento"
 								value="#{filmeManagedBean.filme.anoLancamento}" />
 
-							<h:outputLabel for="idioma" value="Idioma: " />
+							<h:outputLabel for="idioma" value="#{msg.idioma}: " />
 							<h:outputText id="idioma"
 								value="#{filmeManagedBean.filme.descricaoIdioma}" />
 
-							<h:outputLabel for="legenda" value="Legenda: " />
+							<h:outputLabel for="legenda" value="#{msg.legenda}: " />
 							<h:outputText id="legenda"
 								value="#{filmeManagedBean.filme.descricaoLegenda}" />
 
-							<h:outputLabel for="formato" value="Formato: " />
+							<h:outputLabel for="formato" value="#{msg.formato}: " />
 							<h:outputText id="formato"
 								value="#{filmeManagedBean.filme.descricaoFormato}" />
 
-							<h:outputLabel for="qualidade" value="Qualidade: " />
+							<h:outputLabel for="qualidade" value="#{msg.qualidade}: " />
 							<h:outputText id="qualidade"
 								value="#{filmeManagedBean.filme.descricaoQualidade}" />
 
-							<h:outputLabel for="tempoDuracao" value="Tempo Duração: " />
+							<h:outputLabel for="tempoDuracao" value="#{msg.tempoDuracao}: " />
 							<h:outputText id="tempoDuracao"
 								value="#{filmeManagedBean.filme.tempoDuracao}" />
 
-							<h:outputLabel for="descricao" value="Descricão: " />
+							<h:outputLabel for="descricao" value="#{msg.descricao}: " />
 							<h:outputText id="descricao"
 								value="#{filmeManagedBean.filme.descricao}" />
 
