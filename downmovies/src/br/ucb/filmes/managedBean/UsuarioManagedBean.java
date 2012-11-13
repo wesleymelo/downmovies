@@ -170,7 +170,10 @@ public class UsuarioManagedBean implements Serializable {
 				FacesUtil.mensErro(erros);
 				return null;
 			} else {
-				dao.insert(usuario);
+				if(isAlter)
+					dao.update(usuario);
+				else
+				    dao.insert(usuario);
 				usuarios = dao.recoveryAll();
 				if(isAlter != null && isAlter){
 				   FacesUtil.mensInfo("Record registered successfully");
@@ -205,6 +208,7 @@ public class UsuarioManagedBean implements Serializable {
 	
 	public void excluir() {
 		try {
+			
 			dao.delete(usuario);
 			FacesUtil.mensInfo("Record deleted successfully");
 			log.info("Record deleted successfully");

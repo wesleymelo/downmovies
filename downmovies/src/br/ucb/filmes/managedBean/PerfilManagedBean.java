@@ -23,8 +23,6 @@ public class PerfilManagedBean implements Serializable {
 	
 	public PerfilManagedBean() {
 		perfis = new PerfilDAO().recoveryAll();
-		for(Perfil p : perfis)
-			System.out.println(p);
 	}
 	
 	public List<Perfil> getPerfis() {
