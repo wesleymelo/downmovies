@@ -19,6 +19,7 @@
 		<div id="main_container">
 
 			<ui:insert name="topo">
+				<h:form>
 				<div class="top_bar">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="float-left">
@@ -32,7 +33,6 @@
 						</div>
 
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<h:form>
 							<p:commandLink immediate="true" ajax="false"
 								action="#{usuarioManagedBean.disconnect}" styleClass="lang">
 
@@ -40,7 +40,6 @@
 									style="border:0" />
 
 							</p:commandLink>
-						</h:form>
 					</div>
 
 
@@ -50,7 +49,7 @@
 							<h:outputText value="#{msg.idiomas}" />
 						</div>
 
-						<h:form>
+
 
 							<p:commandLink
 								action="#{internacionalizacaoManagerBean.englishLocale}"
@@ -71,7 +70,7 @@
 								<p:graphicImage alt="#{msg.alterarSenha}"
 									value="../images/key.png" style="border:0" />
 							</p:commandLink>
-						</h:form>
+						
 					</div>
 
 				</div>
@@ -111,6 +110,7 @@
 					<br /> <br /> <br />
 				</div>
 				<!-- end of main content -->
+				</h:form>
 			</ui:insert>
 
 			<ui:insert name="conteudo">
