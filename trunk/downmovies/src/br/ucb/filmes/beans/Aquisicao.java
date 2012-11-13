@@ -24,13 +24,12 @@ public class Aquisicao implements Serializable {
 	private static final long serialVersionUID = 1L;	
 
 	@EmbeddedId
-	private AquisicaoPK aquisicaoPK;
+	private AquisicaoPK aquisicaoPK = new AquisicaoPK();
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 	
 	public Aquisicao() {
-		aquisicaoPK = new AquisicaoPK();
 		data = new Date();
 	}
 		

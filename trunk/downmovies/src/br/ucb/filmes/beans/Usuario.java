@@ -43,7 +43,7 @@ public class Usuario implements Serializable{
 	private List<Aquisicao> aquisicoes = new ArrayList<Aquisicao>();
 	
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinTable(name="autorizacao",
 			joinColumns={
 				@JoinColumn(name="email")				
@@ -197,8 +197,7 @@ public class Usuario implements Serializable{
 	@Override
 	public String toString() {
 		return "Usuario [email=" + email + ", nome=" + nome + ", sobrenome="
-				+ sobrenome + ", senha=" + senha 
-				+ ", perfis=" + perfis + ", perfil=" + perfil + "]";
+				+ sobrenome + ", senha=" + senha + "]";
 	}	
 	
 	
