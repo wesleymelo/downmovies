@@ -14,7 +14,7 @@ public class UploadArquivo implements Serializable {
 	private byte [] filmeArq;
 	private byte [] imagemArq;
 
-	private static final String DRIVER = "C:/Users/Wesley/Dropbox/TF 1.6";
+	private static final String DRIVER = "C:/Users/Daniel Neto/Desenvolvimento/WorkSpace";
 	private UploadedFile arquivoFilme;
 	private UploadedFile arquivoImagem;
 	private static final  String CAMINHO = DRIVER+"/downmovies/WebContent/views/filmes/";
