@@ -93,8 +93,7 @@
 								value="#{msg.aquisicoes}" styleClass="download" icon=""
 								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
 							<p:menuitem url="../user/aquisicoes.jsf?faces-redirect=true"
-								value="#{msg.meusDownloads}" styleClass="download" icon=""
-								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" />
+								value="#{msg.meusDownloads}" styleClass="download" icon="" />
 							<p:menuitem url="../user/contato.jsf?faces-redirect=true"
 								value="#{msg.contatos}"
 								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"
@@ -167,25 +166,24 @@
 
 					<div class="right_footer">
 						<h:form>
-							<p:commandLink value="#{msg.principal}"
+							<p:commandLink value="#{msg.principal}" ajax="false"
 								url="../user/index.jsf?faces-redirect=true" immediate="true" />
 							<p:commandLink value="#{msg.filmes}"
-								url="../admin/filmes.jsf?faces-redirect=true"
+								url="../admin/filmes.jsf?faces-redirect=true" ajax="false"
 								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}"
 								immediate="true" />
-							<p:commandLink value="#{msg.usuarios}"
+							<p:commandLink value="#{msg.usuarios}" ajax="false"
 								url="../admin/usuarios.jsf?faces-redirect=true"
 								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}"
 								immediate="true" />
-							<p:commandLink value="#{msg.aquisicoes}"
+							<p:commandLink value="#{msg.aquisicoes}" ajax="false"
 								url="../admin/aquisicoes.jsf?faces-redirect=true"
 								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}"
 								immediate="true" />
-							<p:commandLink value="#{msg.meusDownloads}"
+							<p:commandLink value="#{msg.meusDownloads}" ajax="false"
 								url="../user/aquisicoes.jsf?faces-redirect=true"
-								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"
 								immediate="true" />
-							<p:commandLink value="#{msg.contatos}"
+							<p:commandLink value="#{msg.contatos}" ajax="false"
 								url="../user/contato.jsf?faces-redirect=true"
 								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"
 								immediate="true" />
