@@ -2,41 +2,41 @@ package br.ucb.filmes.beans;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 
 @Embeddable
 public class AquisicaoPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-    @Column
-    private String email;
-
-    @Column
-    private Integer idFilme ;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Usuario usuario;
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Filme filme;
     
     public AquisicaoPK() {}
 
 	public AquisicaoPK(String email, Integer idFilme) {
 		super();
-		this.email = email;
-		this.idFilme = idFilme;
 	}
 
-	public String getEmail() {
-		return email;
+	
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
-	public Integer getIdFilme() {
-		return idFilme;
+	public Filme getFilme() {
+		return filme;
 	}
 
-	public void setIdFilme(Integer idFilme) {
-		this.idFilme = idFilme;
+	public void setFilme(Filme filme) {
+		this.filme = filme;
 	}
 }

@@ -2,15 +2,20 @@ package br.ucb.filmes.beans;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.ucb.filmes.dao.FilmeDAO;
-import br.ucb.filmes.dao.UsuarioDAO;
-
 @Entity
+@Table
+@AssociationOverrides({ @AssociationOverride(name = "aquisicaoPK.usuario", joinColumns = @JoinColumn(name = "email")),
+@AssociationOverride(name = "aquisicaoPK.filme", joinColumns = @JoinColumn(name = "idFilme")) })
 public class Aquisicao implements Serializable {
 
 	/**
@@ -42,14 +47,6 @@ public class Aquisicao implements Serializable {
 		this.aquisicaoPK = aquisicaoPK;
 	}
 	
-	public Filme getFilme(){
-		return new FilmeDAO().consult(aquisicaoPK.getIdFilme());
-	}
-	
-	public Usuario getUsuario(){
-		return new UsuarioDAO().consult(aquisicaoPK.getEmail());
-	}
-
 	public Date getData() {
 		return data;
 	}

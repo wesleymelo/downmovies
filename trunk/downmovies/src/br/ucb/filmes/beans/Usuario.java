@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table
@@ -33,10 +36,14 @@ public class Usuario implements Serializable{
 	@Column
 	private String senha;
 	
-	@OneToMany
-	private List<Filme> filmes = new ArrayList<Filme>();
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+    @SuppressWarnings("deprecation")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "aquisicaoPK.usuario",      cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @Cascade( { org.hibernate.annotations.CascadeType.SAVE_UPDATE,   org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
+	private List<Aquisicao> aquisicoes = new ArrayList<Aquisicao>();
+	
+	
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="autorizacao",
 			joinColumns={
 				@JoinColumn(name="email")				
@@ -62,17 +69,18 @@ public class Usuario implements Serializable{
 		this.perfis = perfis;
 	}*/
 	
-	public List<Filme> getFilmes() {
-		return filmes;
-	}
-
-	public void setFilmes(List<Filme> filmes) {
-		this.filmes = filmes;
-	}
 
 	@Transient
 	private Perfil perfil;
-	
+
+	public List<Aquisicao> getAquisicoes() {
+		return aquisicoes;
+	}
+
+	public void setAquisicoes(List<Aquisicao> aquisicoes) {
+		this.aquisicoes = aquisicoes;
+	}
+
 	public Perfil getPerfil() {
 		if(perfis != null)
 			return perfis.get(0);
@@ -184,6 +192,15 @@ public class Usuario implements Serializable{
 		} else if (!sobrenome.equals(other.sobrenome))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [email=" + email + ", nome=" + nome + ", sobrenome="
+				+ sobrenome + ", senha=" + senha 
+				+ ", perfis=" + perfis + ", perfil=" + perfil + "]";
 	}	
+	
+	
 	
 }
