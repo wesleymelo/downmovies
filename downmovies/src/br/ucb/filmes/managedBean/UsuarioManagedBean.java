@@ -181,12 +181,7 @@ public class UsuarioManagedBean implements Serializable {
 				FacesUtil.mensErro(erros);
 				return null;
 			} else {
-				System.out.println(usuario);
-				if(isAlter != null && isAlter){
-					dao.update(usuario);
-				}
-				else
-					dao.insert(usuario);
+				dao.insert(usuario);
 				usuarios = dao.recoveryAll();
 				if(isAlter != null && isAlter){
 				   FacesUtil.mensInfo("Record registered successfully");

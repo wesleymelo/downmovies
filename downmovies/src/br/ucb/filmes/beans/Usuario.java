@@ -143,12 +143,6 @@ public class Usuario implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((perfil == null) ? 0 : perfil.hashCode());
-		result = prime * result + ((perfis == null) ? 0 : perfis.hashCode());
-		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
-		result = prime * result
-				+ ((sobrenome == null) ? 0 : sobrenome.hashCode());
 		return result;
 	}
 
@@ -166,39 +160,15 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (perfil == null) {
-			if (other.perfil != null)
-				return false;
-		} else if (!perfil.equals(other.perfil))
-			return false;
-		if (perfis == null) {
-			if (other.perfis != null)
-				return false;
-		} else if (!perfis.equals(other.perfis))
-			return false;
-		if (senha == null) {
-			if (other.senha != null)
-				return false;
-		} else if (!senha.equals(other.senha))
-			return false;
-		if (sobrenome == null) {
-			if (other.sobrenome != null)
-				return false;
-		} else if (!sobrenome.equals(other.sobrenome))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", nome=" + nome + ", sobrenome="
-				+ sobrenome + ", senha=" + senha + "]";
-	}	
+		return "Usuario [email=" + email + "]";
+	}
+
+	
 	
 	
 	
