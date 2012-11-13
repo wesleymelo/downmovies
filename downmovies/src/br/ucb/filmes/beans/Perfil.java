@@ -3,6 +3,7 @@ package br.ucb.filmes.beans;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,12 +30,12 @@ public class Perfil implements Serializable {
 	@Column
 	private String descricao;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinTable(name="autorizacao",
 			joinColumns={@JoinColumn(name="idPerfil")},
 			inverseJoinColumns={@JoinColumn(name="email")}		
 	)
-	private List<Usuario> usuarios;
+	private List<Usuario> users;
 	//private Map<Integer, Usuario> usuarios;
 	
 	/*public Map<Integer, Usuario> getUsuarios() {
@@ -46,12 +47,15 @@ public class Perfil implements Serializable {
 	public Integer getIdPerfil() {
 		return idPerfil;
 	}
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	
+	public List<Usuario> getUsers() {
+		return users;
 	}
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+
+	public void setUsers(List<Usuario> users) {
+		this.users = users;
 	}
+
 	public void setIdPerfil(Integer idPerfil) {
 		this.idPerfil = idPerfil;
 	}
@@ -94,11 +98,14 @@ public class Perfil implements Serializable {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Perfil [idPerfil=" + idPerfil + ", descricao=" + descricao
-				+ ", usuarios=" + usuarios + "]";
+				+ "]";
 	}
+	
+	
 	
 	
 	

@@ -24,6 +24,7 @@ public class UsuarioManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = Logger.getLogger(UsuarioManagedBean.class);
 	private Usuario usuario;
+	private Usuario user;
 	private Usuario usuarioLogado;
 	private List<Usuario> usuarios;
 	private List<Usuario> filteredUsuarios;
@@ -40,6 +41,16 @@ public class UsuarioManagedBean implements Serializable {
 	
 	public String getSenhaAtual() {
 		return senhaAtual;
+	}
+	
+	
+	
+	public Usuario getUser() {
+		return user;
+	}
+
+	public void setUser(Usuario user) {
+		this.user = user;
 	}
 
 	public void setSenhaAtual(String senhaAtual) {
@@ -170,10 +181,12 @@ public class UsuarioManagedBean implements Serializable {
 				FacesUtil.mensErro(erros);
 				return null;
 			} else {
-				if(isAlter)
+				System.out.println(usuario);
+				if(isAlter != null && isAlter){
 					dao.update(usuario);
+				}
 				else
-				    dao.insert(usuario);
+					dao.insert(usuario);
 				usuarios = dao.recoveryAll();
 				if(isAlter != null && isAlter){
 				   FacesUtil.mensInfo("Record registered successfully");

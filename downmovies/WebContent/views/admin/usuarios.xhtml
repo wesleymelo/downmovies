@@ -48,7 +48,7 @@
 					
 					<p:column headerText="#{msg.acoes}" width="45">
 						
-						<h:commandLink action="usuario">
+						<h:commandLink action="usuario.jsf?faces-redirect=true">
 							<f:setPropertyActionListener target="#{usuarioManagedBean.usuario}"
 								value="#{usuario}" />
 							<f:setPropertyActionListener target="#{usuarioManagedBean.isAlter}"

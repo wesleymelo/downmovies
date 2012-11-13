@@ -22,14 +22,14 @@
 						<h:outputText value="#{msg.meusDownloads}" />
 					</f:facet>
 					
-					<p:column headerText="#{msg.filme}"  sortBy="#{aquisicao.filme.titulo}" filterBy="#{aquisicao.filme.titulo}" style="widht:20px" >
-						#{aquisicao.filme.titulo}
+					<p:column headerText="#{msg.filme}"  sortBy="#{aquisicao.aquisicaoPK.filme.titulo}" filterBy="#{aquisicao.aquisicaoPK.filme.titulo}" style="widht:20px" >
+						#{aquisicao.aquisicaoPK.filme.titulo}
 						
 						<p:commandLink update=":form:filmeDetail"
 							oncomplete="filmeDialog.show()" title="#{msg.visaoDetalhada}">
 							<h:graphicImage value="../images/search.png" title="#{msg.detalhar}"
 								style="border: none" />
-							<f:setPropertyActionListener value="#{aquisicao.filme}"
+							<f:setPropertyActionListener value="#{aquisicao.aquisicaoPK.filme}"
 								target="#{filmeManagedBean.filme}" />
 						</p:commandLink>
 					</p:column>
