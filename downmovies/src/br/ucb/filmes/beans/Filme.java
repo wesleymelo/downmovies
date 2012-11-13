@@ -1,14 +1,21 @@
 package br.ucb.filmes.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import br.ucb.filmes.enums.EnumFormato;
 import br.ucb.filmes.enums.EnumIdioma;
@@ -16,7 +23,7 @@ import br.ucb.filmes.enums.EnumQualidade;
 
 
 @Entity
-@Table(name = "Filme")
+@Table
 public class Filme implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -62,7 +69,17 @@ public class Filme implements Serializable {
 	@Column
 	private String extensaoImg;
 	
+	@SuppressWarnings("deprecation")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "aquisicaoPK.filme",      cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @Cascade( { org.hibernate.annotations.CascadeType.SAVE_UPDATE,   org.hibernate.annotations.CascadeType.DELETE_ORPHAN })
+	private List<Aquisicao> aquisicoes = new ArrayList<Aquisicao>();
 	
+	public List<Aquisicao> getAquisicoes() {
+		return aquisicoes;
+	}
+	public void setAquisicoes(List<Aquisicao> aquisicoes) {
+		this.aquisicoes = aquisicoes;
+	}
 	public Integer getTamanho() {
 		return tamanho;
 	}
