@@ -158,13 +158,13 @@ public class FilmeManagedBean implements Serializable {
 		return "filmes";
 	}
 	
-	public void excluir(){
-		
+	public void excluir(Filme filme){
+
 		try {
+			init();
 			dao.delete(filme);
 			FacesUtil.mensInfo("Record deleted successfully");	
 			log.info("Record deleted successfully");
-			init();
 			filmes = dao.recoveryAll();
 		} catch (Exception e) {
 			e.printStackTrace();
