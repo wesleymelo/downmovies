@@ -32,6 +32,7 @@ public class FilmeManagedBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger log = Logger.getLogger(FilmeManagedBean.class);
+	private static final Logger log2 = Logger.getLogger(AquisicaoManagedBean.class);
 	private Filme filme;
 	private List<Filme> filmes;
 	private List<Filme> filmesCategoria;
@@ -61,6 +62,10 @@ public class FilmeManagedBean implements Serializable {
 			}
 		}
 		mostraFilmes = true;
+	}
+	
+	public void limpaFiltro() {
+ 	    mostraFilmes = false;
 	}
 
 	public List<Filme> getFilmesCategoria() {
@@ -113,10 +118,15 @@ public class FilmeManagedBean implements Serializable {
 			aquisicao.getAquisicaoPK().setIdFilme(new Integer(arquivo));
 			aquisicao.getAquisicaoPK().setEmail(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
 			dao.insert(aquisicao);
-			FacesUtil.mensInfo("Download de filme realizado com Sucesso");
-			log.info("Download de filme realizado com Sucesso");
+			log2.info("Acquisition realized successfully");
+			FacesUtil.mensInfo("Download realized successfully");
+			log.info("Download realized successfully");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			FacesUtil.mensErro("Could not be downloaded");
+			log.error(e.getMessage(), e);
+		}catch (Exception e) {
+			log2.error(e.getMessage(), e);
 		}
 	      
 	    return file.getStreamedfile();
@@ -129,36 +139,47 @@ public class FilmeManagedBean implements Serializable {
 			if(arqFilme != null)uploadArquivo.fileUploadActionTorrent(arqFilme);
 			if(arqImagem != null )uploadArquivo.fileUploadActionImagem(arqImagem);
 			if(arqImagem != null )filme.setExtensaoImg(uploadArquivo.getExtensaoImg());
-			
-			System.out.println("Id: "+filme.getIdFilme());
-			
+						
 			dao.insert(this.filme);
 			
 			if(arqFilme != null || arqImagem != null )uploadArquivo.setNomeArquivo(filme.getIdFilme().toString());
 			if(arqFilme != null)uploadArquivo.gravarFilme();
 			if(arqImagem != null )uploadArquivo.gravarImagem();
 			filmes = dao.recoveryAll();
-			
-			FacesUtil.mensInfo("Filme salvo com Sucesso");
-			log.info("Filme salvo com Sucesso");
+
+			FacesUtil.mensInfo("Record registered successfully");
+			log.info("Record registered successfully");
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error(e.getMessage(), e);
-			FacesUtil.mensErro("Erro ao salvar o filme");
+			FacesUtil.mensErro("Unable to register the record");
 		}
-		filme = new Filme();
+		init();
 		return "filmes";
 	}
 	
 	public void excluir(){
-		dao.delete(filme);
-		FacesUtil.mensInfo("Filme excluído com sucesso");		
-		filme = new Filme();
-		filmes = dao.recoveryAll();
+		
+		try {
+			dao.delete(filme);
+			FacesUtil.mensInfo("Record deleted successfully");	
+			log.info("Record deleted successfully");
+			init();
+			filmes = dao.recoveryAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error(e.getMessage(), e);
+			FacesUtil.mensErro("Unable to delete the record");
+		}
 	}
 	
 	public void init() {
 		filme = new Filme();
+	}
+	
+	public String novoFilme(){
+		init();
+		return "filme.jsf?faces-redirect=true";
 	}
 	
 	public UploadedFile getArqFilme() {

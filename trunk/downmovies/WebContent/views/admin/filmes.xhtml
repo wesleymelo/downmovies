@@ -12,12 +12,12 @@
 
 			<h:form id="form" prependId="false">
 
-				<p:messages id="messages" />
+				<p:messages id="messages"  />
 
 				<!-- Button -->
 				<div class="float-float">
 
-					<p:commandLink action="filme.jsf?faces-redirect=true">
+					<p:commandLink action="#{filmeManagedBean.novoFilme}">
 						<p:graphicImage value="../images/plus2.png" alt="#{msg.novo}"
 							style="border:0px;" />
 					</p:commandLink>

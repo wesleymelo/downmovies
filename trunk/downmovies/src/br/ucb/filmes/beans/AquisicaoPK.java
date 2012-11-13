@@ -39,6 +39,4 @@ public class AquisicaoPK implements Serializable {
 	public void setIdFilme(Integer idFilme) {
 		this.idFilme = idFilme;
 	}
-	
-    
 }

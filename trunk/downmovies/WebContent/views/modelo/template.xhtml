@@ -13,190 +13,193 @@
 </h:head>
 
 <f:view locale="#{internacionalizacaoManagerBean.currentLocale}">
-<h:body>
-	<p:growl id="grow1" showDetail="true" sticky="true" />
+	<h:body>
+		<p:growl id="grow1" showDetail="true" sticky="true" />
 
-	<div id="main_container">
+		<div id="main_container">
 
-		<ui:insert name="topo">
-			<div class="top_bar">
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<div class="float-left">
+			<ui:insert name="topo">
+				<div class="top_bar">
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<div class="float-left">
 
-					<div class="languages">
-						<div class="lang_text">
-							<h:outputText
-								value="#{msg.bemVindo}: #{usuarioManagedBean.usuarioLogado.fullName}" />
+						<div class="languages">
+							<div class="lang_text">
+								<h:outputText
+									value="#{msg.bemVindo}: #{usuarioManagedBean.usuarioLogado.fullName}" />
+							</div>
+
 						</div>
 
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<h:form>
+							<p:commandLink immediate="true" ajax="false"
+								action="#{usuarioManagedBean.disconnect}" styleClass="lang">
+
+								<p:graphicImage value="../images/logout.png" alt="logout"
+									style="border:0" />
+
+							</p:commandLink>
+						</h:form>
 					</div>
 
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<p:commandLink immediate="true"
-						action="#{usuarioManagedBean.disconnect}" styleClass="lang">
 
-						<p:graphicImage value="../images/logout.png" alt="logout"
-							style="border:0" />
+					<div class="languages">
 
-					</p:commandLink>
+						<div class="lang_text">
+							<h:outputText value="#{msg.idiomas}" />
+						</div>
 
-				</div>
-
-
-				<div class="languages">
-
-					<div class="lang_text">
-						<h:outputText value="#{msg.idiomas}" />
-					</div>
-					
-					<h:form>
+						<h:form>
 
 							<p:commandLink
-								action="#{internacionalizacaoManagerBean.englishLocale}" ajax="false"
-								immediate="true" styleClass="lang">
+								action="#{internacionalizacaoManagerBean.englishLocale}"
+								ajax="false" immediate="true" styleClass="lang">
 								<p:graphicImage alt="#{msg.ingles}" value="../images/en.png"
 									style="border:0"></p:graphicImage>
 							</p:commandLink>
 
 							<p:commandLink
-								action="#{internacionalizacaoManagerBean.portugueseLocale}" ajax="false"
-								immediate="true" styleClass="lang">
+								action="#{internacionalizacaoManagerBean.portugueseLocale}"
+								ajax="false" immediate="true" styleClass="lang">
 								<p:graphicImage alt="#{msg.portugues}" value="../images/br.png"
 									style="border:0"></p:graphicImage>
 							</p:commandLink>
 
 							<p:commandLink styleClass="lang"
-								action="../common/senha.jsf?faces-redirect=true" ajax="false" >
+								action="../common/senha.jsf?faces-redirect=true" ajax="false">
 								<p:graphicImage alt="#{msg.alterarSenha}"
 									value="../images/key.png" style="border:0" />
 							</p:commandLink>
-					</h:form>
-				</div>
-
-			</div>
-			<div id="header"></div>
-
-			<div id="main_content">
-
-				<div id="menu_tab">
-
-					<p:tabMenu>
-						<p:menuitem url="../user/index.jsf?faces-redirect=true"
-							value="#{msg.principal}" styleClass="home" icon="" />
-						<p:menuitem url="../admin/filmes.jsf?faces-redirect=true"
-							value="#{msg.filmes}" styleClass="movies" icon=""
-							rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
-						<p:menuitem url="../admin/usuarios.jsf?faces-redirect=true"
-							value="#{msg.usuarios}" styleClass="users" icon=""
-							rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
-						<p:menuitem url="../admin/aquisicoes.jsf?faces-redirect=true"
-							value="#{msg.aquisicoes}" styleClass="download" icon=""
-							rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
-						<p:menuitem url="../user/aquisicoes.jsf?faces-redirect=true"
-							value="#{msg.meusDownloads}" styleClass="download" icon=""
-							rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" />
-						<p:menuitem url="../contato.jsf?faces-redirect=true"
-							value="#{msg.contatos}"
-							rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"
-							styleClass="contacts" icon="" />
-					</p:tabMenu>
-
-				</div>
-				<!-- end of menu tab -->
-
-				<!-- <div class="crumb_navigation">
-    				Navigation: <span class="current">Home</span>
-    			</div> -->
-				<br /> <br /> <br />
-			</div>
-			<!-- end of main content -->
-		</ui:insert>
-
-		<ui:insert name="conteudo">
-
-			<div class="left_content">
-				<div class="title_box">
-					<h:outputText value="#{msg.categorias}" />
-				</div>
-
-
-				<p:menu styleClass="left_menu">
-					<p:menuitem url="#" value="Usuários" icon="ui-icon-check" />
-
-
-				</p:menu>
-
-				<div class="banner_adds"></div>
-
-
-			</div>
-			<!-- end of left content -->
-
-
-			<div class="right_content">
-				<div class="session">
-					<div class="session_title">Sess&aacute;o</div>
-
-					<div class="session_details">
-						3 items <br /> <span class="border_session"></span> Total: <span
-							class="price">350$</span>
+						</h:form>
 					</div>
 
 				</div>
+				<div id="header"></div>
 
-				<div class="banner_adds"></div>
+				<div id="main_content">
 
-			</div>
-			<!-- end of right content -->
-		</ui:insert>
+					<div id="menu_tab">
+
+						<p:tabMenu>
+							<p:menuitem url="../user/index.jsf?faces-redirect=true"
+								value="#{msg.principal}" styleClass="home" icon="" />
+							<p:menuitem url="../admin/filmes.jsf?faces-redirect=true"
+								value="#{msg.filmes}" styleClass="movies" icon=""
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+							<p:menuitem url="../admin/usuarios.jsf?faces-redirect=true"
+								value="#{msg.usuarios}" styleClass="users" icon=""
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+							<p:menuitem url="../admin/aquisicoes.jsf?faces-redirect=true"
+								value="#{msg.aquisicoes}" styleClass="download" icon=""
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}" />
+							<p:menuitem url="../user/aquisicoes.jsf?faces-redirect=true"
+								value="#{msg.meusDownloads}" styleClass="download" icon=""
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}" />
+							<p:menuitem url="../user/contato.jsf?faces-redirect=true"
+								value="#{msg.contatos}"
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"
+								styleClass="contacts" icon="" />
+						</p:tabMenu>
+
+					</div>
+					<!-- end of menu tab -->
+
+					<!-- <div class="crumb_navigation">
+    				Navigation: <span class="current">Home</span>
+    			</div> -->
+					<br /> <br /> <br />
+				</div>
+				<!-- end of main content -->
+			</ui:insert>
+
+			<ui:insert name="conteudo">
+
+				<div class="left_content">
+					<div class="title_box">
+						<h:outputText value="#{msg.categorias}" />
+					</div>
+
+
+					<p:menu styleClass="left_menu">
+						<p:menuitem url="#" value="Usuários" icon="ui-icon-check" />
+
+
+					</p:menu>
+
+					<div class="banner_adds"></div>
+
+
+				</div>
+				<!-- end of left content -->
+
+
+				<div class="right_content">
+					<div class="session">
+						<div class="session_title">Sess&aacute;o</div>
+
+						<div class="session_details">
+							3 items <br /> <span class="border_session"></span> Total: <span
+								class="price">350$</span>
+						</div>
+
+					</div>
+
+					<div class="banner_adds"></div>
+
+				</div>
+				<!-- end of right content -->
+			</ui:insert>
 
 
 
 
-		<ui:insert name="rodape">
+			<ui:insert name="rodape">
 
 
-			<div class="footer">
+				<div class="footer">
 
-				<div class="center_footer">
-					<br />
-					<h:outputText value="#{msg.rodape}" />
-					<br />
+					<div class="center_footer">
+						<br />
+						<h:outputText value="#{msg.rodape}" />
+						<br />
+					</div>
+
+					<div class="right_footer">
+						<h:form>
+							<p:commandLink value="#{msg.principal}"
+								url="../user/index.jsf?faces-redirect=true" immediate="true" />
+							<p:commandLink value="#{msg.filmes}"
+								url="../admin/filmes.jsf?faces-redirect=true"
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}"
+								immediate="true" />
+							<p:commandLink value="#{msg.usuarios}"
+								url="../admin/usuarios.jsf?faces-redirect=true"
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}"
+								immediate="true" />
+							<p:commandLink value="#{msg.aquisicoes}"
+								url="../admin/aquisicoes.jsf?faces-redirect=true"
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}"
+								immediate="true" />
+							<p:commandLink value="#{msg.meusDownloads}"
+								url="../user/aquisicoes.jsf?faces-redirect=true"
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"
+								immediate="true" />
+							<p:commandLink value="#{msg.contatos}"
+								url="../user/contato.jsf?faces-redirect=true"
+								rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"
+								immediate="true" />
+						</h:form>
+					</div>
+
+
 				</div>
 
-				<div class="right_footer">
-					<p:commandLink value="#{msg.principal}"
-						url="../user/index.jsf?faces-redirect=true" immediate="true" />
-					<p:commandLink value="#{msg.filmes}"
-						url="../admin/filmes.jsf?faces-redirect=true"
-						rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}"
-						immediate="true" />
-					<p:commandLink value="#{msg.usuarios}"
-						url="../admin/usuarios.jsf?faces-redirect=true"
-						rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}"
-						immediate="true" />
-					<p:commandLink value="#{msg.aquisicoes}"
-						url="../admin/aquisicoes.jsf?faces-redirect=true"
-						rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 1}"
-						immediate="true" />
-					<p:commandLink value="#{msg.meusDownloads}"
-						url="../user/aquisicoes.jsf?faces-redirect=true"
-						rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"
-						immediate="true" />
-					<p:commandLink value="#{msg.contatos}"
-						url="../contato.jsf?faces-redirect=true"
-						rendered="#{usuarioManagedBean.usuarioLogado.perfil.idPerfil == 2}"
-						immediate="true" />
+			</ui:insert>
 
-				</div>
-
-			</div>
-
-		</ui:insert>
-
-	</div>
-	<!-- end of main_container -->
-</h:body>
+		</div>
+		<!-- end of main_container -->
+	</h:body>
 </f:view>
 
 
