@@ -88,8 +88,7 @@
 						<p:commandLink onclick="confirmation.show()">
 							<p:graphicImage value="../images/delete2.png"
 								title="#{msg.excluir}" style="border: none" />
-							<f:setPropertyActionListener value="#{filme}"
-								target="#{filmeManagedBean.filme}" />
+
 						</p:commandLink>
 
 
@@ -179,10 +178,11 @@
 
 					<!--caso seja sim chamo o metodo excluir, e fecho o modal com o oncomplete, tenho o process que estou dizendo para processar o form, e update para atualizar a tabela-->
 
-					<p:commandButton id="btnSim" value="#{msg.sim}"
+					<p:commandButton id="btnSim"  value="#{msg.sim}"
 						oncomplete="confirmation.hide();"
-						action="#{filmeManagedBean.excluir}" process="@form"
-						update=":form:tabela" />
+						action="#{filmeManagedBean.excluir(filme)}" process="@form"
+						update=":form:tabela" >
+					</p:commandButton>
 
 					<!--caso seja não somente fecha o modal-->
 
