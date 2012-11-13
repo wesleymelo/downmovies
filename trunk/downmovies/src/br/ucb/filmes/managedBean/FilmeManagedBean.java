@@ -18,6 +18,7 @@ import br.ucb.filmes.beans.Aquisicao;
 import br.ucb.filmes.beans.Filme;
 import br.ucb.filmes.dao.AquisicaoDAO;
 import br.ucb.filmes.dao.FilmeDAO;
+import br.ucb.filmes.dao.UsuarioDAO;
 import br.ucb.filmes.enums.EnumFormato;
 import br.ucb.filmes.enums.EnumIdioma;
 import br.ucb.filmes.enums.EnumQualidade;
@@ -115,8 +116,8 @@ public class FilmeManagedBean implements Serializable {
 			
 			AquisicaoDAO dao = new AquisicaoDAO();
 			Aquisicao aquisicao = new Aquisicao();
-			aquisicao.getAquisicaoPK().setIdFilme(new Integer(arquivo));
-			aquisicao.getAquisicaoPK().setEmail(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+			aquisicao.getAquisicaoPK().setFilme(new FilmeDAO().consult(new Integer(arquivo)));
+			aquisicao.getAquisicaoPK().setUsuario(new UsuarioDAO().consult(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName()));
 			dao.insert(aquisicao);
 			log2.info("Acquisition realized successfully");
 			FacesUtil.mensInfo("Download realized successfully");
@@ -158,13 +159,13 @@ public class FilmeManagedBean implements Serializable {
 		return "filmes";
 	}
 	
-	public void excluir(Filme filme){
-
+	public void excluir(){
+		
 		try {
-			init();
 			dao.delete(filme);
 			FacesUtil.mensInfo("Record deleted successfully");	
 			log.info("Record deleted successfully");
+			init();
 			filmes = dao.recoveryAll();
 		} catch (Exception e) {
 			e.printStackTrace();
