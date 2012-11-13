@@ -30,7 +30,6 @@ public class Aquisicao implements Serializable {
 	private Date data;
 	
 	public Aquisicao() {
-		data = new Date();
 	}
 		
 	public Aquisicao(AquisicaoPK aquisicaoPK, Date data) {

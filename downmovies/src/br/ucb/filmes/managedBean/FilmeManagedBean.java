@@ -3,6 +3,7 @@ package br.ucb.filmes.managedBean;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -116,6 +117,7 @@ public class FilmeManagedBean implements Serializable {
 			
 			AquisicaoDAO dao = new AquisicaoDAO();
 			Aquisicao aquisicao = new Aquisicao();
+			aquisicao.setData(new Date());
 			aquisicao.getAquisicaoPK().setFilme(new FilmeDAO().consult(new Integer(arquivo)));
 			aquisicao.getAquisicaoPK().setUsuario(new UsuarioDAO().consult(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName()));
 			dao.insert(aquisicao);
