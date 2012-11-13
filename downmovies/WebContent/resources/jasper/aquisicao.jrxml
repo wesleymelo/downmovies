@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioDetalhamentoPedido" pageWidth="827" pageHeight="1169" whenNoDataType="AllSectionsNoDetail" columnWidth="827" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="06f8fb4e-964e-4aed-86f3-f78cbf719043">
+	<property name="ireport.zoom" value="0.9892233445006773"/>
+	<property name="ireport.x" value="106"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DIRETORIO_IMAGENS" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<field name="titulo" class="java.lang.String"/>
+	<field name="diretor" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement uuid="05357a14-a33e-4102-99d7-54832ba85cea" x="0" y="0" width="827" height="101"/>
+				<imageExpression><![CDATA[$P{DIRETORIO_IMAGENS}.toString() + "down_movies.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ce9f8454-0509-480b-9463-fc989f93a680" mode="Opaque" x="0" y="0" width="443" height="33" forecolor="#FFCC00" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="14" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[FILME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ce9f8454-0509-480b-9463-fc989f93a680" mode="Opaque" x="443" y="0" width="384" height="33" forecolor="#FFCC00" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="14" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DIRETOR]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement uuid="5ecbfcae-aac0-42da-b4e3-dd61c84f8c27" x="24" y="0" width="419" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b32ef02e-9d95-4a4d-a970-b4b57712bf51" x="443" y="0" width="368" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{diretor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="44" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="878accbf-93a9-4370-937c-4e81a6df0fff" mode="Transparent" x="756" y="13" width="36" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER} + "/"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement uuid="3973142d-b4cf-4e80-9a74-2b0eac3f9985" mode="Transparent" x="792" y="13" width="19" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="93" splitType="Stretch"/>
+	</summary>
+</jasperReport>

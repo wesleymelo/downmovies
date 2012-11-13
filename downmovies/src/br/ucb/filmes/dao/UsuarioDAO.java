@@ -28,7 +28,22 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		try {
-			session.update(usuario);
+			session.saveOrUpdate(usuario);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			transaction.rollback();
+		} finally {
+			session.close();
+		}
+	}
+
+	public void alterarUsuario(Usuario usuario) {
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+
+			session.merge(usuario);
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

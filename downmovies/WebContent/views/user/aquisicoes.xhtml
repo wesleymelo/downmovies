@@ -13,8 +13,7 @@
 			<h:form id="form">
 		
 				<p:messages id="messages" />
-				
-		
+								
 				<p:dataTable id="tabela" var="aquisicao" value="#{aquisicaoManagedBean.aquisicoesByUser}"
 					paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="#{msg.nadaEncontrado}" filteredValue="#{aquisicaoManagedBean.filteredAquisicoes}" >
 					
@@ -42,9 +41,13 @@
                         
 					</p:column>
 					
-				</p:dataTable>	
-				
-				
+				</p:dataTable>
+				<p/>	
+				<p:commandLink  ajax="false">
+					<h:graphicImage value="../images/icone_pdf.png"
+								styleClass="margin-5r margin-5l" alt="PDF" title="PDF"/>
+					<p:fileDownload value="#{aquisicaoManagedBean.gerarRelatorioPDF()}"/>
+				</p:commandLink>
 				<p:dialog header="#{msg.filmeDetalhado}" widgetVar="filmeDialog"
 					modal="true">
 					<p:outputPanel id="filmeDetail" style="text-align:center;" layout="block">
@@ -100,7 +103,7 @@
 						</h:panelGrid>
 					</p:outputPanel>
 				</p:dialog>	
-						
+				
 
 			</h:form>
 
