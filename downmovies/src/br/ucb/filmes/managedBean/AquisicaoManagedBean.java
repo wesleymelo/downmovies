@@ -60,7 +60,7 @@ public class AquisicaoManagedBean implements Serializable {
 		try {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			parametros.put("DIRETORIO_IMAGENS",DRIVE+"/downmovies/WebContent/views/images/");
-			String caminho = "DRIVE/downmovies/WebContent/resources/jasper";
+			String caminho = DRIVE+"/downmovies/WebContent/resources/jasper";
 			String nomeArquivo = "AQUISICAO";			
 			fileUtil.gerarArquivoDownloadPDF(parametros, "application/pdf", "aquisicao.jasper", caminho,
 					nomeArquivo, listaAquisicoes());
