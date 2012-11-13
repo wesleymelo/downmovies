@@ -26,27 +26,27 @@
 					</f:facet>
 
 					<p:column headerText="#{msg.email}"
-						sortBy="#{aquisicao.aquisicaoPK.email}"
-						filterBy="#{aquisicao.aquisicaoPK.email}" style="widht:50px">
-						#{aquisicao.aquisicaoPK.email}
+						sortBy="#{aquisicao.aquisicaoPK.usuario.email}"
+						filterBy="#{aquisicao.aquisicaoPK.usuario.email}" style="widht:50px">
+						#{aquisicao.aquisicaoPK.usuario.email}
 					</p:column>
 
 					<p:column headerText="#{msg.nome}"
-						sortBy="#{aquisicao.usuario.fullName}"
-						filterBy="#{aquisicao.usuario.fullName}" style="widht:50px">
-						#{aquisicao.usuario.fullName}
+						sortBy="#{aquisicao.aquisicaoPK.usuario.fullName}"
+						filterBy="#{aquisicao.aquisicaoPK.usuario.fullName}" style="widht:50px">
+						#{aquisicao.aquisicaoPK.usuario.fullName}
 					</p:column>
 
 					<p:column headerText="#{msg.filme}"
-						sortBy="#{aquisicao.filme.titulo}"
-						filterBy="#{aquisicao.filme.titulo}" style="widht:20px">
-						#{aquisicao.filme.titulo}
+						sortBy="#{aquisicao.aquisicaoPK.filme.titulo}"
+						filterBy="#{aquisicao.aquisicaoPK.filme.titulo}" style="widht:20px">
+						#{aquisicao.aquisicaoPK.filme.titulo}
 						
 						<p:commandLink update=":form:filmeDetail"
 							oncomplete="filmeDialog.show()" title="#{msg.visaoDetalhada}">
 							<h:graphicImage value="../images/search.png" title="#{msg.detalhar}"
 								style="border: none" />
-							<f:setPropertyActionListener value="#{aquisicao.filme}"
+							<f:setPropertyActionListener value="#{aquisicao.aquisicaoPK.filme}"
 								target="#{filmeManagedBean.filme}" />
 						</p:commandLink>
 

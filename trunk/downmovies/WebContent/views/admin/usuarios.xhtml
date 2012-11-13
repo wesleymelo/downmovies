@@ -59,7 +59,7 @@
 
 						&nbsp;						
 					
-						<p:commandLink onclick="confirmation.show()" update=":form:messages">
+						<p:commandLink onclick="confirmation.show()">
 							<p:graphicImage value="../images/delete2.png" title="#{msg.excluir}"
 								style="border: none" />
 							<f:setPropertyActionListener value="#{usuario}" target="#{usuarioManagedBean.usuario}" />
@@ -75,18 +75,25 @@
 
 			<h:form id="dlg">
 
-            <p:confirmDialog message="#{msg.msgConfirmacaoExclusao}"  hideEffect="explode" header="#{msg.aviso}" severity="alert" widgetVar="confirmation" modal="true">
+				<p:confirmDialog message="#{msg.msgConfirmacaoExclusao}"
+					hideEffect="explode" header="#{msg.aviso}" severity="alert"
+					widgetVar="confirmation" modal="true">
 
-                <p:commandButton id="btnSim" value="#{msg.sim}" oncomplete="confirmation.hide();" action="#{usuarioManagedBean.excluir}" process="@form" update=":form:tabela" />
+					<p:commandButton id="btnSim" value="#{msg.sim}"
+						oncomplete="confirmation.hide();"
+						action="#{usuarioManagedBean.excluir}" process="@form"
+						update=":form:tabela" />
 
-                <p:commandButton id="btnNao" value="#{msg.nao}" oncomplete="confirmation.hide();" action="#{usuarioManagedBean.init}" process="@form" update=":form:tabela"/>
+					<p:commandButton id="btnNao" value="#{msg.nao}"
+						onclick="confirmation.hide();" action="#{usuarioManagedBean.init}"
+						process="@form" update=":form:tabela" />
 
-            </p:confirmDialog>
+				</p:confirmDialog>
 
-        </h:form>
+			</h:form>
 
-      
-    </div><!-- end of center content -->
+
+		</div><!-- end of center content -->
     </ui:define>
   	</ui:composition>
 
