@@ -43,7 +43,7 @@ public class CategoriaManagedBean implements Serializable {
 
 
 		for (Categoria c : this.categorias) {
-			if(!c.getDescricao().equalsIgnoreCase("Nao Disponivel")){
+			if(!c.getDescricao().equalsIgnoreCase("naoDisponivel")){
 				item = new MenuItem();
 				item.setValue(c.getDescricao());
 				item.setUrl("#");
@@ -58,12 +58,6 @@ public class CategoriaManagedBean implements Serializable {
 	public MenuModel getMenu() {
 		return menu;
 	}
-
-	
-	public void filtrar(){
-		System.out.println("jaskdhjskdfh sdgfj sdfh ghdghh jack");
-	}
-
 
 	public void setMenu(MenuModel menu) {
 		this.menu = menu;

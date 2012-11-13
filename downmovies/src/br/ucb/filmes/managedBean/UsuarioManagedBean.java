@@ -8,6 +8,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import br.ucb.filmes.beans.Usuario;
 import br.ucb.filmes.dao.PerfilDAO;
 import br.ucb.filmes.dao.UsuarioDAO;
@@ -18,7 +20,9 @@ import br.ucb.filmes.validator.ValidaSenha;
 @SessionScoped
 public class UsuarioManagedBean implements Serializable {
 
+	
 	private static final long serialVersionUID = 1L;
+	private static final Logger log = Logger.getLogger(UsuarioManagedBean.class);
 	private Usuario usuario;
 	private Usuario usuarioLogado;
 	private List<Usuario> usuarios;
@@ -31,7 +35,7 @@ public class UsuarioManagedBean implements Serializable {
 	public UsuarioManagedBean() {
 		dao = new UsuarioDAO();
 		usuarios = dao.recoveryAll();
-		usuario = new Usuario();
+		usuario = new Usuario(); 
 	}
 	
 	public String getSenhaAtual() {
@@ -105,17 +109,25 @@ public class UsuarioManagedBean implements Serializable {
 				return;
 			} else {
 				dao.insert(usuario);
+				FacesUtil.mensInfo("Record registered successfully ");
+				log.info("Record registered successfully ");
 				usuarios = dao.recoveryAll();
-				FacesUtil.mensInfo("Usuario cadastrado com Sucesso");
+				
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			FacesUtil.mensErro("Erro ao cadastrar usuario");
+			FacesUtil.mensErro("Unable to register the record");
+			log.error(e.getMessage(), e);
 		}
-		usuario = new Usuario();
+		init();
 		isAlter = false;
 	}
 	
+	public String novoUsuario(){
+		init();
+		return "usuario.jsf?faces-redirect=true";
+	}
 	
 	public void alteraSenha(){
 		try {
@@ -125,16 +137,19 @@ public class UsuarioManagedBean implements Serializable {
 				System.out.println("Senha:" +confirmaSenha);
 				usuario.setSenha(confirmaSenha);
 				dao.update(usuario);
-				FacesUtil.mensInfo("Senha Alterado com sucesso");
+				FacesUtil.mensInfo("Password changed successfully");
+				log.info("Password changed successfully");
 				senhaAtual = null;
 				confirmaSenha = null;
 				return;
 			}
-			FacesUtil.mensErro("Senha atual não confere");
+			
+			FacesUtil.mensErro("Current password does not match");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			FacesUtil.mensErro("Erro ao alterar senha");
+			FacesUtil.mensErro("Unable to change the password");
+			log.error(e.getMessage(), e);
 		}
 		senhaAtual = null;
 		confirmaSenha = null;
@@ -146,7 +161,7 @@ public class UsuarioManagedBean implements Serializable {
 					usuario.getSenha(), getConfirmaSenha());
 			if(isAlter != null && !isAlter){
 				if (dao.consult(usuario.getEmail()) != null) {
-					FacesUtil.mensErro("Email já cadastrado");
+					FacesUtil.mensErro("Email already registered");
 					return "usuario";
 				}
 			}
@@ -157,19 +172,25 @@ public class UsuarioManagedBean implements Serializable {
 			} else {
 				dao.insert(usuario);
 				usuarios = dao.recoveryAll();
-				if(isAlter != null && isAlter)
-				   FacesUtil.mensInfo("Usuario alterado com Sucesso");
-				else
-				   FacesUtil.mensInfo("Usuario cadastrado com Sucesso");
+				if(isAlter != null && isAlter){
+				   FacesUtil.mensInfo("Record registered successfully");
+				   log.info("Record registered successfully ");
+				}
+				else{
+				   FacesUtil.mensInfo("Record changed successfully");
+				   log.info("Record changed successfully ");
+				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			if(isAlter != null && isAlter)
-				FacesUtil.mensErro("Erro ao alterar usuario");
-			else 
-				FacesUtil.mensErro("Erro ao cadastrar usuario");
+				FacesUtil.mensErro("Unable to change the record");
+			else
+				FacesUtil.mensErro("Unable to register the record");
+			log.error(e.getMessage(), e);
 		}
-		usuario = new Usuario();
+		init();
 		isAlter = false;
 		return "usuarios";
 	}
@@ -178,14 +199,22 @@ public class UsuarioManagedBean implements Serializable {
 		FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession)fc.getExternalContext().getSession(false);
         session.invalidate();
+        log.info("User disconnected");
 		return "../login.jsf?faces-redirect=true";
 	}
 	
 	public void excluir() {
-		dao.delete(usuario);
-		FacesUtil.mensInfo("Usuário excluído com sucesso");
-		usuario = new Usuario();
-		usuarios = dao.recoveryAll();
+		try {
+			dao.delete(usuario);
+			FacesUtil.mensInfo("Record deleted successfully");
+			log.info("Record deleted successfully");
+			init();
+			usuarios = dao.recoveryAll();
+		}catch (Exception e) {
+			FacesUtil.mensErro("Unable to delete the record");
+			log.error(e.getMessage(), e);
+		}
+		
 	}
 	
 	public void init() {
